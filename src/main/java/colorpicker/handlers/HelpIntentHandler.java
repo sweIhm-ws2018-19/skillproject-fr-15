@@ -1,11 +1,8 @@
 /*
      Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
      Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file
      except in compliance with the License. A copy of the License is located at
-
          http://aws.amazon.com/apache2.0/
-
      or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for
      the specific language governing permissions and limitations under the License.
@@ -29,8 +26,8 @@ public class HelpIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Du kannst mir Deine Lieblingsfarbe sagen. Sage zum Beispiel, meine Lieblingsfarbe ist rot.";
-        String repromptText = "Bitte sage mir Deine Lieblingsfarbe.";
+        String speechText = "Du kannst laut um Hilfe rufen.";
+        String repromptText = "Hilfe123!";
         return input.getResponseBuilder()
                 .withSimpleCard("ColorSession", speechText)
                 .withSpeech(speechText)

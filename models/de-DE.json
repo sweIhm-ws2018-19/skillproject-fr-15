@@ -1,12 +1,8 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "lieblingsfarbe",
+      "invocationName": "alexas escape",
       "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
         {
           "name": "AMAZON.HelpIntent",
           "samples": []
@@ -16,25 +12,10 @@
           "samples": []
         },
         {
-          "name": "MyColorIsIntent",
-          "slots": [
-            {
-              "name": "Color",
-              "type": "LIST_OF_COLORS"
-            }
-          ],
-          "samples": [
-            " Meine Lieblingsfarbe ist {Color}",
-            " Ich mag {Color}"
-          ]
-        },
-        {
-          "name": "WhatsMyColorIntent",
+          "name": "WhatsUpIntent",
           "slots": [],
           "samples": [
-            "was ist meine Lieblingsfarbe",
-            "welche Farbe mag ich am liebsten",
-            "sag mir meine Lieblingsfarbe"
+            "was ist hier eigentlich los"
           ]
         },
         {
@@ -44,55 +25,13 @@
         {
           "name": "AMAZON.ResumeIntent",
           "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
         }
       ],
-      "types": [
-        {
-          "name": "LIST_OF_COLORS",
-          "values": [
-            {
-              "name": {
-                "value": "grün"
-              }
-            },
-            {
-              "name": {
-                "value": "blau"
-              }
-            },
-            {
-              "name": {
-                "value": "lila"
-              }
-            },
-            {
-              "name": {
-                "value": "rot"
-              }
-            },
-            {
-              "name": {
-                "value": "orange"
-              }
-            },
-            {
-              "name": {
-                "value": "rosa"
-              }
-            },
-            {
-              "name": {
-                "value": "türkis"
-              }
-            },
-            {
-              "name": {
-                "value": "gelb"
-              }
-            }
-          ]
-        }
-      ]
+      "types": []
     }
   }
 }
