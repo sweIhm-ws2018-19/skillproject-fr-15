@@ -11,15 +11,15 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker;
+package main.java.alexasescape;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.colorpicker.handlers.HelpIntentHandler;
-import main.java.colorpicker.handlers.LaunchRequestHandler;
-import main.java.colorpicker.handlers.RepeatIntentHandler;
-import main.java.colorpicker.handlers.WhatsUpIntentHandler;
+import main.java.alexasescape.handlers.HelpIntentHandler;
+import main.java.alexasescape.handlers.LaunchRequestHandler;
+import main.java.alexasescape.handlers.RepeatIntentHandler;
+import main.java.alexasescape.handlers.WhatsUpIntentHandler;
 
 public class AlexasEscape extends SkillStreamHandler {
 

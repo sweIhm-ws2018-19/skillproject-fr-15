@@ -1,9 +1,8 @@
-package main.java.colorpicker.handlers;
+package main.java.alexasescape.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import main.java.colorpicker.AlexasEscape;
 
 import java.util.Optional;
 

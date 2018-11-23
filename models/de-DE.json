@@ -29,6 +29,14 @@
         {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": [
+            "nochmal",
+            "wiederhole das",
+            "Wiederholen"
+          ]
         }
       ],
       "types": []
