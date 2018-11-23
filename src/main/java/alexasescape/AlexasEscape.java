@@ -18,6 +18,7 @@ import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import main.java.colorpicker.handlers.HelpIntentHandler;
 import main.java.colorpicker.handlers.LaunchRequestHandler;
+import main.java.colorpicker.handlers.RepeatIntentHandler;
 import main.java.colorpicker.handlers.WhatsUpIntentHandler;
 
 public class AlexasEscape extends SkillStreamHandler {
@@ -27,7 +28,8 @@ public class AlexasEscape extends SkillStreamHandler {
                 .addRequestHandlers(
                         new LaunchRequestHandler(),
                         new HelpIntentHandler(),
-                        new WhatsUpIntentHandler()
+                        new WhatsUpIntentHandler(),
+                        new RepeatIntentHandler()
                 )
                 // Add your skill id below
                 //.withSkillId("")

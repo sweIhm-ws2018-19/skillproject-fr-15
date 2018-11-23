@@ -3,6 +3,7 @@ package main.java.colorpicker.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.colorpicker.AlexasEscape;
 
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class WhatsUpIntentHandler implements RequestHandler {
         speechText = "test Antwort";
 
         return input.getResponseBuilder()
+                .withReprompt(speechText)
                 .withSpeech(speechText)
                 .withSimpleCard("ColorSession", speechText)
                 .build();
