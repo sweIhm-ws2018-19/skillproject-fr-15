@@ -16,10 +16,7 @@ package main.java.alexasescape;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.alexasescape.handlers.HelpIntentHandler;
-import main.java.alexasescape.handlers.LaunchRequestHandler;
-import main.java.alexasescape.handlers.RepeatIntentHandler;
-import main.java.alexasescape.handlers.WhatsUpIntentHandler;
+import main.java.alexasescape.handlers.*;
 
 public class AlexasEscape extends SkillStreamHandler {
 
@@ -29,7 +26,9 @@ public class AlexasEscape extends SkillStreamHandler {
                         new LaunchRequestHandler(),
                         new HelpIntentHandler(),
                         new WhatsUpIntentHandler(),
-                        new RepeatIntentHandler()
+                        new RepeatIntentHandler(),
+                        new SessionEndedRequestHandler(),
+                        new CancelOrStopIntentHandler()
                 )
                 // Add your skill id below
                 //.withSkillId("")
