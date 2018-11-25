@@ -4,38 +4,37 @@
       "invocationName": "alexas escape",
       "intents": [
         {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "WhatsUpIntent",
-          "slots": [],
+          "name": "AMAZON.CancelIntent",
           "samples": [
-            "was ist hier eigentlich los"
+            "Skill beenden"
           ]
         },
         {
-          "name": "AMAZON.PauseIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ResumeIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.RepeatIntent",
+          "name": "RepeatIntent",
+          "slots": [],
           "samples": [
-            "nochmal",
-            "wiederhole das",
+            "wie war das",
+            "wie",
+            "Again",
+            "Nochmal",
             "Wiederholen"
+          ]
+        },
+        {
+          "name": "StartIntent",
+          "slots": [],
+          "samples": [
+            "Spiel beginnen",
+            "starte das Spiel",
+            "bitte Spiel starten"
+          ]
+        },
+        {
+          "name": "HighscoreIntent",
+          "slots": [],
+          "samples": [
+            "Highscore anzeigen",
+            "zeig mir den Highscore"
           ]
         }
       ],
