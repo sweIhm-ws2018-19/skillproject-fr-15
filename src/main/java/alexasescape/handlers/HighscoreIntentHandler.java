@@ -13,17 +13,22 @@
 
 package alexasescape.handlers;
 
+import alexasescape.model.Highscore;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Response;
+import com.amazon.ask.model.*;
+import com.amazon.ask.response.ResponseBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Collections;
 import java.util.Optional;
 
 import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class HighscoreIntentHandler implements RequestHandler {
+
+    public static final String PLAYER_NAME_SLOT = "PlayerName";
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("HighscoreIntent"));
@@ -31,11 +36,58 @@ public class HighscoreIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Dein Highscore lautet:...";
+
+        Request request = input.getRequestEnvelope().getRequest();
+        IntentRequest intentRequest = (IntentRequest) request;
+        Intent intent = intentRequest.getIntent();
+
+        // Get the playerName slot from the list of slots.
+        Slot playerNameSlot = intent.getSlots().get(PLAYER_NAME_SLOT);
+
+        String speechText, repromptText;
+        boolean isAskResponse = false;
+
+        // Check for player name and create output to user.
+        if (playerNameSlot != null) {
+            // Try to read score from player
+            String playerName = playerNameSlot.getValue();
+
+            Object scoreObject = input.getAttributesManager().getPersistentAttributes().get(playerName);
+            if (scoreObject != null) {
+                final Highscore highscore = new ObjectMapper().convertValue(scoreObject, Highscore.class);
+                speechText =
+                        String.format("%s hat insgesamt %d Spiele erfolgreich beendet. " +
+                                "Für den besten Versuch hat er %d Minuten und %d Sekunden gebraucht!", playerName, highscore.minutes, highscore.seconds);
+                repromptText = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+            } else {
+                speechText =
+                        String.format("Ich konnte keinen Highscore für %s finden.", playerName);
+                repromptText =
+                        "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+                isAskResponse = true;
+            }
+
+        } else {
+            // Render an error since we don't know what the users favorite color is.
+            speechText = "Ich weiß nicht für wen ich den Highscore nachschlagen soll?";
+            repromptText = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+            isAskResponse = true;
+        }
+
         input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY , speechText);
-        return input.getResponseBuilder()
+
+
+        ResponseBuilder responseBuilder = input.getResponseBuilder();
+
+        responseBuilder.withSimpleCard("Highscore", speechText)
                 .withSpeech(speechText)
-                .withShouldEndSession(false)
-                .build();
+                .withShouldEndSession(false);
+
+        if (isAskResponse) {
+            responseBuilder.withShouldEndSession(false)
+                    .withReprompt(repromptText);
+        }
+
+        return responseBuilder.build();
     }
 }

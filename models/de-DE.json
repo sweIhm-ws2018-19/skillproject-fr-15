@@ -20,10 +20,17 @@
         },
         {
           "name": "HighscoreIntent",
-          "slots": [],
+          "slots": [
+            {
+              "name": "PlayerName",
+              "type": "AMAZON.DE_FIRST_NAME"
+            }
+          ],
           "samples": [
-            "Highscore anzeigen",
-            "zeig mir den Highscore"
+            "Welchen Highscore hat {PlayerName}",
+            "Sag mir den Highscore von {PlayerName}",
+            "Wie ist der Highscore für {PlayerName}",
+            "Was hat {PlayerName} für einen Highscore"
           ]
         },
         {
