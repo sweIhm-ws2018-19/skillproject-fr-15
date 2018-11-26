@@ -32,7 +32,7 @@ public class HighscoreIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String speechText = "Dein Highscore lautet:...";
-        input.getAttributesManager().setSessionAttributes(Collections.singletonMap(REPROMPT_KEY, speechText));
+        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY , speechText);
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)

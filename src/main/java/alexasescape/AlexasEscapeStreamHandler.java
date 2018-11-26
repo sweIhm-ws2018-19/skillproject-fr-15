@@ -38,6 +38,7 @@ public class AlexasEscapeStreamHandler extends SkillStreamHandler {
                         new StartIntentHandler()
                 )
                 .withTableName("escapeData")
+                .withAutoCreateTable(true)
                 // Add your skill id below
                 //.withSkillId("")
                 .build();

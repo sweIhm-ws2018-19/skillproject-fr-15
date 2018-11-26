@@ -30,7 +30,7 @@ public class StartIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         //Telefongeläute
         String speechText = "hier kommt eine krasse Story";
-        input.getAttributesManager().setSessionAttributes(Collections.singletonMap(REPROMPT_KEY, speechText));
+        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY , speechText);
         return input.getResponseBuilder()
                 .withSimpleCard("Alexas Escape started", speechText)
                 .withSpeech(speechText)
