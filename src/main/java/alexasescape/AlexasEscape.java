@@ -21,6 +21,10 @@ import com.amazon.ask.Skills;
 import alexasescape.handlers.LaunchRequestHandler;
 import alexasescape.handlers.RepeatIntentHandler;
 
+import main.java.alexasescape.handlers.CancelOrStopIntentHandler;
+import main.java.alexasescape.handlers.SessionEndedRequestHandler;
+
+
 public class AlexasEscape extends SkillStreamHandler {
 
     private static Skill getSkill() {
@@ -29,7 +33,11 @@ public class AlexasEscape extends SkillStreamHandler {
                         new LaunchRequestHandler(),
                         new RepeatIntentHandler(),
                         new HighscoreIntentHandler(),
+
+                        new SessionEndedRequestHandler(),
+                        new CancelOrStopIntentHandler(),
                         new StartIntentHandler()
+
 
                 )
                 .withTableName("escapeData")
