@@ -18,6 +18,8 @@ public class CancelOrStopIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        return input.getResponseBuilder().build();
+        return input.getResponseBuilder()
+                .withShouldEndSession(true)
+                .build();
     }
 }
