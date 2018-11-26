@@ -21,7 +21,7 @@ public class HangUpIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         String speechText = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
         String reprompt = "Starte das Spiel oder frage Deinen Highscore ab.";
-        input.getAttributesManager().setSessionAttributes(Collections.singletonMap("Reprompt", speechText));
+        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY, speechText);
         return input.getResponseBuilder()
                 .withSimpleCard("Alexas Escape Menu", speechText)
                 .withSpeech(speechText)
