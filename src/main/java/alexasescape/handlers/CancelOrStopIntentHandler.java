@@ -12,14 +12,15 @@ public class CancelOrStopIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
+        return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent").or(intentName("CancelOrStopIntent"))));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-
+    String response ="test";
         return input.getResponseBuilder()
-                .withShouldEndSession(true)
+                .withSpeech(response)
+                //.withShouldEndSession(true)
                 .build();
     }
 }

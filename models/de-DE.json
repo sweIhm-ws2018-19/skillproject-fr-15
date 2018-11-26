@@ -4,20 +4,10 @@
       "invocationName": "alexas escape",
       "intents": [
         {
-          "name": "AMAZON.CancelIntent",
-          "samples": [
-            "Skill beenden"
-          ]
-        },
-        {
           "name": "RepeatIntent",
           "slots": [],
           "samples": [
-            "wie war das",
-            "wie",
-            "Again",
-            "Nochmal",
-            "Wiederholen"
+            "wie war das"
           ]
         },
         {
@@ -25,8 +15,7 @@
           "slots": [],
           "samples": [
             "Spiel beginnen",
-            "starte das Spiel",
-            "bitte Spiel starten"
+            "starte das Spiel"
           ]
         },
         {
@@ -35,6 +24,14 @@
           "samples": [
             "Highscore anzeigen",
             "zeig mir den Highscore"
+          ]
+        },
+        {
+          "name": "CancelOrStopIntent",
+          "slots": [],
+          "samples": [
+            "Auflegen",
+            "bitte Handy weglegen"
           ]
         }
       ],
