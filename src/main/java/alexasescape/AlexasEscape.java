@@ -36,7 +36,6 @@ public class AlexasEscape extends SkillStreamHandler {
 
                         new SessionEndedRequestHandler(),
                         new CancelOrStopIntentHandler(),
-						new HangUpIntentHandler(),
                         new StartIntentHandler()
 
 
