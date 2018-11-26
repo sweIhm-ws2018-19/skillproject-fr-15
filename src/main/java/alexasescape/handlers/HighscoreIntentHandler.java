@@ -20,6 +20,7 @@ import com.amazon.ask.model.Response;
 import java.util.Collections;
 import java.util.Optional;
 
+import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class HighscoreIntentHandler implements RequestHandler {
@@ -31,7 +32,7 @@ public class HighscoreIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String speechText = "Dein Highscore lautet:...";
-        input.getAttributesManager().setSessionAttributes(Collections.singletonMap("Reprompt", speechText));
+        input.getAttributesManager().setSessionAttributes(Collections.singletonMap(REPROMPT_KEY, speechText));
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)

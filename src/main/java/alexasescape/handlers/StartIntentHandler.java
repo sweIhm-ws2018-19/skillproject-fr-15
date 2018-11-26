@@ -17,6 +17,7 @@ import com.amazon.ask.model.Response;
 import java.util.Collections;
 import java.util.Optional;
 
+import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class StartIntentHandler implements RequestHandler {
@@ -29,7 +30,7 @@ public class StartIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         //Telefongeläute
         String speechText = "hier kommt eine krasse Story";
-        input.getAttributesManager().setSessionAttributes(Collections.singletonMap("Reprompt", speechText));
+        input.getAttributesManager().setSessionAttributes(Collections.singletonMap(REPROMPT_KEY, speechText));
         return input.getResponseBuilder()
                 .withSimpleCard("Alexas Escape started", speechText)
                 .withSpeech(speechText)
