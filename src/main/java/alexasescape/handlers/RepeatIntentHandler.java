@@ -26,8 +26,6 @@ public class RepeatIntentHandler implements RequestHandler{
                 .withSpeech(speechText)
                 .withShouldEndSession(false)
                 .build();
-
-
     }
 
 }
