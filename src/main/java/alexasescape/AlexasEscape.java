@@ -13,10 +13,16 @@
 
 package alexasescape;
 
-import alexasescape.handlers.*;
+import alexasescape.handlers.HighscoreIntentHandler;
+import alexasescape.handlers.StartIntentHandler;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
+import alexasescape.handlers.LaunchRequestHandler;
+import alexasescape.handlers.RepeatIntentHandler;
+
+import alexasescape.handlers.CancelOrStopIntentHandler;
+import alexasescape.handlers.SessionEndedRequestHandler;
 
 
 public class AlexasEscape extends SkillStreamHandler {
@@ -30,7 +36,7 @@ public class AlexasEscape extends SkillStreamHandler {
 
                         new SessionEndedRequestHandler(),
                         new CancelOrStopIntentHandler(),
-                        new HangUpIntentHandler(),
+						new HangUpIntentHandler(),
                         new StartIntentHandler()
 
 
