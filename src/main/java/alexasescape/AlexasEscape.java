@@ -11,12 +11,17 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.alexasescape;
+package alexasescape;
 
+import alexasescape.handlers.HighscoreIntentHandler;
+import alexasescape.handlers.StartIntentHandler;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.alexasescape.handlers.*;
+import alexasescape.handlers.LaunchRequestHandler;
+import alexasescape.handlers.RepeatIntentHandler;
+import main.java.alexasescape.handlers.CancelOrStopIntentHandler;
+import main.java.alexasescape.handlers.SessionEndedRequestHandler;
 
 public class AlexasEscape extends SkillStreamHandler {
 
@@ -24,15 +29,19 @@ public class AlexasEscape extends SkillStreamHandler {
         return Skills.standard()
                 .addRequestHandlers(
                         new LaunchRequestHandler(),
-                        new HelpIntentHandler(),
-                        new WhatsUpIntentHandler(),
                         new RepeatIntentHandler(),
+                        new HighscoreIntentHandler(),
                         new SessionEndedRequestHandler(),
-                        new CancelOrStopIntentHandler()
+                        new CancelOrStopIntentHandler(),
+                        new StartIntentHandler()
+
+
                 )
+                .withTableName("escapeData")
                 // Add your skill id below
                 //.withSkillId("")
                 .build();
+
     }
 
     public AlexasEscape() {
