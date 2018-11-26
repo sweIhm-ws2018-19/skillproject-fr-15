@@ -1,4 +1,4 @@
-package main.java.alexasescape.handlers;
+package alexasescape.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -13,18 +13,18 @@ public class RepeatIntentHandler implements RequestHandler{
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.RepeatIntent"));
+        return input.matches(intentName("RepeatIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String speechText;
         Map<String, Object> attributes = input.getAttributesManager().getSessionAttributes();
-        speechText = attributes.get("Repromt").toString();
+        speechText = (String)attributes.get("Reprompt");
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("ColorSession", speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 

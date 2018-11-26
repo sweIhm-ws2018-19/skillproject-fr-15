@@ -15,29 +15,26 @@ package alexasescape.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 
 import java.util.Collections;
 import java.util.Optional;
 
-import static com.amazon.ask.request.Predicates.requestType;
+import static com.amazon.ask.request.Predicates.intentName;
 
-public class LaunchRequestHandler implements RequestHandler {
+public class HighscoreIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(LaunchRequest.class));
+        return input.matches(intentName("HighscoreIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
-        String reprompt = "Starte das Spiel oder frage Deinen Highscore ab.";
+        String speechText = "Dein Highscore lautet:...";
         input.getAttributesManager().setSessionAttributes(Collections.singletonMap("Reprompt", speechText));
         return input.getResponseBuilder()
-                .withSimpleCard("Alexas Escape Menu", speechText)
                 .withSpeech(speechText)
-                .withReprompt(reprompt)
+                .withShouldEndSession(false)
                 .build();
     }
 }

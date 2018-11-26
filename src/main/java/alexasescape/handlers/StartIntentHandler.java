@@ -8,30 +8,31 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.alexasescape.handlers;
+package alexasescape.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class HelpIntentHandler implements RequestHandler {
+public class StartIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.HelpIntent"));
+        return input.matches(intentName("StartIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Du kannst laut um Hilfe rufen.";
-        String repromptText = "Hilfe123!";
+        //Telefongeläute
+        String speechText = "hier kommt eine krasse Story";
+        input.getAttributesManager().setSessionAttributes(Collections.singletonMap("Reprompt", speechText));
         return input.getResponseBuilder()
-                .withSimpleCard("ColorSession", speechText)
+                .withSimpleCard("Alexas Escape started", speechText)
                 .withSpeech(speechText)
-                .withReprompt(repromptText)
                 .withShouldEndSession(false)
                 .build();
     }
