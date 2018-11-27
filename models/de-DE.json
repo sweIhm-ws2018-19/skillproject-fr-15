@@ -33,6 +33,23 @@
             "Auflegen",
             "bitte Handy weglegen"
           ]
+        },
+        {
+          "name": "MyNameIsIntent",
+          "slots": [
+            {
+              "name": "playerName",
+              "type": "AMAZON.DE_FIRST_NAME"
+            }
+
+          ],
+
+          "samples": [
+            "Mein Name ist {playerName}",
+            "Ich heiße {playerName}",
+            "{playerName}",
+            "Ich bin {playerName]"
+          ]
         }
       ],
       "types": []
