@@ -1,4 +1,4 @@
-package alexasescape;
+package alexasescape.model;
 
 import java.util.ArrayList;
 

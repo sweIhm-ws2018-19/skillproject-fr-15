@@ -1,4 +1,4 @@
-package alexasescape;
+package alexasescape.model;
 
 public class Item {
 
