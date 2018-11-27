@@ -20,18 +20,33 @@
         },
         {
           "name": "HighscoreIntent",
-          "slots": [],
+          "slots": [
+            {
+              "name": "PlayerName",
+              "type": "AMAZON.DE_FIRST_NAME"
+            }
+          ],
           "samples": [
-            "Highscore anzeigen",
-            "zeig mir den Highscore"
+            "Welchen Highscore hat {PlayerName}",
+            "Sag mir den Highscore von {PlayerName}",
+            "Wie ist der Highscore für {PlayerName}",
+            "Was hat {PlayerName} für einen Highscore"
           ]
         },
         {
-          "name": "CancelOrStopIntent",
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HangUpIntent",
           "slots": [],
           "samples": [
-            "Auflegen",
-            "bitte Handy weglegen"
+            "Telefonat beenden",
+            "Auflegen"
           ]
         },
         {
@@ -41,14 +56,12 @@
               "name": "playerName",
               "type": "AMAZON.DE_FIRST_NAME"
             }
-
           ],
-
           "samples": [
-            "Mein Name ist {playerName}",
-            "Ich heiße {playerName}",
+            "Ich bin {playerName}",
             "{playerName}",
-            "Ich bin {playerName]"
+            "Ich heiße {playerName}",
+            "Mein Name ist {playerName}"
           ]
         }
       ],
