@@ -33,7 +33,7 @@ public class TellStoryIntentHandlerTest {
     }
 
     @Test
-    public void testHandle() {
+    public void testHandleWithPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(REPEAT_KEY, "Test");
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, null, null);
@@ -46,5 +46,21 @@ public class TellStoryIntentHandlerTest {
         assertNotEquals("Test", response.getReprompt());
         assertNotNull(response.getOutputSpeech());
         assertTrue(response.getOutputSpeech().toString().contains(playerName));
+    }
+
+    @Test
+    public void testHandleWithoutPlayerName() {
+        final Map<String, Object> sessionAttributes = new HashMap<>();
+        sessionAttributes.put(REPEAT_KEY, "Test");
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
+        final Optional<Response> res = handler.handle(inputMock);
+
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        assertFalse(response.getShouldEndSession());
+        assertNotEquals("Test", response.getReprompt());
+        assertNotNull(response.getOutputSpeech());
+        assertTrue(response.getOutputSpeech().toString().contains("Ich habe Deinen Namen nicht verstanden"));
     }
 }
