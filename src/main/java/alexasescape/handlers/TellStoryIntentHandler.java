@@ -23,9 +23,15 @@ public class TellStoryIntentHandler implements RequestHandler {
         final IntentRequest intentRequest = (IntentRequest) request;
         final Intent intent = intentRequest.getIntent();
         final Slot playerNameSlot = intent.getSlots().get(PLAYER_NAME_SLOT);
-        final String playerName = playerNameSlot.getValue();
+        final String speechText;
 
-        String speechText = "Gott sei Dank " + playerName + "! Du musst mir helfen! Ich wurde entfuehrt und in irgendein Hauses gesperrt! Ich bin in einem dunklen Raum. Ich sehe eine Kiste, einen Schrank und eine Tuer. Was soll ich tuen?";
+        if(playerNameSlot != null){
+            final String playerName = playerNameSlot.getValue();
+            speechText = "Gott sei Dank " + playerName + "! Du musst mir helfen! Ich wurde entfuehrt und in irgendein Hauses gesperrt! Ich bin in einem dunklen Raum. Ich sehe eine Kiste, einen Schrank und eine Tuer. Was soll ich tuen?";
+        }
+        else{
+            speechText = "Ich habe Deinen Namen nicht verstanden";
+        }
         input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
         return input.getResponseBuilder()
                 .withSpeech(speechText)
