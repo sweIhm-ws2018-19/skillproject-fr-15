@@ -38,6 +38,7 @@ public class LaunchRequestHandler implements RequestHandler {
                 .withSimpleCard("Alexas Escape Menu", speechText)
                 .withSpeech(speechText)
                 .withReprompt(speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

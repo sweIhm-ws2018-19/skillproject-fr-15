@@ -20,9 +20,9 @@ public class RepeatIntentHandler implements RequestHandler{
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText;
-        Map<String, Object> attributes = input.getAttributesManager().getSessionAttributes();
-        speechText = (String) attributes.get(REPEAT_KEY);
+
+        final Map<String, Object> attributes = input.getAttributesManager().getSessionAttributes();
+        final String speechText = (String) attributes.get(REPEAT_KEY);
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
