@@ -23,6 +23,7 @@ public class HangUpIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSimpleCard("Alexas Escape Menu", speechText)
                 .withSpeech(speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }
