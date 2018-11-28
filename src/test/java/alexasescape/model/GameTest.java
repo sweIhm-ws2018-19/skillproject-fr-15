@@ -51,6 +51,16 @@ public class GameTest {
     }
 
     @Test
+    public void testEqualsSameObject() {
+        assertEquals(game, game);
+    }
+
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(game, "Test");
+    }
+
+    @Test
     public void testHashCode() {
         List<Room> rooms = new ArrayList<>();
         rooms.add(new Room("Room", new ArrayList<>()));

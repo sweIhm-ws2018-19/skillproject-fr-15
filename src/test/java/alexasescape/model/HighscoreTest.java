@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class HighscoreTest {
 
@@ -45,5 +46,25 @@ public class HighscoreTest {
     public void setTotalGames() {
         score.setTotalGames(6);
         assertEquals(6, score.getTotalGames());
+    }
+
+    @Test
+    public void testEquals() {
+        assertEquals(new Highscore(3, 2, 1), score);
+    }
+
+    @Test
+    public void testEqualsSameObject() {
+        assertEquals(score, score);
+    }
+
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(score, "Test");
+    }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(new Highscore(3, 2, 1).hashCode(), score.hashCode());
     }
 }

@@ -1,5 +1,7 @@
 package alexasescape.model;
 
+import java.util.Objects;
+
 public class Highscore {
     private int totalGames;
     private int minutes;
@@ -38,5 +40,20 @@ public class Highscore {
 
     public void setTotalGames(int totalGames) {
         this.totalGames = totalGames;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Highscore highscore = (Highscore) o;
+        return totalGames == highscore.totalGames &&
+                minutes == highscore.minutes &&
+                seconds == highscore.seconds;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(totalGames, minutes, seconds);
     }
 }
