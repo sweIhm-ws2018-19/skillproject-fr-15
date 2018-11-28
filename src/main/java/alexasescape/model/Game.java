@@ -1,5 +1,6 @@
 package alexasescape.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,10 @@ public class Game {
     private long startTime;
 
     public Game(List<Room> rooms) {
-        this.rooms = rooms;
+        Objects.requireNonNull(rooms, "Rooms must not be null!");
+        if (rooms.isEmpty()) throw new IllegalArgumentException("Rooms must have size greater 0!");
+
+        this.rooms = new ArrayList<>(rooms);
         startTime = System.currentTimeMillis();
     }
 
