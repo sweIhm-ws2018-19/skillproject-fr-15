@@ -19,9 +19,15 @@ public class RoomTest {
         items.add(new Item("test", true));
         room = new Room("test", items);
     }
+
     @Test(expected = NullPointerException.class)
-    public void testNoItems(){
+    public void testItemsNull(){
         new Room("Test", new ArrayList<>(null));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testZeroItems(){
+        new Room("Test", new ArrayList<>());
     }
 
     @Test(expected = IllegalArgumentException.class)
