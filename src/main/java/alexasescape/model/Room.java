@@ -8,7 +8,7 @@ public class Room {
     private String name;
     private List<Item> items;
 
-    public Room(String name, Game game, List<Item> items) {
+    public Room(String name, List<Item> items) {
         this.name = name;
         this.items = items;
     }
