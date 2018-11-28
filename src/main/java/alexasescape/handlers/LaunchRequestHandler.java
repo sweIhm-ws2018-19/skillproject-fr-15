@@ -18,8 +18,6 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 
-import java.util.Collections;
-import java.util.Map;
 import java.util.Optional;
 
 import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;

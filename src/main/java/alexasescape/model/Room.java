@@ -1,15 +1,15 @@
 package alexasescape.model;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Room {
 
     private String name;
     private Game game;
-    private ArrayList<Item> items;
+    private List<Item> items;
 
-    public Room(String name, Game game, ArrayList<Item> items) {
+    public Room(String name, Game game, List<Item> items) {
         this.name = name;
         this.game = game;
         this.items = items;
@@ -23,7 +23,7 @@ public class Room {
         return game;
     }
 
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 

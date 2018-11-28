@@ -1,14 +1,14 @@
 package alexasescape.model;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Game {
 
-    private ArrayList<Room> rooms;
+    private List<Room> rooms;
     private long startTime;
 
-    public Game(ArrayList<Room> rooms) {
+    public Game(List<Room> rooms) {
         this.rooms = rooms;
         startTime = System.currentTimeMillis();
     }
@@ -17,7 +17,7 @@ public class Game {
 
     }
 
-    public ArrayList<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 

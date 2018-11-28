@@ -27,7 +27,8 @@ import static com.amazon.ask.request.Predicates.intentName;
 
 public class HighscoreIntentHandler implements RequestHandler {
 
-    public static final String PLAYER_NAME_SLOT = "PlayerName";
+    private static final String PLAYER_NAME_SLOT = "PlayerName";
+    private static final String REPROMPT_STRING = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -44,7 +45,8 @@ public class HighscoreIntentHandler implements RequestHandler {
         // Get the playerName slot from the list of slots.
         final Slot playerNameSlot = intent.getSlots().get(PLAYER_NAME_SLOT);
 
-        String speechText, repromptText;
+        String speechText;
+        String repromptText;
         boolean isAskResponse = false;
 
         // Check for player name and create output to user.
@@ -57,24 +59,23 @@ public class HighscoreIntentHandler implements RequestHandler {
                 final Highscore highscore = new ObjectMapper().convertValue(scoreObject, Highscore.class);
                 speechText =
                         String.format("%s hat insgesamt %d Spiele erfolgreich beendet. " +
-                                "Für den besten Versuch hat er %d Minuten und %d Sekunden gebraucht!", playerName, highscore.getMinutes(), highscore.getSeconds());
-                repromptText = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+                                "Für den besten Versuch hat er %d Minuten und %d Sekunden gebraucht!", playerName, highscore.getTotalGames(), highscore.getMinutes(), highscore.getSeconds());
+                repromptText = REPROMPT_STRING;
             } else {
                 speechText =
                         String.format("Ich konnte keinen Highscore für %s finden.", playerName);
-                repromptText =
-                        "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+                repromptText = REPROMPT_STRING;
                 isAskResponse = true;
             }
 
         } else {
             // Render an error since we don't know what the users favorite color is.
             speechText = "Ich weiß nicht für wen ich den Highscore nachschlagen soll?";
-            repromptText = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+            repromptText = REPROMPT_STRING;
             isAskResponse = true;
         }
 
-        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY , speechText);
+        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY, speechText);
 
 
         final ResponseBuilder responseBuilder = input.getResponseBuilder();
