@@ -59,8 +59,13 @@ public class HighscoreTest {
     }
 
     @Test
-    public void testEqualsNull() {
+    public void testEqualsOtherType() {
         assertNotEquals(score, "Test");
+    }
+
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(score, null);
     }
 
     @Test

@@ -46,8 +46,12 @@ public class ItemTest {
     }
 
     @Test
-    public void testEqualsNull() {
+    public void testEqualsOtherType() {
         assertNotEquals(item, "Test");
+    }
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(item, null);
     }
 
     @Test

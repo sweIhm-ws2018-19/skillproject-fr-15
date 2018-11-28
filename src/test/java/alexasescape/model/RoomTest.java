@@ -32,12 +32,12 @@ public class RoomTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testTooMuchItems(){
-        List<Item> itemsTest = new ArrayList<>();
-        items.add(new Item("test", true));
-        items.add(new Item("test1", true));
-        items.add(new Item("test2", true));
-        items.add(new Item("test3", true));
-        items.add(new Item("test4", true));
+        final List<Item> itemsTest = new ArrayList<>();
+        itemsTest.add(new Item("test", true));
+        itemsTest.add(new Item("test1", true));
+        itemsTest.add(new Item("test2", true));
+        itemsTest.add(new Item("test3", true));
+        itemsTest.add(new Item("test4", true));
         new Room("Test", itemsTest);
     }
 
@@ -61,8 +61,21 @@ public class RoomTest {
         assertEquals(room,room);
     }
     @Test
-    public void testEqualsNull() {
+    public void testEqualsOtherType() {
         assertNotEquals(room,"test");
+    }
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(room,null);
+    }
+
+    @Test
+    public void testEqualsOtherItems() {
+        final List<Item> itemsTest = new ArrayList<>();
+        itemsTest.add(new Item("test", true));
+        itemsTest.add(new Item("test1", false));
+        final Room secondRoom = new Room("test", itemsTest);
+        assertNotEquals(room,secondRoom);
     }
 
     @Test

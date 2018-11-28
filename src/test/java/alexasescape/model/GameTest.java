@@ -60,8 +60,13 @@ public class GameTest {
     }
 
     @Test
-    public void testEqualsNull() {
+    public void testEqualsOtherType() {
         assertNotEquals(game, "Test");
+    }
+
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(game, null);
     }
 
     @Test
