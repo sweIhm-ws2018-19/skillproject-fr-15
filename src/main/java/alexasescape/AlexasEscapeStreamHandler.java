@@ -13,8 +13,7 @@
 
 package alexasescape;
 
-import alexasescape.handlers.HighscoreIntentHandler;
-import alexasescape.handlers.StartIntentHandler;
+import alexasescape.handlers.*;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
@@ -37,7 +36,8 @@ public class AlexasEscapeStreamHandler extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),
                         new CancelOrStopIntentHandler(),
 						new HangUpIntentHandler(),
-                        new StartIntentHandler()
+                        new StartIntentHandler(),
+                        new TellStoryIntentHandler()
                 )
                 .withTableName("escapeData")
                 .withAutoCreateTable(true)

@@ -34,11 +34,34 @@
           ]
         },
         {
-          "name": "CancelOrStopIntent",
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HangUpIntent",
           "slots": [],
           "samples": [
-            "Auflegen",
-            "bitte Handy weglegen"
+            "Telefonat beenden",
+            "Auflegen"
+          ]
+        },
+        {
+          "name": "MyNameIsIntent",
+          "slots": [
+            {
+              "name": "playerName",
+              "type": "AMAZON.DE_FIRST_NAME"
+            }
+          ],
+          "samples": [
+            "Ich bin {playerName}",
+            "{playerName}",
+            "Ich heiße {playerName}",
+            "Mein Name ist {playerName}"
           ]
         }
       ],
