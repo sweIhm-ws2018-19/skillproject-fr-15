@@ -26,14 +26,14 @@ public class CancelOrStopIntentHandlerTest {
     }
 
     @Test
-    public void canHandle() {
+    public void testCanHandle() {
         final HandlerInput inputMock = Mockito.mock(HandlerInput.class);
         when(inputMock.matches(any())).thenReturn(true);
         assertTrue(handler.canHandle(inputMock));
     }
 
     @Test
-    public void handle() {
+    public void testHandle() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(REPEAT_KEY, "Test");
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);

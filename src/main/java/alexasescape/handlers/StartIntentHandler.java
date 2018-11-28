@@ -28,7 +28,7 @@ public class StartIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         //Telefongeläute
-        String speechText = "Hallo!? Wer ist da?!";
+        final String speechText = "Hallo!? Wer ist da?!";
         input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
         return input.getResponseBuilder()
                 .withSpeech(speechText)

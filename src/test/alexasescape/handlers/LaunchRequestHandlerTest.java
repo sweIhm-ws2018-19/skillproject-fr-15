@@ -20,14 +20,14 @@ public class LaunchRequestHandlerTest {
     }
 
     @Test
-    public void canHandle() {
+    public void testCanHandle() {
         final HandlerInput inputMock = Mockito.mock(HandlerInput.class);
         when(inputMock.matches(any())).thenReturn(true);
         assertTrue(handler.canHandle(inputMock));
     }
 
     @Test
-    public void handle() {
+    public void testHandle() {
         final Response response = TestUtil.standardTestForHandle(handler);
         assertTrue(response.getOutputSpeech().toString().contains("Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen"));
     }

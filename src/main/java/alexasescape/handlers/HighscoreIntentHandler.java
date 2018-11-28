@@ -50,7 +50,7 @@ public class HighscoreIntentHandler implements RequestHandler {
         boolean isAskResponse = false;
 
         // Check for player name and create output to user.
-        if (playerNameSlot != null) {
+        if (playerNameSlot != null && playerNameSlot.getValue() != null) {
             // Try to read score from player
             final String playerName = playerNameSlot.getValue();
 

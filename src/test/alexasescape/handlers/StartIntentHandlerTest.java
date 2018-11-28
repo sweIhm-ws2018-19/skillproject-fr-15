@@ -10,13 +10,13 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-public class HangUpIntentHandlerTest {
+public class StartIntentHandlerTest {
 
-    private HangUpIntentHandler handler;
+    private StartIntentHandler handler;
 
     @Before
     public void setup() {
-        handler = new HangUpIntentHandler();
+        handler = new StartIntentHandler();
     }
 
     @Test
@@ -29,6 +29,7 @@ public class HangUpIntentHandlerTest {
     @Test
     public void testHandle() {
         final Response response = TestUtil.standardTestForHandle(handler);
-        assertTrue(response.getOutputSpeech().toString().contains("Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen"));
+        System.out.println(response.getOutputSpeech().toString());
+        assertTrue(response.getOutputSpeech().toString().contains("Hallo!? Wer ist da?!"));
     }
 }
