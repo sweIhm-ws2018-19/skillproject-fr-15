@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class RoomTest {
     private Room room;
@@ -55,7 +56,7 @@ public class RoomTest {
     }
     @Test
     public void testEqualsNull() {
-        assertEquals(room,null);
+        assertNotEquals(room,"test");
     }
 
     @Test
