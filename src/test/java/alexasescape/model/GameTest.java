@@ -15,7 +15,9 @@ public class GameTest {
     @Before
     public void setUp() {
         List<Room> rooms = new ArrayList<>();
-        rooms.add(new Room("Room", new ArrayList<>()));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Test", false));
+        rooms.add(new Room("Room", items));
         game = new Game(rooms);
     }
 
@@ -44,7 +46,9 @@ public class GameTest {
     @Test
     public void testEquals() {
         List<Room> rooms = new ArrayList<>();
-        rooms.add(new Room("Room", new ArrayList<>()));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Test", false));
+        rooms.add(new Room("Room", items));
         final Game secondGame = new Game(rooms);
 
         assertEquals(secondGame, game);
@@ -63,7 +67,7 @@ public class GameTest {
     @Test
     public void testHashCode() {
         List<Room> rooms = new ArrayList<>();
-        rooms.add(new Room("Room", new ArrayList<>()));
+        rooms.add(new Room("Room", game.getRooms().get(0).getItems()));
         final Game secondGame = new Game(rooms);
 
         assertEquals(secondGame.hashCode(), game.hashCode());
