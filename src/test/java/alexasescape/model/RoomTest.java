@@ -32,7 +32,7 @@ public class RoomTest {
         items.add(new Item("test2", true));
         items.add(new Item("test3", true));
         items.add(new Item("test4", true));
-        new Room("Test", items);
+        new Room("Test", itemsTest);
     }
 
     @Test
