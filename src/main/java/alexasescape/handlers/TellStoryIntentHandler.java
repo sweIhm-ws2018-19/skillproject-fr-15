@@ -2,14 +2,15 @@ package alexasescape.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Response;
+import com.amazon.ask.model.*;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
+import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class TellStoryIntentHandler implements RequestHandler {
+    private static final String PLAYER_NAME_SLOT = "PlayerName";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -18,8 +19,14 @@ public class TellStoryIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Gott sei Dank! Du musst mir helfen! Ich wurde entführt und in irgendein Hauses gesperrt! Ich bin in einem dunklen Raum. Ich sehe eine Kiste, einen Schrank und eine Tür. Was soll ich tuen?";
-        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY, speechText);
+        final Request request = input.getRequestEnvelope().getRequest();
+        final IntentRequest intentRequest = (IntentRequest) request;
+        final Intent intent = intentRequest.getIntent();
+        final Slot playerNameSlot = intent.getSlots().get(PLAYER_NAME_SLOT);
+        final String playerName = playerNameSlot.getValue();
+
+        String speechText = "Gott sei Dank " + playerName + "! Du musst mir helfen! Ich wurde entfuehrt und in irgendein Hauses gesperrt! Ich bin in einem dunklen Raum. Ich sehe eine Kiste, einen Schrank und eine Tuer. Was soll ich tuen?";
+        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)

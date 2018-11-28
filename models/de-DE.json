@@ -15,7 +15,8 @@
           "slots": [],
           "samples": [
             "Spiel beginnen",
-            "starte das Spiel"
+            "starte das Spiel",
+            "Spiel starten"
           ]
         },
         {
@@ -53,15 +54,15 @@
           "name": "MyNameIsIntent",
           "slots": [
             {
-              "name": "playerName",
+              "name": "PlayerName",
               "type": "AMAZON.DE_FIRST_NAME"
             }
           ],
           "samples": [
-            "Ich bin {playerName}",
-            "{playerName}",
-            "Ich heiße {playerName}",
-            "Mein Name ist {playerName}"
+            "Ich bin {PlayerName}",
+            "{PlayerName}",
+            "Ich heiße {PlayerName}",
+            "Mein Name ist {PlayerName}"
           ]
         }
       ],

@@ -16,7 +16,7 @@ import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
+import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class StartIntentHandler implements RequestHandler {
@@ -29,10 +29,11 @@ public class StartIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         //Telefongeläute
         String speechText = "Hallo!? Wer ist da?!";
-        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY , speechText);
+        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)
+                .withReprompt(speechText)
                 .build();
     }
 }

@@ -11,7 +11,7 @@ import static com.amazon.ask.request.Predicates.intentName;
 
 public class RepeatIntentHandler implements RequestHandler{
 
-    static final String REPROMPT_KEY = "Reprompt";
+    static final String REPEAT_KEY = "Reprompt";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -22,7 +22,7 @@ public class RepeatIntentHandler implements RequestHandler{
     public Optional<Response> handle(HandlerInput input) {
         String speechText;
         Map<String, Object> attributes = input.getAttributesManager().getSessionAttributes();
-        speechText = (String) attributes.get(REPROMPT_KEY);
+        speechText = (String) attributes.get(REPEAT_KEY);
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)

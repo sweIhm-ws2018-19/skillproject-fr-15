@@ -22,13 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
+import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class HighscoreIntentHandler implements RequestHandler {
 
     private static final String PLAYER_NAME_SLOT = "PlayerName";
-    private static final String REPROMPT_STRING = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du frägst, wie ist der Highscore für Tim?";
+    private static final String REPROMPT_STRING = "Du kannst zum Beispiel nach dem Highscore von Tim fragen, indem du fragst, wie ist der Highscore für Tim?";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -59,23 +59,23 @@ public class HighscoreIntentHandler implements RequestHandler {
                 final Highscore highscore = new ObjectMapper().convertValue(scoreObject, Highscore.class);
                 speechText =
                         String.format("%s hat insgesamt %d Spiele erfolgreich beendet. " +
-                                "Für den besten Versuch hat er %d Minuten und %d Sekunden gebraucht!", playerName, highscore.getTotalGames(), highscore.getMinutes(), highscore.getSeconds());
+                                "Fuer den besten Versuch hat er %d Minuten und %d Sekunden gebraucht!", playerName, highscore.getTotalGames(), highscore.getMinutes(), highscore.getSeconds());
                 repromptText = REPROMPT_STRING;
             } else {
                 speechText =
-                        String.format("Ich konnte keinen Highscore für %s finden.", playerName);
+                        String.format("Ich konnte keinen Highscore fuer %s finden.", playerName);
                 repromptText = REPROMPT_STRING;
                 isAskResponse = true;
             }
 
         } else {
             // Render an error since we don't know what the users favorite color is.
-            speechText = "Ich weiß nicht für wen ich den Highscore nachschlagen soll?";
+            speechText = "Ich weiß nicht fuer wen ich den Highscore nachschlagen soll?";
             repromptText = REPROMPT_STRING;
             isAskResponse = true;
         }
 
-        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY, speechText);
+        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
 
 
         final ResponseBuilder responseBuilder = input.getResponseBuilder();

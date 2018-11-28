@@ -6,7 +6,7 @@ import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPROMPT_KEY;
+import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class HangUpIntentHandler implements RequestHandler {
@@ -18,7 +18,7 @@ public class HangUpIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String speechText = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
-        input.getAttributesManager().getSessionAttributes().put(REPROMPT_KEY , speechText);
+        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
 
         return input.getResponseBuilder()
                 .withSimpleCard("Alexas Escape Menu", speechText)
