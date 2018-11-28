@@ -11,7 +11,7 @@ import static com.amazon.ask.request.Predicates.intentName;
 
 public class RepeatIntentHandler implements RequestHandler{
 
-    static final String REPEAT_KEY = "Reprompt";
+    public static final String REPEAT_KEY = "Reprompt";
 
     @Override
     public boolean canHandle(HandlerInput input) {
