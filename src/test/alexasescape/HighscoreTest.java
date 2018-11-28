@@ -1,5 +1,6 @@
-package alexasescape.model;
+package alexasescape;
 
+import alexasescape.model.Highscore;
 import org.junit.Before;
 import org.junit.Test;
 
