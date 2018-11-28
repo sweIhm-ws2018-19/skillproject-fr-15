@@ -13,10 +13,6 @@ public class Game {
         startTime = System.currentTimeMillis();
     }
 
-    public void stop() {
-
-    }
-
     public List<Room> getRooms() {
         return rooms;
     }

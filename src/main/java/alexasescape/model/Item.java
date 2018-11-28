@@ -6,16 +6,14 @@ public class Item {
 
     private String name;
     private boolean isUsable;
-    private Room room;
 
-    public Item(String name, boolean isUsable, Room room) {
+    public Item(String name, boolean isUsable) {
         this.name = name;
         this.isUsable = isUsable;
-        this.room = room;
     }
 
     public void use() {
-
+        throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     public String getName() {
@@ -30,10 +28,6 @@ public class Item {
         isUsable = usable;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +39,6 @@ public class Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, isUsable, room);
+        return Objects.hash(name, isUsable);
     }
 }
