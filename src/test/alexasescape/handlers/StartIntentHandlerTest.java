@@ -29,7 +29,6 @@ public class StartIntentHandlerTest {
     @Test
     public void testHandle() {
         final Response response = TestUtil.standardTestForHandle(handler);
-        System.out.println(response.getOutputSpeech().toString());
         assertTrue(response.getOutputSpeech().toString().contains("Hallo!? Wer ist da?!"));
     }
 }
