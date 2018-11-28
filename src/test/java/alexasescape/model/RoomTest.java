@@ -70,6 +70,12 @@ public class RoomTest {
     }
 
     @Test
+    public void testEqualsOtherName() {
+        final Room secondRoom = new Room("test1", items);
+        assertNotEquals(room,secondRoom);
+    }
+
+    @Test
     public void testEqualsOtherItems() {
         final List<Item> itemsTest = new ArrayList<>();
         itemsTest.add(new Item("test", true));
