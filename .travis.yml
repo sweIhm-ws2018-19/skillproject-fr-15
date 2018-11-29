@@ -14,10 +14,10 @@ script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pdev sonar:sonar
   - mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package
 
-deploy:
-  provider: lambda
-  function_name: "AlexasEscape"
-  region: "us-east-1"
-  role: "arn:aws:lambda:us-east-1:582625669396:role/lambda_basic_execution"
-  runtime: "java8"
-  handler_name: "main.java.alexasescape.AlexasEscape"
+#deploy:
+#  provider: lambda
+#  function_name: "AlexasEscape"
+#  region: "us-east-1"
+#  role: "arn:aws:lambda:us-east-1:582625669396:role/lambda_basic_execution"
+#  runtime: "java8"
+#  handler_name: "main.java.alexasescape.AlexasEscape"
