@@ -47,6 +47,19 @@ public class RoomTest {
     }
 
     @Test
+    public void testGetDescription(){assertEquals("Hier ist ein test",room.getDescription());}
+
+    @Test
+    public void testMultipleDescription(){
+        List<Item> testItems = new ArrayList<>();
+        testItems.add(new Item("test","test",true));
+        testItems.add(new Item("test1","tset",true));
+        Room testRoom =new Room("test", testItems);
+        assertEquals("Hier ist ein test ein test1",testRoom.getDescription());
+
+    }
+
+    @Test
     public void testGetItems() {
         assertEquals(items, room.getItems());
     }

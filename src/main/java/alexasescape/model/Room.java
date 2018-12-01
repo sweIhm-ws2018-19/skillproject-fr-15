@@ -24,6 +24,14 @@ public class Room {
         return items;
     }
 
+    public String getDescription(){
+        String output = "Hier ist";
+        for (Item item: items){
+            output = output + " ein " +item.getName();
+        }
+        return output;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
