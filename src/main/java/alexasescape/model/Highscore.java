@@ -18,28 +18,31 @@ public class Highscore {
         this.seconds = seconds;
     }
 
-    public int getMinutes() {
-        return minutes;
+    public int getTotalGames() {
+        return totalGames;
     }
 
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
+    public int getMinutes() {
+        return minutes;
     }
 
     public int getSeconds() {
         return seconds;
     }
 
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
+    public void looseGame() {
+        totalGames++;
     }
 
-    public int getTotalGames() {
-        return totalGames;
-    }
-
-    public void setTotalGames(int totalGames) {
-        this.totalGames = totalGames;
+    public void winGame(int minutes, int seconds) {
+        totalGames++;
+        if (minutes < this.minutes) {
+            this.minutes = minutes;
+            this.seconds = seconds;
+        }
+        if (minutes == this.minutes && seconds < this.seconds) {
+            this.seconds = seconds;
+        }
     }
 
     @Override

@@ -21,31 +21,13 @@ public class HighscoreTest {
     }
 
     @Test
-    public void setMinutes() {
-        score.setMinutes(6);
-        assertEquals(6, score.getMinutes());
-    }
-
-    @Test
     public void getSeconds() {
         assertEquals(1, score.getSeconds());
     }
 
     @Test
-    public void setSeconds() {
-        score.setSeconds(6);
-        assertEquals(6, score.getSeconds());
-    }
-
-    @Test
     public void getTotalGames() {
         assertEquals(3, score.getTotalGames());
-    }
-
-    @Test
-    public void setTotalGames() {
-        score.setTotalGames(6);
-        assertEquals(6, score.getTotalGames());
     }
 
     @Test
