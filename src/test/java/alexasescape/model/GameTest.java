@@ -16,7 +16,7 @@ public class GameTest {
     public void setUp() {
         List<Room> rooms = new ArrayList<>();
         List<Item> items = new ArrayList<>();
-        items.add(new Item("Test", false));
+        items.add(new Item("Test", "test", false));
         rooms.add(new Room("Room", items));
         game = new Game(rooms);
     }
@@ -47,7 +47,7 @@ public class GameTest {
     public void testEquals() {
         List<Room> rooms = new ArrayList<>();
         List<Item> items = new ArrayList<>();
-        items.add(new Item("Test", false));
+        items.add(new Item("Test", "test", false));
         rooms.add(new Room("Room", items));
         final Game secondGame = new Game(rooms);
 

@@ -11,12 +11,7 @@ public class ItemTest {
 
     @Before
     public void setUp() {
-        item = new Item("Item", true);
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testUse() {
-        item.use();
+        item = new Item("Item", "test", true);
     }
 
     @Test
@@ -26,18 +21,12 @@ public class ItemTest {
 
     @Test
     public void testIsUsable() {
-        assertTrue(item.isUsable());
-    }
-
-    @Test
-    public void setUsable() {
-        item.setUsable(false);
-        assertFalse(item.isUsable());
+        assertTrue(item.isKey());
     }
 
     @Test
     public void testEquals() {
-        assertEquals(new Item("Item", true), item);
+        assertEquals(new Item("Item", "test", true), item);
     }
 
     @Test
@@ -56,6 +45,6 @@ public class ItemTest {
 
     @Test
     public void testHashCode() {
-        assertEquals(new Item("Item", true).hashCode(), item.hashCode());
+        assertEquals(new Item("Item", "test", true).hashCode(), item.hashCode());
     }
 }
