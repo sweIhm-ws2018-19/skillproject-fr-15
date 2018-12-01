@@ -7,11 +7,6 @@ public class Player {
     private final String name;
     private final Highscore score;
 
-    public Player(String name) {
-        this.name = name;
-        this.score = new Highscore();
-    }
-
     public Player(String name, Highscore score) {
         this.name = name;
         this.score = score;
