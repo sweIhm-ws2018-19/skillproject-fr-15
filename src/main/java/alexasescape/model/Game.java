@@ -1,28 +1,40 @@
 package alexasescape.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.time.Instant;
+import java.util.*;
 
 public class Game {
+    private final Instant startTime;
+    private int failedAttempts;
+    private final int maxFailedAttempts;
+    private Queue<Room> rooms;
+    private final Player player;
+    private GameStatus gameStatus;
 
-    private List<Room> rooms;
-    private long startTime;
-
-    public Game(List<Room> rooms) {
-        Objects.requireNonNull(rooms, "Rooms must not be null!");
-        if (rooms.isEmpty()) throw new IllegalArgumentException("Rooms must have size greater 0!");
-
-        this.rooms = new ArrayList<>(rooms);
-        startTime = System.currentTimeMillis();
+    public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
+        if(rooms.size() != 3)
+            throw new IllegalArgumentException("A game has to contain 3 rooms");
+        this.maxFailedAttempts = maxFailedAttempts;
+        this.rooms = new ArrayDeque<>();
+        this.rooms.addAll(rooms);
+        this.player = player;
+        startTime = Instant.now();
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public Room getCurrentRoom(){
+        return rooms.peek();
     }
 
-    public long getStartTime() {
-        return startTime;
+    public Player getPlayer() {
+        return player;
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public void finishRoom(){
+
     }
 
     @Override
@@ -30,12 +42,16 @@ public class Game {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return startTime == game.startTime &&
-                Objects.equals(rooms, game.rooms);
+        return failedAttempts == game.failedAttempts &&
+                maxFailedAttempts == game.maxFailedAttempts &&
+                Objects.equals(startTime, game.startTime) &&
+                Objects.equals(rooms, game.rooms) &&
+                Objects.equals(player, game.player) &&
+                Objects.equals(gameStatus, game.gameStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rooms, startTime);
+        return Objects.hash(startTime, failedAttempts, maxFailedAttempts, rooms, player, gameStatus);
     }
 }

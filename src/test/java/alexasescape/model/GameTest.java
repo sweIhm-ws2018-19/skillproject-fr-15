@@ -4,7 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import static org.junit.Assert.*;
 
@@ -14,45 +16,29 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        List<Room> rooms = new ArrayList<>();
+        List<Room> rooms = new LinkedList<>();
+        final int maxAttempts = 5;
         List<Item> items = new ArrayList<>();
         items.add(new Item("Test", false));
         rooms.add(new Room("Room", items));
-        game = new Game(rooms);
+        rooms.add(new Room("Room", items));
+        rooms.add(new Room("Room", items));
+        game = new Game(maxAttempts,rooms, new Player("test"));
     }
 
-    @Test
-    public void testGetRooms() {
-        assertNotNull(game.getRooms());
-        assertEquals(1, game.getRooms().size());
-    }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorWithNullAsRoom() {
-        new Game(null);
-    }
+        new Game(5,null, new Player("test"));
+}
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorWithEmptyRooms() {
-        new Game(new ArrayList<>());
+        new Game(5, new ArrayList<>(), new Player("test"));
     }
 
-    @Test
-    public void testGetStartTime() {
-        assertTrue(game.getStartTime() > 0);
-        assertTrue(game.getStartTime() <= System.currentTimeMillis());
-    }
 
-    @Test
-    public void testEquals() {
-        List<Room> rooms = new ArrayList<>();
-        List<Item> items = new ArrayList<>();
-        items.add(new Item("Test", false));
-        rooms.add(new Room("Room", items));
-        final Game secondGame = new Game(rooms);
 
-        assertEquals(secondGame, game);
-    }
 
     @Test
     public void testEqualsSameObject() {
@@ -69,12 +55,4 @@ public class GameTest {
         assertNotEquals(game, null);
     }
 
-    @Test
-    public void testHashCode() {
-        List<Room> rooms = new ArrayList<>();
-        rooms.add(new Room("Room", game.getRooms().get(0).getItems()));
-        final Game secondGame = new Game(rooms);
-
-        assertEquals(secondGame.hashCode(), game.hashCode());
-    }
 }
