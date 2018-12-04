@@ -10,7 +10,7 @@
 
 package alexasescape.handlers;
 
-import alexasescape.constants.SpeachText;
+import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -31,7 +31,7 @@ public class StartIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         //Telefongeläute
-        final String speechText = SpeachText.START;
+        final String speechText = SpeechText.START;
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
         return input.getResponseBuilder()

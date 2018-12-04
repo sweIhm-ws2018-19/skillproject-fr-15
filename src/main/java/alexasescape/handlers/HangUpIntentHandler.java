@@ -1,6 +1,6 @@
 package alexasescape.handlers;
 
-import alexasescape.constants.SpeachText;
+import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -20,7 +20,7 @@ public class HangUpIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        final String speechText = SpeachText.HANG_UP;
+        final String speechText = SpeechText.HANG_UP;
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
         return input.getResponseBuilder()

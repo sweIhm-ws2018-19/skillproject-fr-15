@@ -1,6 +1,6 @@
 package alexasescape.handlers;
 
-import alexasescape.constants.SpeachText;
+import alexasescape.constants.SpeechText;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import org.junit.Before;
@@ -30,7 +30,7 @@ public class LaunchRequestHandlerTest {
     @Test
     public void testHandle() {
         final Response response = TestUtil.standardTestForHandle(handler);
-        assertTrue(response.getOutputSpeech().toString().contains(SpeachText.LAUNCH_GAME));
+        assertTrue(response.getOutputSpeech().toString().contains(SpeechText.LAUNCH_GAME));
     }
 
 

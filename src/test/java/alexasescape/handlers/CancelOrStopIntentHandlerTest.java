@@ -1,6 +1,6 @@
 package alexasescape.handlers;
 
-import alexasescape.constants.SpeachText;
+import alexasescape.constants.SpeechText;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
@@ -45,6 +45,6 @@ public class CancelOrStopIntentHandlerTest {
 
         assertTrue(response.getShouldEndSession());
         assertNotNull(response.getOutputSpeech());
-        assertTrue(response.getOutputSpeech().toString().contains(SpeachText.CANCEL_OR_STOP));
+        assertTrue(response.getOutputSpeech().toString().contains(SpeechText.CANCEL_OR_STOP));
     }
 }

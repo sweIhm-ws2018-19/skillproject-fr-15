@@ -1,7 +1,7 @@
 package alexasescape.handlers;
 
 import alexasescape.constants.Slots;
-import alexasescape.constants.SpeachText;
+import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -27,7 +27,7 @@ public class TellStoryIntentHandler implements RequestHandler {
 
         if (optionalPlayerName.isPresent()) {
             final String playerName = optionalPlayerName.get();
-            speechText = String.format(SpeachText.STORY, playerName);
+            speechText = String.format(SpeechText.STORY, playerName);
         }
         else{
             speechText = "Ich habe Deinen Namen nicht verstanden";

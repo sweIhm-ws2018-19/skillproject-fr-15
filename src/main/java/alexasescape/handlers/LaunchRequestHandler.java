@@ -14,7 +14,7 @@
 package alexasescape.handlers;
 
 import alexasescape.constants.CardsText;
-import alexasescape.constants.SpeachText;
+import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -35,7 +35,7 @@ public class LaunchRequestHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        final String speechText = SpeachText.LAUNCH_GAME;
+        final String speechText = SpeechText.LAUNCH_GAME;
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
         return input.getResponseBuilder()
