@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.SpeachText;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
@@ -17,9 +18,8 @@ public class CancelOrStopIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String response = "Ciao";
         return input.getResponseBuilder()
-                .withSpeech(response)
+                .withSpeech(SpeachText.CANCEL_OR_STOP)
                 .withShouldEndSession(true)
                 .build();
     }

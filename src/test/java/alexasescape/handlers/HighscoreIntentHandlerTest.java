@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.StorageKey;
 import alexasescape.model.Highscore;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
@@ -11,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -34,10 +34,10 @@ public class HighscoreIntentHandlerTest {
     }
 
     @Test
-    public void testHandleWithExistingScore() {
+    public void testHandleWithExistingScoreAndWin() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
-        sessionAttributes.put(REPEAT_KEY, "Test");
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         persistentAttributes.put(playerName, new Highscore(3, 2, 1));
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
@@ -48,14 +48,16 @@ public class HighscoreIntentHandlerTest {
 
         assertFalse(response.getShouldEndSession());
         assertNotNull(response.getOutputSpeech());
-        assertTrue(response.getOutputSpeech().toString().contains(playerName + " hat insgesamt 3 Spiele erfolgreich beendet. Fuer den besten Versuch hat er 2 Minuten und 1 Sekunden gebraucht!"));
+        assertTrue(response.getOutputSpeech().toString()
+                .contains(String.format("Hey %s! Von insgesamt %d versuchen liegt die beste Runde bei %d Minuten und %d Sekunden.", playerName, 3, 2, 1)));
     }
 
     @Test
-    public void testHandleWithoutScore() {
+    public void testHandleWithExistingScoreAndNoWin() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
-        sessionAttributes.put(REPEAT_KEY, "Test");
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+        persistentAttributes.put(playerName, new Highscore(3, 0, 0));
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
         final Optional<Response> res = handler.handle(inputMock);
@@ -65,14 +67,32 @@ public class HighscoreIntentHandlerTest {
 
         assertFalse(response.getShouldEndSession());
         assertNotNull(response.getOutputSpeech());
-        assertTrue(response.getOutputSpeech().toString().contains(String.format("Ich konnte keinen Highscore fuer %s finden.", playerName)));
+        assertTrue(response.getOutputSpeech().toString()
+                .contains(String.format("Hey %s! Von insgesamt %d versuchen hast du noch keinen erfolgreich beendet!", playerName, 3)));
+    }
+
+    @Test
+    public void testHandleWithoutScore() {
+        final Map<String, Object> sessionAttributes = new HashMap<>();
+        final Map<String, Object> persistentAttributes = new HashMap<>();
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
+        final Optional<Response> res = handler.handle(inputMock);
+
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        assertFalse(response.getShouldEndSession());
+        assertNotNull(response.getOutputSpeech());
+        assertTrue(response.getOutputSpeech().toString().contains(String.format("Hey %s! Du hast noch keine Runde gespielt. Also los gehts!", playerName)));
     }
 
     @Test
     public void testHandleWithoutPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
-        sessionAttributes.put(REPEAT_KEY, "Test");
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, persistentAttributes, null);
         final Optional<Response> res = handler.handle(inputMock);

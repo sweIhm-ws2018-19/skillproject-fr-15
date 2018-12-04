@@ -13,6 +13,10 @@
 
 package alexasescape.handlers;
 
+import alexasescape.constants.CardsText;
+import alexasescape.constants.SpeachText;
+import alexasescape.constants.Storage;
+import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
@@ -20,7 +24,6 @@ import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.requestType;
 
 public class LaunchRequestHandler implements RequestHandler {
@@ -31,11 +34,12 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
-        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
+
+        final String speechText = SpeachText.LAUNCH_GAME;
+        StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
         return input.getResponseBuilder()
-                .withSimpleCard("Alexas Escape Menu", speechText)
+                .withSimpleCard(CardsText.LAUNCH_GAME, speechText)
                 .withSpeech(speechText)
                 .withReprompt(speechText)
                 .withShouldEndSession(false)

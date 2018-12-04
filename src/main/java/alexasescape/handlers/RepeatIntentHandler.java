@@ -1,17 +1,16 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.Storage;
+import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
-import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class RepeatIntentHandler implements RequestHandler{
-
-    public static final String REPEAT_KEY = "Reprompt";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -21,8 +20,8 @@ public class RepeatIntentHandler implements RequestHandler{
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        final Map<String, Object> attributes = input.getAttributesManager().getSessionAttributes();
-        final String speechText = (String) attributes.get(REPEAT_KEY);
+        final String speechText = StorageKey.REPEAT.get(input, Storage.SESSION, String.class)
+                .orElse("Ich habe nichts, dass ich fuer dich wiederholen koennte!");
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)

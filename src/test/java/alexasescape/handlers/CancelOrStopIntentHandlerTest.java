@@ -1,5 +1,7 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.SpeachText;
+import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import org.junit.Before;
@@ -10,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -35,7 +36,7 @@ public class CancelOrStopIntentHandlerTest {
     @Test
     public void testHandle() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(REPEAT_KEY, "Test");
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 
@@ -44,6 +45,6 @@ public class CancelOrStopIntentHandlerTest {
 
         assertTrue(response.getShouldEndSession());
         assertNotNull(response.getOutputSpeech());
-        assertTrue(response.getOutputSpeech().toString().contains("Ciao"));
+        assertTrue(response.getOutputSpeech().toString().contains(SpeachText.CANCEL_OR_STOP));
     }
 }

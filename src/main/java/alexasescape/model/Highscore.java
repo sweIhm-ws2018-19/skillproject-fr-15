@@ -59,4 +59,18 @@ public class Highscore {
     public int hashCode() {
         return Objects.hash(totalGames, minutes, seconds);
     }
+
+    @Override
+    public String toString() {
+        String retVal = "Du hast noch keine Runde gespielt. Also los gehts!";
+        if (totalGames > 0) {
+            retVal = String.format("Von insgesamt %d versuchen ", totalGames);
+            if (minutes > 0 || seconds > 0) {
+                retVal += String.format("liegt die beste Runde bei %d Minuten und %d Sekunden.", minutes, seconds);
+            } else {
+                retVal += "hast du noch keinen erfolgreich beendet!";
+            }
+        }
+        return retVal;
+    }
 }

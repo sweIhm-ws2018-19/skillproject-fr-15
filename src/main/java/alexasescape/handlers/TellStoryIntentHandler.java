@@ -1,16 +1,18 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.Slots;
+import alexasescape.constants.SpeachText;
+import alexasescape.constants.Storage;
+import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.*;
+import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class TellStoryIntentHandler implements RequestHandler {
-    private static final String PLAYER_NAME_SLOT = "PlayerName";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -19,20 +21,20 @@ public class TellStoryIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        final Request request = input.getRequestEnvelope().getRequest();
-        final IntentRequest intentRequest = (IntentRequest) request;
-        final Intent intent = intentRequest.getIntent();
-        final Slot playerNameSlot = intent.getSlots().get(PLAYER_NAME_SLOT);
-        final String speechText;
 
-        if (playerNameSlot != null && playerNameSlot.getValue() != null) {
-            final String playerName = playerNameSlot.getValue();
-            speechText = "Gott sei Dank " + playerName + "! Du musst mir helfen! Ich wurde entfuehrt und in irgendein Hauses gesperrt! Ich bin in einem dunklen Raum. Ich sehe eine Kiste, einen Schrank und eine Tuer. Was soll ich tuen?";
+        final String speechText;
+        final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
+
+        if (optionalPlayerName.isPresent()) {
+            final String playerName = optionalPlayerName.get();
+            speechText = String.format(SpeachText.STORY, playerName);
         }
         else{
             speechText = "Ich habe Deinen Namen nicht verstanden";
         }
-        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
+
+        StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
+
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)

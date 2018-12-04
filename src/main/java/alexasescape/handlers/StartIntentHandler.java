@@ -10,13 +10,15 @@
 
 package alexasescape.handlers;
 
+import alexasescape.constants.SpeachText;
+import alexasescape.constants.Storage;
+import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class StartIntentHandler implements RequestHandler {
@@ -27,9 +29,11 @@ public class StartIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
         //Telefongeläute
-        final String speechText = "Hallo!? Wer ist da?!";
-        input.getAttributesManager().getSessionAttributes().put(REPEAT_KEY, speechText);
+        final String speechText = SpeachText.START;
+        StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
+
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)

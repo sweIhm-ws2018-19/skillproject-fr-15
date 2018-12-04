@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import org.junit.Before;
@@ -10,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static alexasescape.handlers.RepeatIntentHandler.REPEAT_KEY;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -35,7 +35,7 @@ public class TellStoryIntentHandlerTest {
     @Test
     public void testHandleWithPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(REPEAT_KEY, "Test");
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 
@@ -51,7 +51,7 @@ public class TellStoryIntentHandlerTest {
     @Test
     public void testHandleWithoutPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(REPEAT_KEY, "Test");
+        sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 
