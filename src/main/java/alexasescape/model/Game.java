@@ -12,6 +12,7 @@ public class Game {
     private GameStatus gameStatus;
 
     public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
+        Objects.requireNonNull(rooms, "rooms must not be null");
         if(rooms.size() != 3)
             throw new IllegalArgumentException("A game has to contain 3 rooms");
         this.maxFailedAttempts = maxFailedAttempts;
@@ -33,8 +34,17 @@ public class Game {
         return gameStatus;
     }
 
-    public void finishRoom(){
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
+    }
 
+    public boolean failed(){
+        return failedAttempts++ < maxFailedAttempts;
+    }
+
+
+    public boolean finishRoom(){
+        return rooms.poll() == null;
     }
 
     @Override
