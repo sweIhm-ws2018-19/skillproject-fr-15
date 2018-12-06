@@ -18,9 +18,12 @@ public class GameTest {
         List<Room> rooms = new LinkedList<>();
         final int maxAttempts = 2;
         List<Item> items = new ArrayList<>();
+        List<Item> items2 = new ArrayList<>();
         items.add(new Item("Test", "xy",false));
+        items.add(new Item("Test1", "xyz", true));
+        items2.add(new Item("Room2","xyza", true));
         rooms.add(new Room("Room1", items));
-        rooms.add(new Room("Room2", items));
+        rooms.add(new Room("Room2", items2));
         rooms.add(new Room("Room3", items));
         game = new Game(maxAttempts,rooms, new Player("test", new Highscore()));
     }
@@ -44,9 +47,18 @@ public class GameTest {
     }
 
     @Test
+    public void testNextTurn(){
+        assertTrue(game.nextTurn("falsch").contains("Wie bitte"));
+        assertTrue(game.nextTurn("Test").contains("Test"));
+        assertTrue(game.nextTurn("Test1").contains("Room2"));
+    }
+
+
+    @Test
     public void testfinishRoom(){
         final List<Item> items = new ArrayList<>();
         items.add(new Item("Test", "xy",false));
+        items.add(new Item("Test1", "xyz", true));
         final Room firstRoom = new Room("Room1", items);
         final Room thirdRoom = new Room("Room3", items);
         assertEquals(firstRoom ,game.getCurrentRoom());

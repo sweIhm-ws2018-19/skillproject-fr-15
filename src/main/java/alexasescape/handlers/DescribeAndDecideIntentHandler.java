@@ -23,11 +23,13 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        //String speechText = "Was laberscht du?";
-        final Optional<String> optionalItemName = Slots.ItemName.value(input);
+        final String speechText;
+        Optional<Game> optionalGame = StorageKey.GAME.get(input, Storage.SESSION, Game.class);
+        if(optionalGame.isPresent())
+            speechText="test succeeded";
+        else
+            speechText="test failed";
 
-        Game game = StorageKey.GAME.get(input, Storage.SESSION, Game.class).get();
-        String speechText="test succeeded";
         /*
         if (optionalItemName.isPresent()) {
                 Game game = (Game) gameObj;

@@ -79,9 +79,11 @@ public class Game {
         else
             if(item.isKey()){
                 finishRoom();
+                //Übergang
                 retValue = rooms.peek().getDescription();
             }
             else {
+                //ich konnte leider nix finden..
                 retValue = rooms.peek().getDescription();
             }
         return retValue;

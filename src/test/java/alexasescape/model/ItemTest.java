@@ -3,6 +3,9 @@ package alexasescape.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ItemTest {
@@ -12,6 +15,23 @@ public class ItemTest {
     @Before
     public void setUp() {
         item = new Item("Item", "test", true);
+    }
+
+    @Test
+    public void testMatchesAllLower(){
+        Item compare = item.matches("item");
+        assertEquals(item,compare);
+    }
+    @Test
+    public void testMatchesAllUpper(){
+        Item compare = item.matches("ITEM");
+        assertEquals(item,compare);
+    }
+
+    @Test
+    public void testDoesntMatch(){
+        Item compare = item.matches("test");
+        assertNull(compare);
     }
 
     @Test
