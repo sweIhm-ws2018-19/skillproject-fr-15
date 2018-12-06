@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public enum Slots {
-    PLAYER_NAME("PlayerName");
+    PLAYER_NAME("PlayerName"), ItemName("ItemName");
 
     private final String slotName;
 
