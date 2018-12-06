@@ -50,11 +50,9 @@ public class GameTest {
         final Room firstRoom = new Room("Room1", items);
         final Room thirdRoom = new Room("Room3", items);
         assertEquals(firstRoom ,game.getCurrentRoom());
-        assertFalse(game.finishRoom());
-        assertFalse(game.finishRoom());
+        game.finishRoom();
+        game.finishRoom();
         assertEquals(thirdRoom, game.getCurrentRoom());
-        assertFalse(game.finishRoom());
-        assertTrue(game.finishRoom());
     }
 
     @Test

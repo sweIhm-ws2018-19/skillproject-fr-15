@@ -26,6 +26,16 @@ public class Item {
         return key;
     }
 
+
+
+    public Item matches(String input){
+        if(name.contains(input))
+            return this;
+        else
+            return null;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -20,6 +20,7 @@ public class Game {
         this.rooms.addAll(rooms);
         this.player = player;
         startTime = Instant.now();
+        gameStatus = GameStatus.DESCRIBE;
     }
 
     public Room getCurrentRoom(){
@@ -43,8 +44,33 @@ public class Game {
     }
 
 
-    public boolean finishRoom(){
-        return rooms.poll() == null;
+    public void finishRoom(){
+        rooms.poll();
+    }
+
+    private Item itemExists(String input){
+        Item retValue = null;
+        List<Item> toTest = rooms.peek().getItems();
+        Iterator<Item> iterator = toTest.iterator();
+        while(iterator.hasNext() && retValue == null)
+            retValue = iterator.next().matches(input);
+        return retValue;
+    }
+
+    public String nextTurn(String input){
+        String retValue;
+        Item item = itemExists(input);
+        if(item == null)
+            retValue = "Wie bitte";
+        else
+            if(item.isKey()){
+                finishRoom();
+                retValue = rooms.peek().getDescription();
+            }
+            else {
+                retValue = rooms.peek().getDescription();
+            }
+        return retValue;
     }
 
     @Override

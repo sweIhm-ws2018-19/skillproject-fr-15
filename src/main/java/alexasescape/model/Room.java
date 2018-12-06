@@ -25,11 +25,13 @@ public class Room {
     }
 
     public String getDescription(){
-        String output = "Hier ist";
+        StringBuilder output = new StringBuilder("Hier ist");
         for (Item item: items){
-            output = output + " ein " +item.getName();
+            //der Artikel sollte noch im item hinterlegt werden
+            output.append(" ein ");
+            output.append(item.getName());
         }
-        return output;
+        return output.toString();
     }
 
     @Override
