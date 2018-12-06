@@ -35,8 +35,7 @@ public class TellStoryIntentHandler implements RequestHandler {
             Player player = new Player(playerName);
             Game game = Game.setUp(player);
 
-            Map<String, Object> map = input.getAttributesManager().getSessionAttributes();
-            map.put("Game", game);
+            StorageKey.GAME.put(input, Storage.SESSION, game);
         }
         else{
             speechText = "Ich habe Deinen Namen nicht verstanden";
@@ -47,6 +46,7 @@ public class TellStoryIntentHandler implements RequestHandler {
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
+                .withReprompt(speechText)
                 .withShouldEndSession(false)
                 .build();
     }

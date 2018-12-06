@@ -1,6 +1,8 @@
 package alexasescape.handlers;
 
 import alexasescape.constants.Slots;
+import alexasescape.constants.Storage;
+import alexasescape.constants.StorageKey;
 import alexasescape.model.Game;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -15,31 +17,27 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("DescribeAndDecideIntentHandler"));
+        return input.matches(intentName("DescribeAndDecideIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        String speechText = "Was laberscht du?";
+        //String speechText = "Was laberscht du?";
         final Optional<String> optionalItemName = Slots.ItemName.value(input);
 
-        Map<String, Object> map = input.getAttributesManager().getSessionAttributes();
-        Object gameObj = map.get("game");
-
+        Game game = StorageKey.GAME.get(input, Storage.SESSION, Game.class).get();
+        String speechText="test succeeded";
+        /*
         if (optionalItemName.isPresent()) {
-            try {
                 Game game = (Game) gameObj;
                 speechText = game.nextTurn(optionalItemName.get());
-            } catch (ClassCastException e) {
-                System.out.println("Failed to cast the game...");
-                e.printStackTrace();
-            }
-        }
+        }*/
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withShouldEndSession(true)
+                .withReprompt(speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

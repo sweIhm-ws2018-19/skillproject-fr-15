@@ -34,7 +34,8 @@ public class AlexasEscapeStreamHandler extends SkillStreamHandler {
                         new CancelOrStopIntentHandler(),
 						new HangUpIntentHandler(),
                         new StartIntentHandler(),
-                        new TellStoryIntentHandler()
+                        new TellStoryIntentHandler(),
+                        new DescribeAndDecideIntentHandler()
                 )
                 .withTableName("escapeData")
                 .withAutoCreateTable(true)

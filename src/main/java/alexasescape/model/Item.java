@@ -29,7 +29,7 @@ public class Item {
 
 
     public Item matches(String input){
-        if(name.contains(input))
+        if(name.toLowerCase().contains(input.toLowerCase()))
             return this;
         else
             return null;
