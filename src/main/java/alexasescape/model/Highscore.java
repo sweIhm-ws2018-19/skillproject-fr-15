@@ -8,7 +8,9 @@ public class Highscore {
     private int seconds;
 
     public Highscore() {
-
+        totalGames = -1;
+        minutes = -1;
+        seconds = -1;
     }
 
     public Highscore(int totalGames, int minutes, int seconds) {

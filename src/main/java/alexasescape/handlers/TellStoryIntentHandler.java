@@ -4,10 +4,13 @@ import alexasescape.constants.Slots;
 import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
+import alexasescape.model.Game;
+import alexasescape.model.Player;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -28,10 +31,17 @@ public class TellStoryIntentHandler implements RequestHandler {
         if (optionalPlayerName.isPresent()) {
             final String playerName = optionalPlayerName.get();
             speechText = String.format(SpeechText.STORY, playerName);
+
+            Player player = new Player(playerName);
+            Game game = Game.setUp(player);
+
+            Map<String, Object> map = input.getAttributesManager().getSessionAttributes();
+            map.put("Game", game);
         }
         else{
             speechText = "Ich habe Deinen Namen nicht verstanden";
         }
+
 
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 

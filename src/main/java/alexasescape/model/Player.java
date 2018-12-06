@@ -12,6 +12,11 @@ public class Player {
         this.score = score;
     }
 
+    public Player(String name) {
+        this.name = name;
+        score = new Highscore();
+    }
+
     public String getName() {
         return name;
     }

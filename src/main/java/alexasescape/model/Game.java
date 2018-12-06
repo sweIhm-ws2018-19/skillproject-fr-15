@@ -1,5 +1,7 @@
 package alexasescape.model;
 
+import alexasescape.constants.Constant;
+
 import java.time.Instant;
 import java.util.*;
 
@@ -43,6 +45,18 @@ public class Game {
         return failedAttempts++ < maxFailedAttempts;
     }
 
+    public static Game setUp(Player player) {
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("ein Schrank", "im Schrank liegt ein Schluessel", true));
+        items.add(new Item("eine Kiste", "in der Kiste liegt ein Bild", false));
+
+        List<Room> rooms = new LinkedList<>();
+        rooms.add(new Room("Raum eins", items));
+        rooms.add(new Room("Raum zwei", items));
+        rooms.add(new Room("Raum drei", items));
+        
+        return new Game(Constant.MAXATTEMPTS, rooms, player);
+    }
 
     public void finishRoom(){
         rooms.poll();
