@@ -18,6 +18,7 @@ public class Game {
 
     @EqualsAndHashCode.Exclude
     private Queue<Room> rooms;
+    private static Random random = new Random();
 
     private Player player;
     private GameStatus gameStatus;
@@ -43,15 +44,46 @@ public class Game {
         return failedAttempts++ < maxFailedAttempts;
     }
 
-    public static Game setUp(Player player) {
-        List<Item> items = new ArrayList<>();
-        items.add(new Item("ein Schrank", "im Schrank liegt ein Schluessel", true));
-        items.add(new Item("eine Kiste", "in der Kiste liegt ein Bild", false));
+    public static List<Item> generateItems(){
 
+        final int min = 1;
+        final int max = 3; //one item with and three without a key
+        final int itemsCount = random.nextInt(max)+min;
+
+        final List<Item> itemsWithKey = new ArrayList<>();
+        itemsWithKey.add(new Item("ein Schrank", "im Schrank liegt ein Schluessel", true));
+        itemsWithKey.add(new Item("ein Regal", "Ich sehe einen Schluesselauf dem Regal", true));
+        itemsWithKey.add(new Item("ein Blumentopf", "Unter den Blättern sehe ich etwas glänzen.. Es ist ein Schlueesel", true));
+
+        List<Item> itemsWithoutKey = new ArrayList<>();
+        itemsWithoutKey.add(new Item("eine Kiste", "in der Kiste liegt ein Bild", false));
+        itemsWithoutKey.add(new Item("ein Tisch", "auf dem Tisch liegt nur Geschirr und Besteck", false));
+        itemsWithoutKey.add(new Item("ein Bett", "Im Bett liegen Klamotten, aber kein Schluessel", false));
+        itemsWithoutKey.add(new Item("ein Schreibtisch", "auf dem Schreibtisch liegt nur Geschirr und Besteck", false));
+        itemsWithoutKey.add(new Item("ein Teppich", "auf dem Teppich liegt nur Geschirr und Besteck", false));
+        itemsWithoutKey.add(new Item("ein Stuhl", "auf dem Stuhl liegt nur Geschirr und Besteck", false));
+        itemsWithoutKey.add(new Item("ein Sofa", "auf dem Sofa liegt nur Geschirr und Besteck", false));
+
+
+        final List<Item> itemsForGame = new ArrayList<>();
+        final int keySize = itemsWithKey.size()-1;
+        final int noKeySize = itemsWithoutKey.size()-1;
+
+        final int selectKey = random.nextInt(keySize); //pick a random element as key between index 0 and
+        final int selectNoKey = random.nextInt(noKeySize-itemsCount); //pick startElement of items without key
+
+        itemsForGame.add(itemsWithKey.get(selectKey));
+
+        for(int i = 0; i<itemsCount; i++)
+            itemsForGame.add(itemsWithoutKey.get(selectNoKey+i));
+        return itemsForGame;
+    }
+
+    public static Game setUp(Player player) {
         List<Room> rooms = new LinkedList<>();
-        rooms.add(new Room("Raum eins", items));
-        rooms.add(new Room("Raum zwei", items));
-        rooms.add(new Room("Raum drei", items));
+        rooms.add(new Room("Raum eins", generateItems()));
+        rooms.add(new Room("Raum zwei", generateItems()));
+        rooms.add(new Room("Raum drei", generateItems()));
 
         return new Game(Constant.MAXATTEMPTS, rooms, player);
     }
@@ -70,18 +102,17 @@ public class Game {
     }
 
     public String nextTurn(String input){
-        String retValue;
         Item item = itemExists(input);
         if(item == null)
-            retValue = "Wie bitte";
-        else if(item.isKey()){
+            return "Wie bitte";
+        if(item.isKey()){
             finishRoom();
-            //Übergang
-            retValue = rooms.peek().getDescription();
-        } else {
-            //ich konnte leider nix finden..
-            retValue = rooms.peek().getDescription();
+            return item.getDescription() + rooms.peek().getDescription();
         }
-        return retValue;
+        if (!item.isKey() && failed()){
+            //itembeschreibung - ich konnte leider nix finden..
+            return item.getDescription() + rooms.peek().getDescription();
+        }
+        return "Spiel zu Ende";
     }
 }

@@ -102,6 +102,6 @@ public class HighscoreIntentHandlerTest {
 
         assertFalse(response.getShouldEndSession());
         assertNotNull(response.getOutputSpeech());
-        assertTrue(response.getOutputSpeech().toString().contains("Ich weiß nicht fuer wen ich den Highscore nachschlagen soll?"));
+        assertTrue(response.getOutputSpeech().toString().contains("Ich weiss nicht fuer wen ich den Highscore nachschlagen soll?"));
     }
 }

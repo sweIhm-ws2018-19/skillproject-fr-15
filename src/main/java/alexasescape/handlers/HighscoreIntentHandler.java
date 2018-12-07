@@ -52,7 +52,7 @@ public class HighscoreIntentHandler implements RequestHandler {
             speechText = "Hey " + playerName + "! ";
             speechText += score.orElse(new Highscore()).toString();
         } else {
-            speechText = "Ich weiß nicht fuer wen ich den Highscore nachschlagen soll?";
+            speechText = "Ich weiss nicht fuer wen ich den Highscore nachschlagen soll?";
             isAskResponse = true;
         }
 
