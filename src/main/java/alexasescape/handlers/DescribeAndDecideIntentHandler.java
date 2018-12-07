@@ -27,8 +27,12 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
         if (optionalItemName.isPresent()) {
             itemName = optionalItemName.get();
             Optional<Game> optionalGame = StorageKey.GAME.get(input, Storage.SESSION, Game.class);
-            if (optionalGame.isPresent())
-                speechText = optionalGame.get().nextTurn(itemName);
+            if (optionalGame.isPresent()) {
+                Game game = optionalGame.get();
+                speechText = game.nextTurn(itemName);
+                StorageKey.GAME.put(input, Storage.SESSION, game);
+            }
+
             else
                 speechText = "There is no game";
         }
