@@ -43,36 +43,36 @@ public final class Items {
 
 
     private static final String[] EXIT_POINTS = new String[]{"eine Tuer",
-            "eine Stahltuer",
+            //"eine Stahltuer",
             "ein Lueftungsschacht",
             "ein spiegel",
             "eine Holztuer",
-            "eine Blauetuer", };
-    private static final String[] EXIT_POINTS_DES = new String[]{"Die Tuer ist verschlossen",
-            "Die Tuer ist offen",
-            "vielleicht kann ich das Gitter mit irgendetwas abschrauben",
-            "Der Spiegel sieht irgendwie komisch aus. Vielleicht ist dahinter ein anderer Raum",
-            "Das Holz sieht poroes aus",
-            "Die Tuer ist mit einem Zahlenschloss verschlossen", };
+            "eine Blauetuer",};
+    private static final String[] EXIT_POINTS_DES = new String[]{"Die Tuer ist verschlossen. ",
+            //"Die Tuer ist offen ",
+            "vielleicht kann ich das Gitter mit irgendetwas abschrauben. ",
+            "Der Spiegel sieht irgendwie komisch aus. Vielleicht ist dahinter ein anderer Raum. ",
+            "Das Holz sieht poroes aus. ",
+            "Die Tuer ist mit einem Zahlenschloss verschlossen. ",};
     private static final String[][] KEYS = new String[][]{{"ein Schluessel"},
-            {""},
+            //{""},
             {"ein Taschenmesser", "ein Schraubenzieher"},
             {"ein Hammer", "ein grosser Stein"},
             {"eine Axt", "ein Brecheisen"},
             {"ein Zettel", "ein Blatt"}};
-    private static final String[] SOLVE_DES = new String[]{"Der Schluessel passt.",
-            "",
-            "Perfekt. Ich kann die Schrauben loesen",
-            "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum.",
-            "Damit kann ich die Tuer aufbrechen.",
-            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination für das Zahlenschloss sein. Ja passt."};
+    private static final String[] SOLVE_DES = new String[]{"Der Schluessel passt. ",
+            //" ",
+            "Perfekt. Ich kann die Schrauben loesen. ",
+            "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
+            "Damit kann ich die Tuer aufbrechen. ",
+            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. "};
 
     public static List<Item> getItemList() {
         Set<Item> set = new HashSet<>();
         Item exitPoint = getExitPoint();
 
         set.add(exitPoint);
-        set.add(getContainer());
+        set.add(getContainerWithout(exitPoint));
         set.add(getIrrelevant());
         set.add(getKeyContainer(exitPoint));
 
@@ -91,8 +91,11 @@ public final class Items {
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex], true);
     }
 
-    static Item getContainer() {
-        final int index = randomIndexBelow(CONTAINER_1.length);
+    static Item getContainerWithout(Item exitPoint) {
+        int index = randomIndexBelow(CONTAINER_1.length);
+        if (CONTAINER_1[index].equals(exitPoint.getName())) {
+            index = (index + 1) % CONTAINER_1.length;
+        }
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4)), false);
     }
 
@@ -115,14 +118,14 @@ public final class Items {
 
     public static String getItemsString(int n, String key) {
         Set<String> set = new HashSet<>();
-        if (key.equals("")){
-            key=randomFillItem();
+        if (key.equals("")) {
+            key = randomFillItem();
         }
         set.add(key);
 
         int maxSize = GEGENSTAENDE.length;
         int index = randomIndexBelow(maxSize);
-        for (int i = 1; i < n; i++){
+        for (int i = 1; i < n; i++) {
             set.add(GEGENSTAENDE[index]);
             index = (index + 1) % maxSize;
         }
@@ -135,10 +138,10 @@ public final class Items {
                 last = element;
                 first = false;
             } else {
-                result = result.concat(element).concat(" ");
+                result = result.concat(element).concat(", ");
             }
         }
-        result = result.concat("und ").concat(last);
+        result = result.concat("und ").concat(last).concat(". ");
         return result;
     }
 

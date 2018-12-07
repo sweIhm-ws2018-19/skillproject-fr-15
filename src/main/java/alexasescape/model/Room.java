@@ -50,11 +50,10 @@ public class Room {
                 last = item.getName();
                 first = false;
             } else {
-                output.append(item.getName()).append(" ");
+                output.append(item.getName()).append(", ");
             }
         }
-        output.append("und ");
-        output.append(last);
+        output.append("und ").append(last).append(". ");
         return output.toString();
     }
 

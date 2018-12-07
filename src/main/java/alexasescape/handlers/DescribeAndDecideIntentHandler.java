@@ -23,6 +23,7 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
         final Optional<String> optionalItemName = Slots.ITEM_NAME.value(input);
         final String itemName;
         final String speechText;
+        String repeatText = "Error";
 
         if (optionalItemName.isPresent()) {
             itemName = optionalItemName.get();
@@ -31,6 +32,7 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
                 Game game = optionalGame.get();
                 speechText = game.nextTurn(itemName);
                 StorageKey.GAME.put(input, Storage.SESSION, game);
+                repeatText = game.getCurrentRoom().getDescription();
             }
 
             else
@@ -38,6 +40,8 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
         }
         else
             speechText = "This item doesnt exist";
+
+        StorageKey.REPEAT.put(input, Storage.SESSION, repeatText);
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
