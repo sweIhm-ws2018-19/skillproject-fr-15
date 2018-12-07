@@ -3,6 +3,7 @@ package alexasescape.constants;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -28,7 +29,16 @@ public enum StorageKey {
 
         Object retVal = storage.get(input).get(key);
         if (Objects.nonNull(retVal)) {
-            return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
+            try {
+                return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
+            } catch (IllegalArgumentException e) {
+                final String jsonVal = retVal.toString();
+                try {
+                    return Optional.of(new ObjectMapper().readValue(jsonVal, clazz));
+                } catch (IOException e1) {
+                    throw new IllegalStateException(e1);
+                }
+            }
         } else {
             return Optional.empty();
         }

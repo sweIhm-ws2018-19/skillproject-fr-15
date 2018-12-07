@@ -93,7 +93,7 @@ public class RoomTest {
         final List<Item> itemsTest = new ArrayList<>();
         itemsTest.add(new Item("test", "test", true));
         itemsTest.add(new Item("test1", "test", false));
-        final Room secondRoom = new Room("test", itemsTest);
+        final Room secondRoom = new Room("test2", itemsTest);
         assertNotEquals(room,secondRoom);
     }
 

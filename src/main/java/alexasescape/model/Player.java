@@ -1,40 +1,20 @@
 package alexasescape.model;
 
-import java.util.Objects;
+import lombok.*;
 
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Player {
 
-    private final String name;
-    private final Highscore score;
-
-    public Player(String name, Highscore score) {
-        this.name = name;
-        this.score = score;
-    }
+    private String name;
+    private Highscore score;
 
     public Player(String name) {
         this.name = name;
         score = new Highscore();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Highscore getScore() {
-        return score;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }

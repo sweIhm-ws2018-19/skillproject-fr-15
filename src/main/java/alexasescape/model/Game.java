@@ -1,16 +1,25 @@
 package alexasescape.model;
 
 import alexasescape.constants.Constant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
-import java.time.Instant;
 import java.util.*;
 
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Game {
-    private final Instant startTime;
+    private Date startTime;
     private int failedAttempts;
-    private final int maxFailedAttempts;
+    private int maxFailedAttempts;
+
+    @EqualsAndHashCode.Exclude
     private Queue<Room> rooms;
-    private final Player player;
+
+    private Player player;
     private GameStatus gameStatus;
 
     public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
@@ -21,24 +30,13 @@ public class Game {
         this.rooms = new ArrayDeque<>();
         this.rooms.addAll(rooms);
         this.player = player;
-        startTime = Instant.now();
+        startTime = new Date();
         gameStatus = GameStatus.DESCRIBE;
     }
 
+    @JsonIgnore
     public Room getCurrentRoom(){
         return rooms.peek();
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public GameStatus getGameStatus() {
-        return gameStatus;
-    }
-
-    public void setGameStatus(GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
     }
 
     public boolean failed(){
@@ -54,7 +52,7 @@ public class Game {
         rooms.add(new Room("Raum eins", items));
         rooms.add(new Room("Raum zwei", items));
         rooms.add(new Room("Raum drei", items));
-        
+
         return new Game(Constant.MAXATTEMPTS, rooms, player);
     }
 
@@ -76,34 +74,14 @@ public class Game {
         Item item = itemExists(input);
         if(item == null)
             retValue = "Wie bitte";
-        else
-            if(item.isKey()){
-                finishRoom();
-                //Übergang
-                retValue = rooms.peek().getDescription();
-            }
-            else {
-                //ich konnte leider nix finden..
-                retValue = rooms.peek().getDescription();
-            }
+        else if(item.isKey()){
+            finishRoom();
+            //Übergang
+            retValue = rooms.peek().getDescription();
+        } else {
+            //ich konnte leider nix finden..
+            retValue = rooms.peek().getDescription();
+        }
         return retValue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return failedAttempts == game.failedAttempts &&
-                maxFailedAttempts == game.maxFailedAttempts &&
-                Objects.equals(startTime, game.startTime) &&
-                Objects.equals(rooms, game.rooms) &&
-                Objects.equals(player, game.player) &&
-                Objects.equals(gameStatus, game.gameStatus);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(startTime, failedAttempts, maxFailedAttempts, rooms, player, gameStatus);
     }
 }

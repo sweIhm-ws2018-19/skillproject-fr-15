@@ -1,32 +1,17 @@
 package alexasescape.model;
 
-import java.util.Objects;
+import lombok.*;
 
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Item {
 
-    private final String name;
-    private final String description;
-    private final boolean key;
-
-    public Item(String name, String description, boolean key) {
-        this.name = name;
-        this.description = description;
-        this.key = key;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isKey() {
-        return key;
-    }
-
-
+    private String name;
+    private String description;
+    private boolean key;
 
     public Item matches(String input){
         if(name.toLowerCase().contains(input.toLowerCase()))
@@ -35,19 +20,4 @@ public class Item {
             return null;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return isKey() == item.isKey() &&
-                Objects.equals(getName(), item.getName()) &&
-                Objects.equals(getDescription(), item.getDescription());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getDescription(), isKey());
-    }
 }

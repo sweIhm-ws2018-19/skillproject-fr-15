@@ -1,50 +1,36 @@
 package alexasescape.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+@Data
+@ToString
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Room {
 
     private String name;
+    @EqualsAndHashCode.Exclude
     private List<Item> items;
 
     public Room(String name, List<Item> items) {
-        Objects.requireNonNull(items,"Items must not be null");
-        if(items.isEmpty() || items.size() > 4)
+        Objects.requireNonNull(items, "Items must not be null");
+        if (items.isEmpty() || items.size() > 4)
             throw new IllegalArgumentException("Room must contain between 1 and 4 items");
         this.name = name;
         this.items = items;
     }
 
-    public String getName() {
-        return name;
+    @JsonIgnore
+    public String getDescription() {
+        return "Hier ist" + items.stream().map(item -> " ein " + item.getName()).collect(Collectors.joining());
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public String getDescription(){
-        StringBuilder output = new StringBuilder("Hier ist");
-        for (Item item: items){
-            //der Artikel sollte noch im item hinterlegt werden
-            output.append(" ein ");
-            output.append(item.getName());
-        }
-        return output.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return Objects.equals(name, room.name) &&
-                Objects.equals(items, room.items);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, items);
-    }
 }
