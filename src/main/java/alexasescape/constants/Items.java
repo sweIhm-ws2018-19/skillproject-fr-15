@@ -12,12 +12,12 @@ public final class Items {
             "ein Tisch",
             "ein Tisch",
             "ein Fernseher"};
-    private static final String[] IRRELEVANT_2 = new String[]{"Die Tuer ist verschlossen",
-            "Das Fenster ist vergittert",
-            "Die Tuer ist verschlossen",
-            "Auf dem Tisch steht ein Laptop",
-            "Auf dem Tisch liegt ein Buch",
-            "Es laufen gerade Nachrichtetn"};
+    private static final String[] IRRELEVANT_2 = new String[]{"Die Tuer ist verschlossen. ",
+            "Das Fenster ist vergittert. ",
+            "Die Tuer ist verschlossen. ",
+            "Auf dem Tisch steht ein Laptop. ",
+            "Auf dem Tisch liegt ein Buch. 1984 von George Orwell. ",
+            "Es laufen gerade Nachrichtetn. "};
 
 
     private static final String[] GEGENSTAENDE = new String[]{"ein Zettel",
@@ -42,7 +42,7 @@ public final class Items {
             "In dem Oelfass liegt "};
 
 
-    private static final String[] EXIT_POINTS = new String[]{"eine Tuer",
+    private static final String[] EXIT_POINTS = new String[]{"eine Stahltuer",
             //"eine Stahltuer",
             "ein Lueftungsschacht",
             "ein spiegel",
@@ -60,11 +60,11 @@ public final class Items {
             {"ein Hammer", "ein grosser Stein"},
             {"eine Axt", "ein Brecheisen"},
             {"ein Zettel", "ein Blatt"}};
-    private static final String[] SOLVE_DES = new String[]{"Der Schluessel passt. ",
+    private static final String[] SOLVE_DES = new String[]{"Der Schluessel passt ins Schloss. ",
             //" ",
-            "Perfekt. Ich kann die Schrauben loesen. ",
+            "Perfekt. Ich kann die Schrauben des Gitters vor dem Lüftungsschacht loesen. ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
-            "Damit kann ich die Tuer aufbrechen. ",
+            "Damit kann ich die Holztuer aufbrechen. ",
             "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. "};
 
     public static List<Item> getItemList() {

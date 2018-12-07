@@ -18,7 +18,6 @@ public class Room {
     private String name;
     @EqualsAndHashCode.Exclude
     private List<Item> items;
-    private String solveDescription = "";
 
     public Room(String name, List<Item> items) {
         Objects.requireNonNull(items, "Items must not be null");
@@ -26,16 +25,6 @@ public class Room {
             throw new IllegalArgumentException("Room must contain between 1 and 4 items");
         this.name = name;
         this.items = items;
-    }
-
-    private Item findKey(List<Item> items) {
-        Item key = null;
-        for (Item item : items) {
-            if (item.isKey()) {
-                key = item;
-            }
-        }
-        return key;
     }
 
     @JsonIgnore

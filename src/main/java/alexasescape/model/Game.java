@@ -24,7 +24,6 @@ public class Game {
 
     private Player player;
     private GameStatus gameStatus;
-    private static String solveDescription = "";
 
 
     public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
