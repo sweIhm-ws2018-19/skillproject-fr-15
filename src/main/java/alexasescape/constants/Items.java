@@ -47,7 +47,7 @@ public final class Items {
             "ein Lueftungsschacht",
             "ein Spiegel",
             "eine Holztuer",
-            "eine Blauetuer",};
+            "eine blaue Tuer",};
     private static final String[] EXIT_POINTS_DES = new String[]{"Die Tuer ist verschlossen. ",
             //"Die Tuer ist offen ",
             "vielleicht kann ich das Gitter mit irgendetwas abschrauben. ",
@@ -62,7 +62,7 @@ public final class Items {
             {"ein Zettel", "ein Blatt"}};
     private static final String[] SOLVE_DES = new String[]{"Der Schluessel passt ins Schloss. ",
             //" ",
-            "Perfekt. Ich kann die Schrauben des Gitters vor dem Lüftungsschacht loesen. ",
+            "Perfekt. Ich kann die Schrauben des Gitters vor dem Lueftungsschacht loesen. ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
             "Damit kann ich die Holztuer aufbrechen. ",
             "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. "};

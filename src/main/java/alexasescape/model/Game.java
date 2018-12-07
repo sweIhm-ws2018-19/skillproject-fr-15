@@ -28,7 +28,7 @@ public class Game {
 
     public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
         Objects.requireNonNull(rooms, "rooms must not be null");
-        if(rooms.size() != 3)
+        if (rooms.size() != 3)
             throw new IllegalArgumentException("A game has to contain 3 rooms");
         this.maxFailedAttempts = maxFailedAttempts;
         this.rooms = new ArrayDeque<>();
@@ -39,19 +39,19 @@ public class Game {
     }
 
     @JsonIgnore
-    public Room getCurrentRoom(){
+    public Room getCurrentRoom() {
         return rooms.peek();
     }
 
-    public boolean failed(){
+    public boolean failed() {
         return failedAttempts++ < maxFailedAttempts;
     }
 
-    public static List<Item> generateItems(){
+    public static List<Item> generateItems() {
 
         final int min = 1;
         final int max = 3; //one item with and three without a key
-        final int itemsCount = random.nextInt(max)+min;
+        final int itemsCount = random.nextInt(max) + min;
 
         final List<Item> itemsWithKey = new ArrayList<>();
         itemsWithKey.add(new Item("ein Schrank", "im Schrank liegt ein Schluessel", true));
@@ -69,16 +69,16 @@ public class Game {
 
 
         final List<Item> itemsForGame = new ArrayList<>();
-        final int keySize = itemsWithKey.size()-1;
-        final int noKeySize = itemsWithoutKey.size()-1;
+        final int keySize = itemsWithKey.size() - 1;
+        final int noKeySize = itemsWithoutKey.size() - 1;
 
         final int selectKey = random.nextInt(keySize); //pick a random element as key between index 0 and
-        final int selectNoKey = random.nextInt(noKeySize-itemsCount); //pick startElement of items without key
+        final int selectNoKey = random.nextInt(noKeySize - itemsCount); //pick startElement of items without key
 
         itemsForGame.add(itemsWithKey.get(selectKey));
 
-        for(int i = 0; i<itemsCount; i++)
-            itemsForGame.add(itemsWithoutKey.get(selectNoKey+i));
+        for (int i = 0; i < itemsCount; i++)
+            itemsForGame.add(itemsWithoutKey.get(selectNoKey + i));
         return itemsForGame;
     }
 
@@ -91,28 +91,33 @@ public class Game {
         return new Game(Constant.MAXATTEMPTS, rooms, player);
     }
 
-    public void finishRoom(){
-        rooms.poll();
+    public Room finishRoom() {
+        return rooms.poll();
     }
 
-    private Item itemExists(String input){
+    private Item itemExists(String input) {
         Item retValue = null;
         List<Item> toTest = rooms.peek().getItems();
         Iterator<Item> iterator = toTest.iterator();
-        while(iterator.hasNext() && retValue == null)
+        while (iterator.hasNext() && retValue == null)
             retValue = iterator.next().matches(input);
         return retValue;
     }
 
-    public String nextTurn(String input){
+    public String nextTurn(String input) {
         Item item = itemExists(input);
-        if(item == null)
-            return "Wie bitte";
-        if(item.isKey()){
+        if (item == null)
+            return "Wie bitte?";
+
+        if (item.isKey()) {
             finishRoom();
-            return item.getDescription().concat(item.getSolveDescription()).concat(rooms.peek().getDescription());
+            if (rooms.isEmpty()) {
+                return item.getDescription().concat(item.getSolveDescription()).concat("Danke! Ich bin frei! Und jetzt schalte dein Eco aus!");
+            } else {
+                return item.getDescription().concat(item.getSolveDescription()).concat(rooms.peek().getDescription());
+            }
         }
-        if (!item.isKey() && failed()){
+        if (!item.isKey() && failed()) {
             //itembeschreibung - ich konnte leider nix finden..
             return item.getDescription().concat(rooms.peek().getDescription());
         }
