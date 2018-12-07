@@ -45,7 +45,7 @@ public final class Items {
     private static final String[] EXIT_POINTS = new String[]{"eine Stahltuer",
             //"eine Stahltuer",
             "ein Lueftungsschacht",
-            "ein spiegel",
+            "ein Spiegel",
             "eine Holztuer",
             "eine Blauetuer",};
     private static final String[] EXIT_POINTS_DES = new String[]{"Die Tuer ist verschlossen. ",
@@ -72,9 +72,10 @@ public final class Items {
         Item exitPoint = getExitPoint();
 
         set.add(exitPoint);
-        set.add(getContainerWithout(exitPoint));
+        Item keyCon = getKeyContainer(exitPoint);
+        set.add(keyCon);
+        set.add(getContainerWithout(keyCon));
         set.add(getIrrelevant());
-        set.add(getKeyContainer(exitPoint));
 
         return new ArrayList<>(set);
     }
@@ -91,9 +92,9 @@ public final class Items {
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex], true);
     }
 
-    static Item getContainerWithout(Item exitPoint) {
+    static Item getContainerWithout(Item keyCon) {
         int index = randomIndexBelow(CONTAINER_1.length);
-        if (CONTAINER_1[index].equals(exitPoint.getName())) {
+        if (CONTAINER_1[index].equals(keyCon.getName())) {
             index = (index + 1) % CONTAINER_1.length;
         }
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4)), false);
