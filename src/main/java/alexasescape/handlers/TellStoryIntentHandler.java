@@ -28,11 +28,12 @@ public class TellStoryIntentHandler implements RequestHandler {
 
         if (optionalPlayerName.isPresent()) {
             final String playerName = optionalPlayerName.get();
-            speechText = String.format(SpeechText.STORY, playerName);
 
             Player player = new Player(playerName);
             Game game = Game.setUp(player);
 
+            speechText = String.format(SpeechText.STORY, playerName).concat(game.getCurrentRoom().getDescription())
+            .concat(SpeechText.STORY_2);
             StorageKey.GAME.put(input, Storage.SESSION, game);
         }
         else{

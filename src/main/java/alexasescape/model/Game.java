@@ -1,6 +1,7 @@
 package alexasescape.model;
 
 import alexasescape.constants.Constant;
+import alexasescape.constants.Items;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.util.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Game {
+
     private Date startTime;
     private int failedAttempts;
     private int maxFailedAttempts;
@@ -22,6 +24,8 @@ public class Game {
 
     private Player player;
     private GameStatus gameStatus;
+    private static String solveDescription = "";
+
 
     public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
         Objects.requireNonNull(rooms, "rooms must not be null");
@@ -81,9 +85,9 @@ public class Game {
 
     public static Game setUp(Player player) {
         List<Room> rooms = new LinkedList<>();
-        rooms.add(new Room("Raum eins", generateItems()));
-        rooms.add(new Room("Raum zwei", generateItems()));
-        rooms.add(new Room("Raum drei", generateItems()));
+        rooms.add(new Room("Raum eins", Items.getItemList()));
+        rooms.add(new Room("Raum zwei", Items.getItemList()));
+        rooms.add(new Room("Raum drei", Items.getItemList()));
 
         return new Game(Constant.MAXATTEMPTS, rooms, player);
     }
@@ -107,11 +111,11 @@ public class Game {
             return "Wie bitte";
         if(item.isKey()){
             finishRoom();
-            return item.getDescription() + rooms.peek().getDescription();
+            return item.getDescription().concat(item.getSolveDescription()).concat(rooms.peek().getDescription());
         }
         if (!item.isKey() && failed()){
             //itembeschreibung - ich konnte leider nix finden..
-            return item.getDescription() + rooms.peek().getDescription();
+            return item.getDescription().concat(rooms.peek().getDescription());
         }
         return "Spiel zu Ende";
     }

@@ -8,7 +8,6 @@ import lombok.ToString;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Data
 @ToString
@@ -19,6 +18,7 @@ public class Room {
     private String name;
     @EqualsAndHashCode.Exclude
     private List<Item> items;
+    private String solveDescription = "";
 
     public Room(String name, List<Item> items) {
         Objects.requireNonNull(items, "Items must not be null");
@@ -28,9 +28,34 @@ public class Room {
         this.items = items;
     }
 
+    private Item findKey(List<Item> items) {
+        Item key = null;
+        for (Item item : items) {
+            if (item.isKey()) {
+                key = item;
+            }
+        }
+        return key;
+    }
+
     @JsonIgnore
     public String getDescription() {
-        return "Hier ist" + items.stream().map(item -> " ein " + item.getName()).collect(Collectors.joining());
+        //return "Hier ist" + items.stream().map(item -> " ein " + item.getName()).collect(Collectors.joining());
+
+        StringBuilder output = new StringBuilder("Hier ist ");
+        boolean first = true;
+        String last = "";
+        for (Item item : items) {
+            if (first) {
+                last = item.getName();
+                first = false;
+            } else {
+                output.append(item.getName()).append(" ");
+            }
+        }
+        output.append("und ");
+        output.append(last);
+        return output.toString();
     }
 
 }
