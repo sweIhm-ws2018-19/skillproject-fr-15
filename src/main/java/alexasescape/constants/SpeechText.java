@@ -9,6 +9,8 @@ public final class SpeechText {
     public static final String STORY_2 = "Was soll ich tuen?";
     // Arguments: PlayerName
     public static final String STORY = "Gott sei Dank %s! Du musst mir helfen! Ich wurde entfuehrt und in irgendein Haus gesperrt! Ich bin in einem dunklen Raum. ";
+    // Audios
+    public static final String RINGTONE = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_bridge_02'/>";
 
     private SpeechText() {
         super();
