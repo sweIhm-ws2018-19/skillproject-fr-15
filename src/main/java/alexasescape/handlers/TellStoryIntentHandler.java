@@ -32,7 +32,7 @@ public class TellStoryIntentHandler implements RequestHandler {
             Player player = new Player(playerName);
             Game game = Game.setUp(player);
 
-            speechText = String.format(SpeechText.STORY, playerName).concat(game.getCurrentRoom().getDescription())
+            speechText = String.format(SpeechText.STORY, playerName).concat(game.getCurrentRoomDescription())
             .concat(SpeechText.STORY_2);
             StorageKey.GAME.put(input, Storage.SESSION, game);
         }

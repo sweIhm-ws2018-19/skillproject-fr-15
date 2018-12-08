@@ -31,8 +31,6 @@ public class Room {
 
     @JsonIgnore
     public String getDescription() {
-        //return "Hier ist" + items.stream().map(item -> " ein " + item.getName()).collect(Collectors.joining());
-
         final String start = SpeechText.ROOM_DES[Items.randomIndexBelow(SpeechText.ROOM_DES.length)];
         StringBuilder output = new StringBuilder(start);
         boolean first = true;
@@ -48,5 +46,4 @@ public class Room {
         output.append("und ").append(last).append(". ");
         return output.toString();
     }
-
 }

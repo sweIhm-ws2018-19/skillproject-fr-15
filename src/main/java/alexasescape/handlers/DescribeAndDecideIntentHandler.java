@@ -32,7 +32,7 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
                 Game game = optionalGame.get();
                 speechText = game.nextTurn(itemName);
                 StorageKey.GAME.put(input, Storage.SESSION, game);
-                repeatText = game.getCurrentRoom().getDescription();
+                repeatText = game.getCurrentRoomDescription();
             }
 
             else
