@@ -27,22 +27,25 @@ public enum StorageKey {
         validateKeyAndInputAndStorage(key, input, storage);
         Objects.requireNonNull(clazz, "Class that should be read from source map must not be null!");
 
-        Object retVal = storage.get(input).get(key);
+        // Convert object to desired type
+        final Object retVal = storage.get(input).get(key);
         if (Objects.nonNull(retVal)) {
             try {
-                return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
-            } catch (IllegalArgumentException e) {
-                final String jsonVal = retVal.toString();
-                try {
+                // Object is String that should be parsed to desired type
+                if (retVal instanceof String && !clazz.equals(String.class)) {
+                    final String jsonVal = (String) retVal;
                     return Optional.of(new ObjectMapper().readValue(jsonVal, clazz));
-                } catch (IOException e1) {
-                    throw new IllegalStateException(e1);
                 }
+                // Object is already an object and should be converted to desired type
+                else {
+                    return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
+                }
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
             }
         } else {
             return Optional.empty();
         }
-
     }
 
     public String getKey() {
