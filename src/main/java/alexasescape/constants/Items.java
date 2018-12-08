@@ -80,19 +80,19 @@ public final class Items {
         return new ArrayList<>(set);
     }
 
-    static Item getExitPoint() {
+    private static Item getExitPoint() {
         final int index = randomIndexBelow(EXIT_POINTS.length);
         return new Item(EXIT_POINTS[index], EXIT_POINTS_DES[index], false);
     }
 
-    static Item getKeyContainer(Item exitPoint) {
+    private static Item getKeyContainer(Item exitPoint) {
         final int index = randomIndexBelow(CONTAINER_1.length);
         final int keyIndex = Arrays.asList(EXIT_POINTS).indexOf(exitPoint.getName());
         final int randomIndex = randomIndexBelow(KEYS[keyIndex].length);
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex], true);
     }
 
-    static Item getContainerWithout(Item keyCon) {
+    private static Item getContainerWithout(Item keyCon) {
         int index = randomIndexBelow(CONTAINER_1.length);
         if (CONTAINER_1[index].equals(keyCon.getName())) {
             index = (index + 1) % CONTAINER_1.length;
@@ -100,16 +100,16 @@ public final class Items {
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4)), false);
     }
 
-    static Item getIrrelevant() {
+    private static Item getIrrelevant() {
         final int index = randomIndexBelow(IRRELEVANT_1.length);
         return new Item(IRRELEVANT_1[index], IRRELEVANT_2[index], false);
     }
 
-    static int randomIndexBelow(int n) {
+    public static int randomIndexBelow(int n) {
         return (int) (Math.random() * (n));
     }
 
-    static String randomFillItem() {
+    private static String randomFillItem() {
         return GEGENSTAENDE[randomIndexBelow(GEGENSTAENDE.length)];
     }
 
@@ -145,5 +145,4 @@ public final class Items {
         result = result.concat("und ").concat(last).concat(". ");
         return result;
     }
-
 }

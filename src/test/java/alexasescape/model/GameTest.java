@@ -1,6 +1,7 @@
 package alexasescape.model;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.*;
@@ -33,11 +34,10 @@ public class GameTest {
 
     }
 
-    /*
-    @Test
+    @Ignore
     public void testToString(){
         assertTrue(game2.toString().contains(new Date().toString() + ", failedAttempts=0, maxFailedAttempts=3, rooms=[Room(name=Room1, items=[Item(name=Test, description=xy, key=false), Item(name=Test1, description=xyz, key=true)]), Room(name=Room2, items=[Item(name=Room2, description=xyza, key=true)]), Room(name=Room3, items=[Item(name=Test, description=xy, key=false), Item(name=Test1, description=xyz, key=true)])], player=Player(name=test2, score=Du hast noch keine Runde gespielt. Also los gehts!), gameStatus=DESCRIBE)"));
-    }*/
+    }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorWithNullAsRoom() {
