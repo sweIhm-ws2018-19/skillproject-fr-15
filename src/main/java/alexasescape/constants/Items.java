@@ -6,13 +6,13 @@ import java.util.*;
 
 public final class Items {
 
-    private static final String[] IRRELEVANT_1 = new String[]{"eine Metalltuer",
+    private static final String[] IRRELEVANT_1 = {"eine Metalltuer",
             "ein Fenster",
             "eine schwarze Tuer",
             "ein Tisch",
             "ein Tisch",
             "ein Fernseher"};
-    private static final String[] IRRELEVANT_2 = new String[]{"Die Tuer ist verschlossen. ",
+    private static final String[] IRRELEVANT_2 = {"Die Tuer ist verschlossen. ",
             "Das Fenster ist vergittert. ",
             "Die Tuer ist verschlossen. ",
             "Auf dem Tisch steht ein Laptop. ",
@@ -20,7 +20,7 @@ public final class Items {
             "Es laufen gerade Nachrichtetn. "};
 
 
-    private static final String[] GEGENSTAENDE = new String[]{"ein Zettel",
+    private static final String[] GEGENSTAENDE = {"ein Zettel",
             "ein Laptop",
             "ein Apfel",
             "ein Schraubenschluessel",
@@ -28,13 +28,13 @@ public final class Items {
             "ein Handy"};
 
 
-    private static final String[] CONTAINER_1 = new String[]{"ein Schrank",
+    private static final String[] CONTAINER_1 = {"ein Schrank",
             "eine Truhe",
             "eine Kiste",
             "ein Regal",
             "ein Muelleimer",
             "Ein Oelfass"};
-    private static final String[] CONTAINER_2 = new String[]{"Im Schrank liegt ",
+    private static final String[] CONTAINER_2 = {"Im Schrank liegt ",
             "In der Truhe befindet sich ",
             "In der Kiste ist ",
             "Im Regal ist ",
@@ -42,30 +42,36 @@ public final class Items {
             "In dem Oelfass liegt "};
 
 
-    private static final String[] EXIT_POINTS = new String[]{"eine Stahltuer",
+    private static final String[] EXIT_POINTS = {"eine Stahltuer",
             //"eine Stahltuer",
             "ein Lueftungsschacht",
             "ein Spiegel",
             "eine Holztuer",
-            "eine blaue Tuer",};
-    private static final String[] EXIT_POINTS_DES = new String[]{"Die Tuer ist verschlossen. ",
+            "eine Tuer",};
+    private static final String[] EXIT_POINTS_DES = {"Die Tuer ist verschlossen. ",
             //"Die Tuer ist offen ",
             "vielleicht kann ich das Gitter mit irgendetwas abschrauben. ",
             "Der Spiegel sieht irgendwie komisch aus. Vielleicht ist dahinter ein anderer Raum. ",
             "Das Holz sieht poroes aus. ",
             "Die Tuer ist mit einem Zahlenschloss verschlossen. ",};
-    private static final String[][] KEYS = new String[][]{{"ein Schluessel"},
+    private static final String[][] KEYS = {{"ein Schluessel"},
             //{""},
             {"ein Taschenmesser", "ein Schraubenzieher"},
             {"ein Hammer", "ein grosser Stein"},
             {"eine Axt", "ein Brecheisen"},
             {"ein Zettel", "ein Blatt"}};
-    private static final String[] SOLVE_DES = new String[]{"Der Schluessel passt ins Schloss. ",
+    private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. ",
             //" ",
             "Perfekt. Ich kann die Schrauben des Gitters vor dem Lueftungsschacht loesen. ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
             "Damit kann ich die Holztuer aufbrechen. ",
             "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. "};
+    private static final String[] SOLVE_AUDIO = {"<audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/>",
+            //"",
+            "<audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/>",
+            "",
+            "",
+            "<audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/>"};
 
     public static List<Item> getItemList() {
         Set<Item> set = new HashSet<>();
@@ -80,19 +86,19 @@ public final class Items {
         return new ArrayList<>(set);
     }
 
-    static Item getExitPoint() {
+    private static Item getExitPoint() {
         final int index = randomIndexBelow(EXIT_POINTS.length);
         return new Item(EXIT_POINTS[index], EXIT_POINTS_DES[index], false);
     }
 
-    static Item getKeyContainer(Item exitPoint) {
+    private static Item getKeyContainer(Item exitPoint) {
         final int index = randomIndexBelow(CONTAINER_1.length);
         final int keyIndex = Arrays.asList(EXIT_POINTS).indexOf(exitPoint.getName());
         final int randomIndex = randomIndexBelow(KEYS[keyIndex].length);
-        return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex], true);
+        return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex].concat(SOLVE_AUDIO[keyIndex]), true);
     }
 
-    static Item getContainerWithout(Item keyCon) {
+    private static Item getContainerWithout(Item keyCon) {
         int index = randomIndexBelow(CONTAINER_1.length);
         if (CONTAINER_1[index].equals(keyCon.getName())) {
             index = (index + 1) % CONTAINER_1.length;
@@ -100,16 +106,16 @@ public final class Items {
         return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4)), false);
     }
 
-    static Item getIrrelevant() {
+    private static Item getIrrelevant() {
         final int index = randomIndexBelow(IRRELEVANT_1.length);
         return new Item(IRRELEVANT_1[index], IRRELEVANT_2[index], false);
     }
 
-    static int randomIndexBelow(int n) {
+    public static int randomIndexBelow(int n) {
         return (int) (Math.random() * (n));
     }
 
-    static String randomFillItem() {
+    private static String randomFillItem() {
         return GEGENSTAENDE[randomIndexBelow(GEGENSTAENDE.length)];
     }
 
@@ -145,5 +151,4 @@ public final class Items {
         result = result.concat("und ").concat(last).concat(". ");
         return result;
     }
-
 }
