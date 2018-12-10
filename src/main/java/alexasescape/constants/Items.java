@@ -62,10 +62,10 @@ public final class Items {
             {"ein Zettel", "ein Blatt"}};
     private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. ",
             //" ",
-            "Perfekt. Ich kann die Schrauben des Gitters vor dem Lueftungsschacht loesen. ",
+            "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
-            "Damit kann ich die Holztuer aufbrechen. ",
-            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. "};
+            "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"2s\"/> Ich bin in einem anderen Raum",
+            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt."};
     private static final String[] SOLVE_AUDIO = {"<audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/>",
             //"",
             "<audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/>",
