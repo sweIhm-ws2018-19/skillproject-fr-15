@@ -33,7 +33,7 @@ public class StartIntentHandler implements RequestHandler {
         final String speechText;
         if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.MENU) {
             //Telefongeläute
-             speechText= SpeechText.RINGTONE.concat(SpeechText.START);
+            speechText = SpeechText.START;
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
             StorageKey.STATE.put(input,Storage.SESSION,GameStatus.PLAY );
         }

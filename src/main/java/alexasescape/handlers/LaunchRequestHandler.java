@@ -35,10 +35,9 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-
         final String speechText = SpeechText.LAUNCH_GAME;
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
-        StorageKey.GAME.put(input, Storage.SESSION, GameStatus.MENU);
+        StorageKey.STATE.put(input, Storage.SESSION, GameStatus.MENU);
         return input.getResponseBuilder()
                 .withSimpleCard(CardsText.LAUNCH_GAME, speechText)
                 .withSpeech(speechText)

@@ -53,7 +53,7 @@ public enum StorageKey {
     }
 
     public void put(HandlerInput input, Storage storage, Object value) {
-        put(input, storage, key, value);
+            put(input, storage, key, value);
     }
 
     public <T> Optional<T> get(HandlerInput input, Storage storage, Class<T> clazz) {
