@@ -21,7 +21,7 @@ public class TellStoryIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         final String speechText;
-        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(GameStatus.PLAY) == GameStatus.PLAY) {
+        //if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(GameStatus.PLAY) == GameStatus.PLAY) {
 
             final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
 
@@ -38,14 +38,14 @@ public class TellStoryIntentHandler implements RequestHandler {
                 speechText = SpeechText.NAME_WRONG;
             }
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
-        }
-        else
-            speechText = SpeechText.WRONG_HANDLER;
+//          }
+//        else
+//        speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withReprompt(speechText)
                 .withShouldEndSession(false)
+                .withReprompt(speechText)
                 .build();
     }
 }

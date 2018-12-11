@@ -22,13 +22,13 @@ public class HangUpIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         final String speechText;
-        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.PLAY) {
+//        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.PLAY) {
              speechText = SpeechText.HANG_UP;
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
             StorageKey.STATE.put(input,Storage.SESSION, GameStatus.MENU);
-        }
-        else
-            speechText = SpeechText.WRONG_HANDLER;
+//        }
+//        else
+//            speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSimpleCard(CardsText.MENU, speechText)

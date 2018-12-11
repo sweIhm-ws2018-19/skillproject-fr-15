@@ -22,7 +22,7 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         final String speechText;
-        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(GameStatus.PLAY) == GameStatus.PLAY) {
+//        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(GameStatus.PLAY) == GameStatus.PLAY) {
             final Optional<String> optionalItemName = Slots.ITEM_NAME.value(input);
             final String itemName;
             String repeatText = SpeechText.ERROR;
@@ -35,15 +35,17 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
                     speechText = game.nextTurn(itemName);
                     StorageKey.GAME.put(input, Storage.SESSION, game);
                     repeatText = game.getCurrentRoomDescription();
+                    if(game.isWon())
+                        StorageKey.STATE.put(input,Storage.SESSION, GameStatus.FINISHED );
                 } else
                     speechText = SpeechText.NO_GAME;
             } else
                 speechText = SpeechText.NO_ITEM;
 
             StorageKey.REPEAT.put(input, Storage.SESSION, repeatText);
-        }
-        else
-            speechText = SpeechText.WRONG_HANDLER;
+//        }
+//        else
+//            speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)

@@ -60,10 +60,12 @@ public class Game {
         return item.isKey();
     }
 
+    @JsonIgnore
     public boolean isLost() {
         return !rooms.isEmpty() && failedAttempts >= maxFailedAttempts;
     }
 
+    @JsonIgnore
     public boolean isWon() {
         return rooms.isEmpty() && !isLost();
     }

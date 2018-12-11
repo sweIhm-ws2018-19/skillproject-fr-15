@@ -1,6 +1,7 @@
 package alexasescape.model;
 
 import alexasescape.constants.GameStatus;
+import alexasescape.constants.SpeechText;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -75,9 +76,11 @@ public class GameTest {
     public void testNextTurn() {
         assertTrue(game.nextTurn("falscherInput").contains("Wie bitte"));
         assertTrue(game.nextTurn("Test").contains("Test"));
+        assertTrue(game.getCurrentRoomDescription().contains("Test"));
         assertTrue(game.nextTurn("Test1").contains("Room2"));
         assertTrue(game.nextTurn("Room2").contains("Test"));
         assertTrue(game.nextTurn("Test1").contains("Danke! Ich bin frei! Und jetzt schalte dein Eco aus"));
+        assertTrue(game.getCurrentRoomDescription().contains(SpeechText.GAME_WON));
     }
 
 
