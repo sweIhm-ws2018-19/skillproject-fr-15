@@ -1,7 +1,6 @@
 package alexasescape.model;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -45,19 +44,6 @@ public class RoomTest {
     @Test
     public void testGetName() {
         assertEquals("test", room.getName());
-    }
-
-    @Ignore
-    public void testGetDescription(){assertEquals("Hier ist und test. ",room.getDescription());}
-
-    @Ignore
-    public void testMultipleDescription(){
-        List<Item> testItems = new ArrayList<>();
-        testItems.add(new Item("ein test","test",true));
-        testItems.add(new Item("ein test1","test",true));
-        Room testRoom =new Room("test", testItems);
-        assertEquals("Hier ist ein test1, und ein test. ",testRoom.getDescription());
-
     }
 
     @Test

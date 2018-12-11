@@ -6,15 +6,23 @@ import java.util.*;
 
 public final class Items {
 
+    private Items() {
+    }
+
+    private static final Random RANDOM = new Random(System.currentTimeMillis());
+
+    private static final String DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING = "Die Tuer ist verschlossen .";
+
     private static final String[] IRRELEVANT_1 = {"eine Metalltuer",
             "ein Fenster",
             "eine schwarze Tuer",
             "ein Tisch",
             "ein Tisch",
             "ein Fernseher"};
-    private static final String[] IRRELEVANT_2 = {"Die Tuer ist verschlossen. ",
+    private static final String[] IRRELEVANT_2 = {
+            DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             "Das Fenster ist vergittert. ",
-            "Die Tuer ist verschlossen. ",
+            DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             "Auf dem Tisch steht ein Laptop. ",
             "Auf dem Tisch liegt ein Buch. 1984 von George Orwell. ",
             "Es laufen gerade Nachrichtetn. "};
@@ -48,7 +56,8 @@ public final class Items {
             "ein Spiegel",
             "eine Holztuer",
             "eine Tuer",};
-    private static final String[] EXIT_POINTS_DES = {"Die Tuer ist verschlossen. ",
+    private static final String[] EXIT_POINTS_DES = {
+            DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             //"Die Tuer ist offen ",
             "vielleicht kann ich das Gitter mit irgendetwas abschrauben. ",
             "Der Spiegel sieht irgendwie komisch aus. Vielleicht ist dahinter ein anderer Raum. ",
@@ -112,7 +121,7 @@ public final class Items {
     }
 
     public static int randomIndexBelow(int n) {
-        return (int) (Math.random() * (n));
+        return RANDOM.nextInt(n);
     }
 
     private static String randomFillItem() {
