@@ -20,7 +20,8 @@
           ]
         },
         {
-          "name": "HelpIntent"
+          "name": "HelpIntent",
+          "slots": []
         },
         {
           "name": "HighscoreIntent",
