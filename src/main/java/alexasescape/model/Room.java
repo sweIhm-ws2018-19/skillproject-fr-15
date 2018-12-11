@@ -1,6 +1,5 @@
 package alexasescape.model;
 
-import alexasescape.constants.Items;
 import alexasescape.constants.SpeechText;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -31,7 +30,7 @@ public class Room {
 
     @JsonIgnore
     public String getDescription() {
-        final String start = SpeechText.ROOM_DES[Items.randomIndexBelow(SpeechText.ROOM_DES.length)];
+        final String start = SpeechText.getRandomRoomDes();
         StringBuilder output = new StringBuilder(start);
         boolean first = true;
         String last = "";
