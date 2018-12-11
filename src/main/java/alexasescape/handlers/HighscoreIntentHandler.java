@@ -13,10 +13,7 @@
 
 package alexasescape.handlers;
 
-import alexasescape.constants.Reprompts;
-import alexasescape.constants.Slots;
-import alexasescape.constants.Storage;
-import alexasescape.constants.StorageKey;
+import alexasescape.constants.*;
 import alexasescape.model.Highscore;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -52,7 +49,7 @@ public class HighscoreIntentHandler implements RequestHandler {
             speechText = "Hey " + playerName + "! ";
             speechText += score.orElse(new Highscore()).toString();
         } else {
-            speechText = "Ich weiss nicht fuer wen ich den Highscore nachschlagen soll?";
+            speechText = SpeechText.WHOS_HIGHSCORE;
             isAskResponse = true;
         }
 
@@ -61,7 +58,7 @@ public class HighscoreIntentHandler implements RequestHandler {
 
         // Build response
         final ResponseBuilder responseBuilder = input.getResponseBuilder();
-        responseBuilder.withSimpleCard("Highscore", speechText)
+        responseBuilder.withSimpleCard(CardsText.HIGHSCORE, speechText)
                 .withSpeech(speechText)
                 .withShouldEndSession(false);
 

@@ -1,5 +1,6 @@
 package alexasescape.model;
 
+import alexasescape.constants.SpeechText;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,13 +32,13 @@ public class Highscore {
 
     @Override
     public String toString() {
-        String retVal = "Du hast noch keine Runde gespielt. Also los gehts!";
+        String retVal = SpeechText.NOT_PLAYED;
         if (totalGames > 0) {
-            retVal = String.format("Von insgesamt %d versuchen ", totalGames);
+            retVal = String.format(SpeechText.OF_TRIES, totalGames);
             if (minutes > 0 || seconds > 0) {
-                retVal += String.format("liegt die beste Runde bei %d Minuten und %d Sekunden.", minutes, seconds);
+                retVal += String.format(SpeechText.BEST_ROUND, minutes, seconds);
             } else {
-                retVal += "hast du noch keinen erfolgreich beendet!";
+                retVal += SpeechText.NOT_WON;
             }
         }
         return retVal;

@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.CardsText;
 import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
@@ -24,7 +25,7 @@ public class HangUpIntentHandler implements RequestHandler {
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
         return input.getResponseBuilder()
-                .withSimpleCard("Alexas Escape Menu", speechText)
+                .withSimpleCard(CardsText.MENU, speechText)
                 .withSpeech(speechText)
                 .withReprompt(speechText)
                 .withShouldEndSession(false)

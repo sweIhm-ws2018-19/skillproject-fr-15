@@ -2,6 +2,7 @@ package alexasescape.model;
 
 import alexasescape.constants.Constant;
 import alexasescape.constants.Items;
+import alexasescape.constants.SpeechText;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -44,7 +45,7 @@ public class Game {
     @JsonIgnore
     public String getCurrentRoomDescription() {
         if (rooms.peek() == null)
-            return "Danke! Ich bin frei! Und jetzt schalte dein Eco aus!";
+            return SpeechText.GAME_WON;
         return rooms.peek().getDescription();
     }
 
@@ -96,13 +97,13 @@ public class Game {
     public String nextTurn(String input) {
         final Item item = itemExists(input);
         if (item == null)
-            return "Wie bitte?";
+            return SpeechText.WHAT_WAS_THAT;
 
         final boolean itemIsKey = useItem(item);
         final String response = itemIsKey && !isLost()
                 ? item.getDescription().concat(item.getSolveDescription()).concat(getCurrentRoomDescription())
                 : item.getDescription().concat(rooms.peek().getDescription());
 
-        return isLost() ? "Spiel zu Ende" : response;
+        return isLost() ? SpeechText.GAME_OVER : response;
     }
 }

@@ -1,6 +1,7 @@
 package alexasescape.handlers;
 
 import alexasescape.constants.Slots;
+import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
 import alexasescape.model.Game;
@@ -23,7 +24,7 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
         final Optional<String> optionalItemName = Slots.ITEM_NAME.value(input);
         final String itemName;
         final String speechText;
-        String repeatText = "Error";
+        String repeatText = SpeechText.ERROR;
 
         if (optionalItemName.isPresent()) {
             itemName = optionalItemName.get();
@@ -36,10 +37,10 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
             }
 
             else
-                speechText = "There is no game";
+                speechText = SpeechText.NO_GAME;
         }
         else
-            speechText = "This item doesnt exist";
+            speechText = SpeechText.NO_ITEM;
 
         StorageKey.REPEAT.put(input, Storage.SESSION, repeatText);
 

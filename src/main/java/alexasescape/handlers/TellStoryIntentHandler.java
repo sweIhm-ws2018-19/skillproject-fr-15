@@ -37,7 +37,7 @@ public class TellStoryIntentHandler implements RequestHandler {
             StorageKey.GAME.put(input, Storage.SESSION, game);
         }
         else{
-            speechText = "Ich habe Deinen Namen nicht verstanden";
+            speechText = SpeechText.NAME_WRONG;
         }
 
 
