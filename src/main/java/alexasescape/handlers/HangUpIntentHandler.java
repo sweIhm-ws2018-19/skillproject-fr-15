@@ -28,7 +28,7 @@ public class HangUpIntentHandler implements RequestHandler {
             StorageKey.STATE.put(input,Storage.SESSION, GameStatus.MENU);
         }
         else
-            speechText = SpeechText.NOT_POSSIBLE;
+            speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSimpleCard(CardsText.MENU, speechText)

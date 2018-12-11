@@ -38,7 +38,7 @@ public class StartIntentHandler implements RequestHandler {
             StorageKey.STATE.put(input,Storage.SESSION,GameStatus.PLAY );
         }
         else
-            speechText = SpeechText.NOT_POSSIBLE;
+            speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)

@@ -56,7 +56,7 @@ public class HighscoreIntentHandler implements RequestHandler {
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
         }
         else
-            speechText = SpeechText.NOT_POSSIBLE;
+            speechText = SpeechText.WRONG_HANDLER;
 
             // Build response
             final ResponseBuilder responseBuilder = input.getResponseBuilder();

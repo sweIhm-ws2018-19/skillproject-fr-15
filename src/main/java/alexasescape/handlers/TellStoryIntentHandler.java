@@ -40,7 +40,7 @@ public class TellStoryIntentHandler implements RequestHandler {
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
         }
         else
-            speechText = SpeechText.NOT_POSSIBLE;
+            speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
