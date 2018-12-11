@@ -30,8 +30,7 @@ public class StartIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        //Telefongeläute
-        final String speechText = SpeechText.TEST.concat(SpeechText.RINGTONE).concat(SpeechText.START);
+        final String speechText = SpeechText.RINGTONE.concat(SpeechText.START);
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
         return input.getResponseBuilder()
