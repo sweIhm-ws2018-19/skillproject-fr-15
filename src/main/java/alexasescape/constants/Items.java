@@ -33,7 +33,9 @@ public final class Items {
             "ein Apfel",
             "ein Schraubenschluessel",
             "ein Buch",
-            "ein Handy"};
+            "ein Handy",
+            "eine Tasse",
+            "eine Eco Dot"};
 
 
     private static final String[] CONTAINER_1 = {"ein Schrank",
@@ -42,12 +44,12 @@ public final class Items {
             "ein Regal",
             "ein Muelleimer",
             "Ein Oelfass"};
-    private static final String[] CONTAINER_2 = {"Im Schrank liegt ",
+    private static final String[] CONTAINER_2 = {SpeechText.WALKING.concat("Im Schrank liegt "),
             "In der Truhe befindet sich ",
             "In der Kiste ist ",
-            "Im Regal ist ",
+            SpeechText.WALKING.concat("Im Regal ist "),
             "Im Muelleimer liegt ",
-            "In dem Oelfass liegt "};
+            SpeechText.WALKING.concat("In dem Oelfass liegt ")};
 
 
     private static final String[] EXIT_POINTS = {"eine Stahltuer",
@@ -69,7 +71,7 @@ public final class Items {
     private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/> ",
             "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt <audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/> ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
-            "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"2s\"/> Ich bin in einem anderen Raum ",
+            "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"3s\"/> Ja, hat geklappt. ",
             "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/> "};
 
     public static List<Item> getItemList() {
