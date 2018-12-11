@@ -83,12 +83,14 @@ public class Game {
     }
 
     private Item itemExists(String input) {
-        Item retValue = null;
-        List<Item> toTest = rooms.peek().getItems();
-        Iterator<Item> iterator = toTest.iterator();
-        while (iterator.hasNext() && retValue == null)
-            retValue = iterator.next().matches(input);
-        return retValue;
+        final Room curRoom = getCurrentRoom();
+        if (curRoom != null)
+            return curRoom.getItems()
+                    .stream()
+                    .filter(item -> item.matches(input) != null)
+                    .findFirst()
+                    .orElse(null);
+        return null;
     }
 
     public String nextTurn(String input) {
