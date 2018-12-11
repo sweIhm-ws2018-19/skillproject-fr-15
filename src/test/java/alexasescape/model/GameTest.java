@@ -1,7 +1,6 @@
 package alexasescape.model;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.*;
@@ -10,6 +9,10 @@ import static org.junit.Assert.*;
 
 public class GameTest {
 
+    private static final Item ITEM_WITH_KEY = new Item("Test1", "xyz", true);
+    private static final Item ITEM_WITHOUT_KEY = new Item("Test", "xyz", false);
+    private static final int MAX_FAILED_ATTEMPTS = 3;
+
     private Game game;
     private Game game2;
     private Game game3;
@@ -17,31 +20,30 @@ public class GameTest {
     @Before
     public void setUp() {
         List<Room> rooms = new LinkedList<>();
-        final int maxAttempts = 2;
         List<Item> items = new ArrayList<>();
         List<Item> items2 = new ArrayList<>();
-        items.add(new Item("Test", "xy",false));
-        items.add(new Item("Test1", "xyz", true));
-        items2.add(new Item("Room2","xyza", true));
+        items.add(ITEM_WITHOUT_KEY);
+        items.add(ITEM_WITH_KEY);
+        items2.add(new Item("Room2", "xyza", true));
         rooms.add(new Room("Room1", items));
         rooms.add(new Room("Room2", items2));
         rooms.add(new Room("Room3", items));
-        game = new Game(maxAttempts,rooms, new Player("test", new Highscore()));
+        game = new Game(MAX_FAILED_ATTEMPTS, rooms, new Player("test", new Highscore()));
         Queue rooms2 = new ArrayDeque<>();
         rooms2.addAll(rooms);
-        game2 = new Game(new Date(),0, 3, rooms2, new Player("test2"),GameStatus.DESCRIBE);
-        game3 = new Game(new Date(),0, 3, rooms2, new Player("test2"),GameStatus.DESCRIBE);
+        game2 = new Game(new Date(), 0, MAX_FAILED_ATTEMPTS, rooms2, new Player("test2"), GameStatus.DESCRIBE);
+        game3 = new Game(new Date(), 0, MAX_FAILED_ATTEMPTS, rooms2, new Player("test2"), GameStatus.DESCRIBE);
     }
 
     @Test
-    public void testToString(){
+    public void testToString() {
         assertTrue(game2.toString().contains(game3.toString()));
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorWithNullAsRoom() {
-        new Game(5,null, new Player("test", new Highscore()));
-}
+        new Game(5, null, new Player("test", new Highscore()));
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorWithEmptyRooms() {
@@ -49,23 +51,27 @@ public class GameTest {
     }
 
     @Test
-    public void testMaxFailedAttempts(){
-        assertTrue(game.failed());
-        assertTrue(game.failed());
-        assertFalse(game.failed());
+    public void testMaxFailedAttempts() {
+        for (int i = 0; i < MAX_FAILED_ATTEMPTS - 1; i++) {
+            game.useItem(ITEM_WITHOUT_KEY);
+            assertFalse(game.isLost());
+        }
+
+        game.useItem(ITEM_WITHOUT_KEY);
+        assertTrue(game.isLost());
     }
 
     @Test
-    public void testFailedTurn(){
+    public void testFailedTurn() {
         assertTrue(game.nextTurn("falsch").contains("Wie bitte"));
         game.nextTurn("Test");
         game.nextTurn("Test");
-        assertTrue(game.getFailedAttempts()==2);
+        assertTrue(game.getFailedAttempts() == 2);
         assertTrue(game.nextTurn("Test").contains("Spiel zu Ende"));
     }
 
     @Test
-    public void testNextTurn(){
+    public void testNextTurn() {
         assertTrue(game.nextTurn("falscherInput").contains("Wie bitte"));
         assertTrue(game.nextTurn("Test").contains("Test"));
         assertTrue(game.nextTurn("Test1").contains("Room2"));
@@ -75,13 +81,13 @@ public class GameTest {
 
 
     @Test
-    public void testfinishRoom(){
+    public void testfinishRoom() {
         final List<Item> items = new ArrayList<>();
-        items.add(new Item("Test", "xy",false));
+        items.add(new Item("Test", "xy", false));
         items.add(new Item("Test1", "xyz", true));
         final Room firstRoom = new Room("Room1", items);
         final Room thirdRoom = new Room("Room3", items);
-        assertEquals(firstRoom ,game.getCurrentRoom());
+        assertEquals(firstRoom, game.getCurrentRoom());
         game.finishRoom();
         game.finishRoom();
         assertEquals(thirdRoom, game.getCurrentRoom());
@@ -103,7 +109,7 @@ public class GameTest {
     }
 
     @Test
-    public void testHashCode(){
+    public void testHashCode() {
         assertEquals(game3.hashCode(), game2.hashCode());
     }
 

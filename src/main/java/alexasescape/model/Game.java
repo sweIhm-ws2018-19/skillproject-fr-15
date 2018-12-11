@@ -37,19 +37,36 @@ public class Game {
     }
 
     @JsonIgnore
-    public Room getCurrentRoom(){
+    public Room getCurrentRoom() {
         return rooms.peek();
     }
 
     @JsonIgnore
     public String getCurrentRoomDescription() {
-        if(rooms.peek() == null)
+        if (rooms.peek() == null)
             return "Danke! Ich bin frei! Und jetzt schalte dein Eco aus!";
         return rooms.peek().getDescription();
     }
 
-    public boolean failed() {
-        return failedAttempts++ < maxFailedAttempts;
+    /**
+     * Use the passed item and increment failedAttempts if item is not a key.
+     *
+     * @return True if item is a key, else false
+     */
+    public boolean useItem(Item item) {
+        if (item.isKey())
+            finishRoom();
+        else
+            failedAttempts++;
+        return item.isKey();
+    }
+
+    public boolean isLost() {
+        return !rooms.isEmpty() && failedAttempts >= maxFailedAttempts;
+    }
+
+    public boolean isWon() {
+        return rooms.isEmpty() && !isLost();
     }
 
     public static Game setUp(Player player) {
@@ -75,18 +92,15 @@ public class Game {
     }
 
     public String nextTurn(String input) {
-        Item item = itemExists(input);
+        final Item item = itemExists(input);
         if (item == null)
             return "Wie bitte?";
 
-        if (item.isKey()) {
-            finishRoom();
-            return item.getDescription().concat(item.getSolveDescription()).concat(getCurrentRoomDescription());
-        }
-        if (!item.isKey() && failed()) {
-            //itembeschreibung - ich konnte leider nix finden..
-            return item.getDescription().concat(rooms.peek().getDescription());
-        }
-        return "Spiel zu Ende";
+        final boolean itemIsKey = useItem(item);
+        final String response = itemIsKey && !isLost()
+                ? item.getDescription().concat(item.getSolveDescription()).concat(getCurrentRoomDescription())
+                : item.getDescription().concat(rooms.peek().getDescription());
+
+        return isLost() ? "Spiel zu Ende" : response;
     }
 }
