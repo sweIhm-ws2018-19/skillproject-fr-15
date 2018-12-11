@@ -21,7 +21,7 @@ public class TellStoryIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         final String speechText;
-        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.PLAY) {
+        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(GameStatus.PLAY) == GameStatus.PLAY) {
 
             final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
 

@@ -41,7 +41,10 @@ public enum StorageKey {
                     return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
                 }
             } catch (IOException e) {
-                throw new IllegalArgumentException(e);
+                return Optional.empty();
+                // | | | Die ist geflogen | | |
+                // v v v                  v v v
+                // throw new IllegalArgumentException(e);
             }
         } else {
             return Optional.empty();
