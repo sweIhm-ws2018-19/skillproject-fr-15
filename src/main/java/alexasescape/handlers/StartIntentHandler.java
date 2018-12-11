@@ -13,6 +13,7 @@ package alexasescape.handlers;
 import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
+import alexasescape.constants.GameStatus;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
@@ -29,10 +30,15 @@ public class StartIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-
-        //Telefongeläute
-        final String speechText = SpeechText.TEST.concat(SpeechText.RINGTONE).concat(SpeechText.START);
-        StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
+        final String speechText;
+        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.MENU) {
+            //Telefongeläute
+             speechText= SpeechText.RINGTONE.concat(SpeechText.START);
+            StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
+            StorageKey.STATE.put(input,Storage.SESSION,GameStatus.PLAY );
+        }
+        else
+            speechText = SpeechText.NOT_POSSIBLE;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)

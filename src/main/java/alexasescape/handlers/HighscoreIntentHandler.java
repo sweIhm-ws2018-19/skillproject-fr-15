@@ -33,40 +33,43 @@ public class HighscoreIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-
         String speechText;
         boolean isAskResponse = false;
+        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.MENU) {
+            final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
 
-        final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
+            // Check for player name and create output to user.
+            if (optionalPlayerName.isPresent()) {
 
-        // Check for player name and create output to user.
-        if (optionalPlayerName.isPresent()) {
+                // Read score from player
+                final String playerName = optionalPlayerName.get();
+                final Optional<Highscore> score = StorageKey.get(input, Storage.PERSISTENCE, playerName, Highscore.class);
 
-            // Read score from player
-            final String playerName = optionalPlayerName.get();
-            final Optional<Highscore> score = StorageKey.get(input, Storage.PERSISTENCE, playerName, Highscore.class);
+                speechText = "Hey " + playerName + "! ";
+                speechText += score.orElse(new Highscore()).toString();
+            } else {
+                speechText = SpeechText.WHOS_HIGHSCORE;
+                isAskResponse = true;
+            }
 
-            speechText = "Hey " + playerName + "! ";
-            speechText += score.orElse(new Highscore()).toString();
-        } else {
-            speechText = SpeechText.WHOS_HIGHSCORE;
-            isAskResponse = true;
+            // Put repeat key
+            StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
         }
+        else
+            speechText = SpeechText.NOT_POSSIBLE;
 
-        // Put repeat key
-        StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
+            // Build response
+            final ResponseBuilder responseBuilder = input.getResponseBuilder();
+            responseBuilder.withSimpleCard(CardsText.HIGHSCORE, speechText)
+                    .withSpeech(speechText)
+                    .withShouldEndSession(false);
 
-        // Build response
-        final ResponseBuilder responseBuilder = input.getResponseBuilder();
-        responseBuilder.withSimpleCard(CardsText.HIGHSCORE, speechText)
-                .withSpeech(speechText)
-                .withShouldEndSession(false);
+            if (isAskResponse) {
+                responseBuilder
+                        .withShouldEndSession(false)
+                        .withReprompt(Reprompts.HIGHSCORE);
+            }
 
-        if (isAskResponse) {
-            responseBuilder
-                    .withShouldEndSession(false)
-                    .withReprompt(Reprompts.HIGHSCORE);
-        }
 
         return responseBuilder.build();
     }

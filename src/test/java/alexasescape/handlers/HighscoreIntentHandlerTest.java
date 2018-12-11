@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.GameStatus;
 import alexasescape.constants.StorageKey;
 import alexasescape.model.Highscore;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -38,6 +39,7 @@ public class HighscoreIntentHandlerTest {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.MENU);
         persistentAttributes.put(playerName, new Highscore(3, 2, 1));
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
@@ -57,6 +59,7 @@ public class HighscoreIntentHandlerTest {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.MENU);
         persistentAttributes.put(playerName, new Highscore(3, 0, 0));
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
@@ -75,6 +78,7 @@ public class HighscoreIntentHandlerTest {
     public void testHandleWithoutScore() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.MENU);
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
@@ -92,6 +96,7 @@ public class HighscoreIntentHandlerTest {
     public void testHandleWithoutPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         final Map<String, Object> persistentAttributes = new HashMap<>();
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.MENU);
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
 
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, persistentAttributes, null);

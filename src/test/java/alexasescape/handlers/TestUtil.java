@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.GameStatus;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -48,6 +49,7 @@ public class TestUtil {
     public static Response standardTestForHandle(RequestHandler handler) {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.PLAY);
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 

@@ -1,9 +1,6 @@
 package alexasescape.handlers;
 
-import alexasescape.constants.Slots;
-import alexasescape.constants.SpeechText;
-import alexasescape.constants.Storage;
-import alexasescape.constants.StorageKey;
+import alexasescape.constants.*;
 import alexasescape.model.Game;
 import alexasescape.model.Player;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -15,6 +12,7 @@ import static com.amazon.ask.request.Predicates.intentName;
 
 public class TellStoryIntentHandler implements RequestHandler {
 
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("MyNameIsIntent"));
@@ -22,26 +20,27 @@ public class TellStoryIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-
         final String speechText;
-        final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
+        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.PLAY) {
 
-        if (optionalPlayerName.isPresent()) {
-            final String playerName = optionalPlayerName.get();
+            final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
 
-            Player player = new Player(playerName);
-            Game game = Game.setUp(player);
+            if (optionalPlayerName.isPresent()) {
+                final String playerName = optionalPlayerName.get();
 
-            speechText = String.format(SpeechText.STORY, playerName).concat(game.getCurrentRoomDescription())
-            .concat(SpeechText.STORY_2);
-            StorageKey.GAME.put(input, Storage.SESSION, game);
+                Player player = new Player(playerName);
+                Game game = Game.setUp(player);
+
+                speechText = String.format(SpeechText.STORY, playerName).concat(game.getCurrentRoomDescription())
+                        .concat(SpeechText.STORY_2);
+                StorageKey.GAME.put(input, Storage.SESSION, game);
+            } else {
+                speechText = SpeechText.NAME_WRONG;
+            }
+            StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
         }
-        else{
-            speechText = SpeechText.NAME_WRONG;
-        }
-
-
-        StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
+        else
+            speechText = SpeechText.NOT_POSSIBLE;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
