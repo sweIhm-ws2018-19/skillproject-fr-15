@@ -1,11 +1,6 @@
 package alexasescape.constants;
 
 public final class SpeechText {
-    public static final String TEST = "So klingt meine normale Stimme <emphasis level=\"strong\">Das ist jetzt langsamer und lauter</emphasis> " +
-            "<emphasis level=\"reduced\">Nun spreche ich schneller und leiser</emphasis> " +
-            "<voice name=\"Hans\">Hallo ich bin Hans</voice> <voice name=\"Marlene\">Hallo hier ist Marlene</voice> " +
-            "<voice name=\"Vicki\">Und zu guter letzt Vicki</voice>";
-    //Außerdem noch prosody anschauen! rate, pitch and volume can be altered.
 
     public static final String LAUNCH_GAME = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
     public static final String CANCEL_OR_STOP = "Ciao";

@@ -51,36 +51,26 @@ public final class Items {
 
 
     private static final String[] EXIT_POINTS = {"eine Stahltuer",
-            //"eine Stahltuer",
             "ein Lueftungsschacht",
             "ein Spiegel",
             "eine Holztuer",
             "eine Tuer",};
     private static final String[] EXIT_POINTS_DES = {
             DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
-            //"Die Tuer ist offen ",
             "vielleicht kann ich das Gitter mit irgendetwas abschrauben. ",
             "Der Spiegel sieht irgendwie komisch aus. Vielleicht ist dahinter ein anderer Raum. ",
             "Das Holz sieht poroes aus. ",
             "Die Tuer ist mit einem Zahlenschloss verschlossen. ",};
     private static final String[][] KEYS = {{"ein Schluessel"},
-            //{""},
             {"ein Taschenmesser", "ein Schraubenzieher"},
             {"ein Hammer", "ein grosser Stein"},
             {"eine Axt", "ein Brecheisen"},
             {"ein Zettel", "ein Blatt"}};
-    private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. ",
-            //" ",
-            "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt",
+    private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/> ",
+            "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt <audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/> ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
-            "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"2s\"/> Ich bin in einem anderen Raum",
-            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt."};
-    private static final String[] SOLVE_AUDIO = {"<audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/>",
-            //"",
-            "<audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/>",
-            "",
-            "",
-            "<audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/>"};
+            "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"2s\"/> Ich bin in einem anderen Raum ",
+            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/> "};
 
     public static List<Item> getItemList() {
         Set<Item> set = new HashSet<>();
@@ -104,7 +94,7 @@ public final class Items {
         final int index = randomIndexBelow(CONTAINER_1.length);
         final int keyIndex = Arrays.asList(EXIT_POINTS).indexOf(exitPoint.getName());
         final int randomIndex = randomIndexBelow(KEYS[keyIndex].length);
-        return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex].concat(SOLVE_AUDIO[keyIndex]), true);
+        return new Item(CONTAINER_1[index], CONTAINER_2[index].concat(getItemsString(4, KEYS[keyIndex][randomIndex])), SOLVE_DES[keyIndex], true);
     }
 
     private static Item getContainerWithout(Item keyCon) {
