@@ -1,5 +1,6 @@
 package alexasescape.model;
 
+import alexasescape.constants.GameStatus;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,8 +32,8 @@ public class GameTest {
         game = new Game(MAX_FAILED_ATTEMPTS, rooms, new Player("test", new Highscore()));
         Queue rooms2 = new ArrayDeque<>();
         rooms2.addAll(rooms);
-        game2 = new Game(new Date(), 0, MAX_FAILED_ATTEMPTS, rooms2, new Player("test2"), GameStatus.DESCRIBE);
-        game3 = new Game(new Date(), 0, MAX_FAILED_ATTEMPTS, rooms2, new Player("test2"), GameStatus.DESCRIBE);
+        game2 = new Game(new Date(), 0, MAX_FAILED_ATTEMPTS, rooms2, new Player("test2"));
+        game3 = new Game(new Date(), 0, MAX_FAILED_ATTEMPTS, rooms2, new Player("test2"));
     }
 
     @Test

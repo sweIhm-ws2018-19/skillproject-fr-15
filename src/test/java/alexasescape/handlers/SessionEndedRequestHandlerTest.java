@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -42,7 +43,7 @@ public class SessionEndedRequestHandlerTest {
         assertTrue(res.isPresent());
         final Response response = res.get();
 
-        assertTrue(response.getShouldEndSession());
+        assertFalse(response.getShouldEndSession());
         assertNotEquals("Test", response.getReprompt());
     }
 }

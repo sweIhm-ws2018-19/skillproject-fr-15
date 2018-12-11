@@ -1,5 +1,6 @@
 package alexasescape.handlers;
 
+import alexasescape.constants.GameStatus;
 import alexasescape.constants.StorageKey;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
@@ -36,6 +37,7 @@ public class TellStoryIntentHandlerTest {
     public void testHandleWithPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.PLAY);
         final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 
@@ -52,6 +54,7 @@ public class TellStoryIntentHandlerTest {
     public void testHandleWithoutPlayerName() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
+        sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.PLAY);
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 

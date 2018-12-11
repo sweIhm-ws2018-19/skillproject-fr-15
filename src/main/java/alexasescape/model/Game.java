@@ -22,7 +22,6 @@ public class Game {
     @EqualsAndHashCode.Exclude
     private Queue<Room> rooms;
     private Player player;
-    private GameStatus gameStatus;
 
 
     public Game(int maxFailedAttempts, List<Room> rooms, Player player) {
@@ -34,7 +33,6 @@ public class Game {
         this.rooms.addAll(rooms);
         this.player = player;
         startTime = new Date();
-        gameStatus = GameStatus.DESCRIBE;
     }
 
     @JsonIgnore

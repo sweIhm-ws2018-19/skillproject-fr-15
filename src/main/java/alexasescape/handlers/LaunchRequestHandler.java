@@ -17,6 +17,7 @@ import alexasescape.constants.CardsText;
 import alexasescape.constants.SpeechText;
 import alexasescape.constants.Storage;
 import alexasescape.constants.StorageKey;
+import alexasescape.constants.GameStatus;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
@@ -37,7 +38,7 @@ public class LaunchRequestHandler implements RequestHandler {
 
         final String speechText = SpeechText.LAUNCH_GAME;
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
-
+        StorageKey.GAME.put(input, Storage.SESSION, GameStatus.MENU);
         return input.getResponseBuilder()
                 .withSimpleCard(CardsText.LAUNCH_GAME, speechText)
                 .withSpeech(speechText)
