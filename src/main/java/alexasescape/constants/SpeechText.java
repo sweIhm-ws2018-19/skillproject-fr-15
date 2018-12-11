@@ -31,6 +31,7 @@ public final class SpeechText {
 
     // Audios
     public static final String RINGTONE = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_bridge_02'/>";
+    public static final String WALKING = "<audio src='soundbank://soundlibrary/human/amzn_sfx_human_walking_03'/>";
 
     private SpeechText() {
         super();
