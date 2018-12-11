@@ -23,6 +23,7 @@ public final class SpeechText {
     public static final String ERROR = "Error";
     public static final String NO_GAME = "There is no game";
     public static final String NO_ITEM = "This item doesnt exist";
+    public static final String HELP = "Du musst Alexa helfen aus dem Haus zu entkommen. Alexa beschreibt dir in jedem Raum was sie sieht und du musst dann entscheiden was sie tun soll, um in den nächsten Raum zu kommen.";
 
     // Arguments: minutes, seconds
     public static final String BEST_ROUND = "liegt die beste Runde bei %d Minuten und %d Sekunden.";
