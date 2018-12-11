@@ -22,7 +22,9 @@
         {
           "name": "HelpIntent",
           "slots": [],
-          "samples": []
+          "samples": [
+            "Hilfe"
+          ]
         },
         {
           "name": "HighscoreIntent",
