@@ -29,7 +29,7 @@ public class HelpIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        
+
         final String speechText = SpeechText.HELP;
         StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
 
