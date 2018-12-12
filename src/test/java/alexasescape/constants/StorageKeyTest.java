@@ -22,6 +22,8 @@ public class StorageKeyTest {
     private final static Item ITEM_VALUE = new Item("ItemName", "ItemDescription", false);
     private final static String STRING_KEY = "AnyKey";
     private final static String STRING_VALUE = "AnyValue";
+    private final static String GAMESTATUS_KEY = "GameStatus";
+    private final static GameStatus GAMESTATUS_VALUE = GameStatus.MENU;
 
     // Spies
     private Map<String, Object> sessionAttributesSpy;
@@ -35,6 +37,7 @@ public class StorageKeyTest {
                 new HashMap<String, Object>() {{
                     put(STRING_KEY, STRING_VALUE);
                     put(ITEM_KEY, ITEM_VALUE);
+                    put(GAMESTATUS_KEY, "\"MENU\"");
                 }}
         );
 
@@ -71,6 +74,16 @@ public class StorageKeyTest {
         // Assert result
         assertTrue(have.isPresent());
         assertEquals(ITEM_VALUE, have.get());
+    }
+
+    @Test
+    public void verify_getEnumKey_FromString_onSessionAttributes_whenValidGet() {
+        // Call under test
+        final Optional<GameStatus> have = StorageKey
+                .get(inputMock, Storage.SESSION, GAMESTATUS_KEY, GameStatus.class);
+        // Assert result
+        assertTrue(have.isPresent());
+        assertEquals(GAMESTATUS_VALUE, have.get());
     }
 
 

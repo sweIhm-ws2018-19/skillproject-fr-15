@@ -35,7 +35,8 @@ public class HighscoreIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         String speechText;
         boolean isAskResponse = false;
-//        if(StorageKey.STATE.get(input,Storage.SESSION, GameStatus.class).orElse(null) == GameStatus.MENU) {
+        Optional<String> stateString = StorageKey.STATE.get(input, Storage.SESSION, String.class);
+        if (stateString.map(GameStatus::valueOf).orElse(null) == GameStatus.MENU) {
             final Optional<String> optionalPlayerName = Slots.PLAYER_NAME.value(input);
 
             // Check for player name and create output to user.
@@ -54,21 +55,20 @@ public class HighscoreIntentHandler implements RequestHandler {
 
             // Put repeat key
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
-//        }
-//        else
-//            speechText = SpeechText.WRONG_HANDLER;
+        } else
+            speechText = SpeechText.WRONG_HANDLER;
 
-            // Build response
-            final ResponseBuilder responseBuilder = input.getResponseBuilder();
-            responseBuilder.withSimpleCard(CardsText.HIGHSCORE, speechText)
-                    .withSpeech(speechText)
-                    .withShouldEndSession(false);
+        // Build response
+        final ResponseBuilder responseBuilder = input.getResponseBuilder();
+        responseBuilder.withSimpleCard(CardsText.HIGHSCORE, speechText)
+                .withSpeech(speechText)
+                .withShouldEndSession(false);
 
-            if (isAskResponse) {
-                responseBuilder
-                        .withShouldEndSession(false)
-                        .withReprompt(Reprompts.HIGHSCORE);
-            }
+        if (isAskResponse) {
+            responseBuilder
+                    .withShouldEndSession(false)
+                    .withReprompt(Reprompts.HIGHSCORE);
+        }
 
 
         return responseBuilder.build();

@@ -31,14 +31,15 @@ public class StartIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         final String speechText;
-//        if(StorageKey.STATE.get(input, Storage.SESSION, GameStatus.class).orElse(GameStatus.MENU) == GameStatus.MENU) {
+
+        Optional<String> stateString = StorageKey.STATE.get(input, Storage.SESSION, String.class);
+        if (stateString.map(GameStatus::valueOf).orElse(null) == GameStatus.MENU) {
 
             speechText = SpeechText.RINGTONE.concat(SpeechText.START);
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
-            StorageKey.STATE.put(input,Storage.SESSION,GameStatus.PLAY );
-//        }
-//        else
-//            speechText = SpeechText.WRONG_HANDLER;
+            StorageKey.STATE.put(input, Storage.SESSION, GameStatus.PLAY);
+        } else
+            speechText = SpeechText.WRONG_HANDLER;
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
