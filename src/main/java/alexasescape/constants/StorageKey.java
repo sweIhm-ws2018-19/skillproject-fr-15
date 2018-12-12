@@ -18,7 +18,7 @@ public enum StorageKey {
         this.key = key;
     }
 
-    public static void put(HandlerInput input, Storage storage, String key, Object value) {
+    public static boolean put(HandlerInput input, Storage storage, String key, Object value) {
         validateKeyAndInputAndStorage(key, input, storage);
         Objects.requireNonNull(value, "Value to put in target map must not be null!");
 
@@ -31,9 +31,13 @@ public enum StorageKey {
                 manager.setPersistentAttributes(attributes);
                 manager.savePersistentAttributes();
             } catch (Exception e) {
-
+                // Unable to save PersistentAttributes
+                return false;
             }
         }
+
+        // Put worked
+        return true;
     }
 
     public static <T> Optional<T> get(HandlerInput input, Storage storage, String key, Class<T> clazz) {

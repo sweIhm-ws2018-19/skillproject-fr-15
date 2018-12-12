@@ -1,8 +1,11 @@
 package alexasescape.constants;
 
 import alexasescape.handlers.TestUtil;
+import alexasescape.model.Highscore;
 import alexasescape.model.Item;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -25,8 +28,12 @@ public class StorageKeyTest {
     private final static String GAMESTATUS_KEY = "GameStatus";
     private final static GameStatus GAMESTATUS_VALUE = GameStatus.MENU;
 
+    private final static String PERSISTENT_HIGHSCORE_KEY = "Hans";
+    private final static Highscore PERSISTENT_HIGHSCORE_VALUE = new Highscore(1, 2, 3);
+
     // Spies
     private Map<String, Object> sessionAttributesSpy;
+    private Map<String, Object> persistentAttributesSpy;
 
     // Mocks
     private HandlerInput inputMock;
@@ -41,7 +48,13 @@ public class StorageKeyTest {
                 }}
         );
 
-        inputMock = TestUtil.mockHandlerInput("Peter", sessionAttributesSpy, null, null);
+        persistentAttributesSpy = Mockito.spy(
+                new HashMap<String, Object>() {{
+                    put(PERSISTENT_HIGHSCORE_KEY, PERSISTENT_HIGHSCORE_VALUE);
+                }}
+        );
+
+        inputMock = TestUtil.mockHandlerInput("Peter", sessionAttributesSpy, persistentAttributesSpy, null);
     }
 
     @Test
@@ -84,6 +97,16 @@ public class StorageKeyTest {
         // Assert result
         assertTrue(have.isPresent());
         assertEquals(GAMESTATUS_VALUE, have.get());
+    }
+
+    @Test
+    public void verify_persist_Highscore() throws JsonProcessingException {
+        // Call under test
+        StorageKey.put(inputMock, Storage.PERSISTENCE, "AnyPlayerName", new ObjectMapper().writeValueAsString(new Highscore()));
+        inputMock.getAttributesManager().savePersistentAttributes();
+
+        // Assert result
+        assertTrue(persistentAttributesSpy.containsKey("AnyPlayerName"));
     }
 
 
