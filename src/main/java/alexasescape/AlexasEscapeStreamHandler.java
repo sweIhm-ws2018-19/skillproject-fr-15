@@ -14,12 +14,6 @@ import alexasescape.handlers.*;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import alexasescape.handlers.LaunchRequestHandler;
-import alexasescape.handlers.HangUpIntentHandler;
-import alexasescape.handlers.RepeatIntentHandler;
-
-import alexasescape.handlers.CancelOrStopIntentHandler;
-import alexasescape.handlers.SessionEndedRequestHandler;
 
 
 public class AlexasEscapeStreamHandler extends SkillStreamHandler {
@@ -36,7 +30,8 @@ public class AlexasEscapeStreamHandler extends SkillStreamHandler {
                         new StartIntentHandler(),
                         new TellStoryIntentHandler(),
                         new DescribeAndDecideIntentHandler(),
-                        new HelpIntentHandler()
+                        new HelpIntentHandler(),
+                        new FinishGameIntentHandler()
                 )
                 .withTableName("escapeData")
                 .withAutoCreateTable(true)

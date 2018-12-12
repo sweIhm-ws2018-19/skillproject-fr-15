@@ -7,6 +7,10 @@
           "name": "RepeatIntent",
           "slots": [],
           "samples": [
+            "kannst du das bitte wiederholen",
+            "kannst du das wiederholen",
+            "kannst du das nochmal wiederholen",
+            "wie bitte",
             "wie war das"
           ]
         },
@@ -14,16 +18,12 @@
           "name": "StartIntent",
           "slots": [],
           "samples": [
+            "spielen",
+            "los",
+            "starten",
             "Spiel beginnen",
             "starte das Spiel",
             "Spiel starten"
-          ]
-        },
-        {
-          "name": "HelpIntent",
-          "slots": [],
-          "samples": [
-            "Hilfe"
           ]
         },
         {
@@ -53,6 +53,7 @@
           "name": "HangUpIntent",
           "slots": [],
           "samples": [
+            "gespräch beenden",
             "Telefonat beenden",
             "Auflegen"
           ]
@@ -66,14 +67,62 @@
             }
           ],
           "samples": [
+            "hier ist die {PlayerName}",
+            "hier ist der {PlayerName}",
+            "Hier ist {PlayerName}",
             "Ich bin {PlayerName}",
             "{PlayerName}",
             "Ich heiße {PlayerName}",
             "Mein Name ist {PlayerName}"
           ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "DescribeAndDecideIntent",
+          "slots": [
+            {
+              "name": "ItemName",
+              "type": "ItemName"
+            }
+          ],
+          "samples": [
+            "gehe zur {ItemName}",
+            "öffne die {ItemName}",
+            "öffne den {ItemName}",
+            "schaue den {ItemName} an",
+            "schaue die {ItemName} an",
+            "gehe zum {ItemName}",
+            "Schaue {ItemName} an",
+            "Öffne {ItemName}",
+            "Gehe zu {ItemName}"
+          ]
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "ItemName",
+          "values": [
+            {
+              "name": {
+                "value": "Kiste"
+              }
+            },
+            {
+              "name": {
+                "value": "Schrank"
+              }
+            },
+            {
+              "name": {
+                "value": "Truhe"
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }

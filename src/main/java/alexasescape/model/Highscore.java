@@ -21,10 +21,19 @@ public class Highscore {
 
     public void winGame(int minutes, int seconds) {
         totalGames++;
+
+        // we have our first success
+        if (this.minutes == 0 && this.seconds == 0) {
+            this.minutes = minutes;
+            this.seconds = seconds;
+        }
+
+        // we are more then a minute faster
         if (minutes < this.minutes) {
             this.minutes = minutes;
             this.seconds = seconds;
         }
+        // we are just a view seconds faster
         if (minutes == this.minutes && seconds < this.seconds) {
             this.seconds = seconds;
         }

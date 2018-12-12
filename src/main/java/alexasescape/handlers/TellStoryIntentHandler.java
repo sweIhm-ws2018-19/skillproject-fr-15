@@ -2,6 +2,7 @@ package alexasescape.handlers;
 
 import alexasescape.constants.*;
 import alexasescape.model.Game;
+import alexasescape.model.Highscore;
 import alexasescape.model.Player;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -29,13 +30,15 @@ public class TellStoryIntentHandler implements RequestHandler {
 
             if (optionalPlayerName.isPresent()) {
                 final String playerName = optionalPlayerName.get();
-                // TODO load highscore of player
+                final Optional<Highscore> score = StorageKey.get(input, Storage.PERSISTENCE, playerName, Highscore.class);
 
-                Player player = new Player(playerName);
-                Game game = Game.setUp(player);
+                final Player player = new Player(playerName, score.orElse(new Highscore()));
+                final Game game = Game.setUp(player);
 
                 speechText = String.format(SpeechText.STORY, playerName).concat(game.getCurrentRoomDescription())
                         .concat(SpeechText.STORY_2);
+
+                StorageKey.put(input, Storage.PERSISTENCE, playerName, player.getScore());
                 StorageKey.GAME.put(input, Storage.SESSION, game);
             } else {
                 speechText = SpeechText.NAME_WRONG;

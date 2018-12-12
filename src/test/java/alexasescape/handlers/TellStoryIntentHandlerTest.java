@@ -38,7 +38,9 @@ public class TellStoryIntentHandlerTest {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.PLAY);
-        final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, null, null);
+        final Map<String, Object> persistentAttributes = new HashMap<>();
+
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(playerName, sessionAttributes, persistentAttributes, null);
         final Optional<Response> res = handler.handle(inputMock);
 
         assertTrue(res.isPresent());

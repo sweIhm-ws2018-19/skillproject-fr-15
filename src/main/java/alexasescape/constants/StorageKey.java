@@ -1,9 +1,11 @@
 package alexasescape.constants;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,7 +22,18 @@ public enum StorageKey {
         validateKeyAndInputAndStorage(key, input, storage);
         Objects.requireNonNull(value, "Value to put in target map must not be null!");
 
-        storage.get(input).put(key, value);
+        final Map<String, Object> attributes = storage.get(input);
+        attributes.put(key, value);
+
+        if (storage == Storage.PERSISTENCE) {
+            try {
+                final AttributesManager manager = input.getAttributesManager();
+                manager.setPersistentAttributes(attributes);
+                manager.savePersistentAttributes();
+            } catch (Exception e) {
+
+            }
+        }
     }
 
     public static <T> Optional<T> get(HandlerInput input, Storage storage, String key, Class<T> clazz) {
@@ -41,10 +54,7 @@ public enum StorageKey {
                     return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
                 }
             } catch (IOException e) {
-                return Optional.empty();
-                // | | | Die ist geflogen | | |
-                // v v v                  v v v
-                // throw new IllegalArgumentException(e);
+                throw new IllegalArgumentException(e);
             }
         } else {
             return Optional.empty();
@@ -56,7 +66,7 @@ public enum StorageKey {
     }
 
     public void put(HandlerInput input, Storage storage, Object value) {
-            put(input, storage, key, value);
+        put(input, storage, key, value);
     }
 
     public <T> Optional<T> get(HandlerInput input, Storage storage, Class<T> clazz) {
