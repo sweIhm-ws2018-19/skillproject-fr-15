@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class RepeatIntentHandlerTest {
     public void testHandle() {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
-        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(Collections.emptyMap(), sessionAttributes, null, null);
         final Optional<Response> res = handler.handle(inputMock);
 
         assertTrue(res.isPresent());

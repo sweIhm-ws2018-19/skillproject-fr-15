@@ -9,6 +9,7 @@ import com.amazon.ask.model.*;
 import com.amazon.ask.response.ResponseBuilder;
 import org.mockito.Mockito;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,21 +19,21 @@ import static org.mockito.Mockito.when;
 
 public class TestUtil {
 
-    public static HandlerInput mockHandlerInput(String playerName, Map<String, Object> sessionAttributes, Map<String, Object> persistentAttributes, Map<String, Object> requestAttributes) {
+    public static HandlerInput mockHandlerInput(Map<String, String> slots, Map<String, Object> sessionAttributes, Map<String, Object> persistentAttributes, Map<String, Object> requestAttributes) {
         final AttributesManager attributesManagerMock = Mockito.mock(AttributesManager.class);
         when(attributesManagerMock.getSessionAttributes()).thenReturn(sessionAttributes);
         when(attributesManagerMock.getPersistentAttributes()).thenReturn(persistentAttributes);
         when(attributesManagerMock.getRequestAttributes()).thenReturn(requestAttributes);
 
+        final Intent.Builder intentBuilder = Intent.builder();
+        slots.forEach((key, value) ->
+                intentBuilder.putSlotsItem(key, Slot.builder().withName(key).withValue(value).build())
+        );
+
         // Mock Slots
         final RequestEnvelope requestEnvelopeMock = RequestEnvelope.builder()
                 .withRequest(IntentRequest.builder()
-                        .withIntent(Intent.builder()
-                                .putSlotsItem("PlayerName", Slot.builder()
-                                        .withName("PlayerName")
-                                        .withValue(playerName)
-                                        .build())
-                                .build())
+                        .withIntent(intentBuilder.build())
                         .build())
                 .build();
 
@@ -46,11 +47,15 @@ public class TestUtil {
         return input;
     }
 
+    public static HandlerInput mockHandlerInput(String playerName, Map<String, Object> sessionAttributes, Map<String, Object> persistentAttributes, Map<String, Object> requestAttributes) {
+        return mockHandlerInput(Collections.singletonMap("PlayerName", playerName), sessionAttributes, persistentAttributes, requestAttributes);
+    }
+
     public static Response standardTestForHandle(RequestHandler handler) {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.PLAY);
-        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(Collections.emptyMap(), sessionAttributes, Collections.emptyMap(), Collections.emptyMap());
         final Optional<Response> res = handler.handle(inputMock);
 
         assertTrue(res.isPresent());

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -57,7 +58,9 @@ public class TellStoryIntentHandlerTest {
         final Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(StorageKey.REPEAT.getKey(), "Test");
         sessionAttributes.put(StorageKey.STATE.getKey(), GameStatus.PLAY);
-        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
+        final Map<String, Object> persistentAttributes = new HashMap<>();
+
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(Collections.emptyMap(), sessionAttributes, persistentAttributes, null);
         final Optional<Response> res = handler.handle(inputMock);
 
         assertTrue(res.isPresent());
