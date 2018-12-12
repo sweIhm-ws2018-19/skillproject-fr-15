@@ -21,6 +21,34 @@ public class HighscoreTest {
     }
 
     @Test
+    public void testWinGame_WithEmptyScore() {
+        final Highscore score = new Highscore();
+        score.winGame(1, 2);
+        assertEquals(new Highscore(1, 1, 2), score);
+    }
+
+    @Test
+    public void testWinGame_WithExistingBetterScore() {
+        final Highscore score = new Highscore(1, 1, 1);
+        score.winGame(2, 2);
+        assertEquals(new Highscore(2, 1, 1), score);
+    }
+
+    @Test
+    public void testWinGame_WithExistingScore_MinutesBetter() {
+        final Highscore score = new Highscore(1, 2, 2);
+        score.winGame(1, 3);
+        assertEquals(new Highscore(2, 1, 3), score);
+    }
+
+    @Test
+    public void testWinGame_WithExistingScore_SecondsBetter() {
+        final Highscore score = new Highscore(1, 2, 2);
+        score.winGame(2, 1);
+        assertEquals(new Highscore(2, 2, 1), score);
+    }
+
+    @Test
     public void getSeconds() {
         assertEquals(1, score.getSeconds());
     }
