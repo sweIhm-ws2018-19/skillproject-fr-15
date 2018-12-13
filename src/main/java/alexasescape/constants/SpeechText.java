@@ -23,11 +23,7 @@ public final class SpeechText {
 
     // Arguments: minutes, seconds
     public static final String GAME_FINISHED_AND_LOST = "Oh Gott! Ich hoere Schritte! Aaaaahhhhhh! Du hast dieses Spiel leider mit einer Spielzeit von %d Minuten und %d Sekunden verloren! ";
-
-    // Arguments: minutes, seconds
     public static final String GAME_FINISHED_AND_WON = "Danke! Ich bin frei! Du hast das Spiel erfolgreich nach %d Minuten und %d Sekunden abgeschlossen! ";
-
-    // Arguments: minutes, seconds
     public static final String BEST_ROUND = "liegt die beste Runde bei %d Minuten und %d Sekunden. ";
 
     // Arguments: totalGames
