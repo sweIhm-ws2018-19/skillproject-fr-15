@@ -21,6 +21,8 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         final String speechText;
         Optional<String> stateString = StorageKey.STATE.get(input, Storage.SESSION, String.class);
+        Optional<Response> finishGameResponse = Optional.empty();
+
         if (stateString.map(GameStatus::valueOf).orElse(null) == GameStatus.PLAY) {
             final Optional<String> optionalItemName = Slots.ITEM_NAME.value(input);
             final String itemName;
@@ -37,7 +39,7 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
 
                     if (game.isWon() || game.isLost()) {
                         StorageKey.STATE.put(input, Storage.SESSION, GameStatus.FINISHED);
-                        return new FinishGameIntentHandler().handle(input);
+                        finishGameResponse = new FinishGameIntentHandler().handle(input);
                     }
                 } else
                     speechText = SpeechText.NO_GAME;
@@ -48,10 +50,12 @@ public class DescribeAndDecideIntentHandler implements RequestHandler {
         } else
             speechText = SpeechText.WRONG_HANDLER;
 
-        return input.getResponseBuilder()
+        final Optional<Response> describeAndDecideResponse = input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withReprompt(speechText)
                 .withShouldEndSession(false)
                 .build();
+
+        return HandlerUtil.concat(input, describeAndDecideResponse, finishGameResponse);
     }
 }
