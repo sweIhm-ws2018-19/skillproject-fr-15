@@ -20,6 +20,7 @@ public final class SpeechText {
     public static final String NO_ITEM = "This item doesnt exist";
     public static final String HELP = "Du musst Alexa helfen aus dem Haus zu entkommen. Alexa beschreibt dir in jedem Raum was sie sieht, und du musst dann entscheiden was sie tun soll, um in den naechsten Raum zu kommen.";
     public static final String WRONG_HANDLER = "Was soll das bringen?";
+    public static final String CANT_UNDERSTAND = "ich kann dich nicht verstehen!";
 
     // Arguments: minutes, seconds
     public static final String GAME_FINISHED_AND_LOST = "Oh Gott! Ich hoere Schritte! Aaaaahhhhhh! <break time=\"3s\"/> Du hast dieses Spiel leider mit einer Spielzeit von %d Minuten und %d Sekunden verloren! ";

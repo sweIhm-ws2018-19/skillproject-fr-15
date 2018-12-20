@@ -11,7 +11,7 @@ public final class Items {
 
     private static final Random RANDOM = new Random(System.currentTimeMillis());
 
-    private static final String DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING = "Die Tuer ist verschlossen .";
+    private static final String DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING = "Die Tuer ist verschlossen. ";
 
     private static final String[] IRRELEVANT_1 = {"eine Metalltuer",
             "ein Fenster",
