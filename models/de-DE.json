@@ -18,6 +18,8 @@
           "name": "StartIntent",
           "slots": [],
           "samples": [
+            "Ich will spielen",
+            "Ich möchte spielen",
             "spielen",
             "los",
             "starten",
@@ -57,6 +59,11 @@
             "Telefonat beenden",
             "Auflegen"
           ]
+        },
+        {
+          "name": "FinishGameIntent",
+          "slots": [],
+          "samples": []
         },
         {
           "name": "MyNameIsIntent",
@@ -99,6 +106,10 @@
             "Öffne {ItemName}",
             "Gehe zu {ItemName}"
           ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
         }
       ],
       "types": [
@@ -107,17 +118,47 @@
           "values": [
             {
               "name": {
-                "value": "Kiste"
+                "value": "metalltuer"
               }
             },
             {
               "name": {
-                "value": "Schrank"
+                "value": "muelleimer"
               }
             },
             {
               "name": {
-                "value": "Truhe"
+                "value": "mülleimer"
+              }
+            },
+            {
+              "name": {
+                "value": "oelfass"
+              }
+            },
+            {
+              "name": {
+                "value": "ölfass"
+              }
+            },
+            {
+              "name": {
+                "value": "regal"
+              }
+            },
+            {
+              "name": {
+                "value": "kiste"
+              }
+            },
+            {
+              "name": {
+                "value": "schrank"
+              }
+            },
+            {
+              "name": {
+                "value": "truhe"
               }
             }
           ]

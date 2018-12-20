@@ -24,6 +24,7 @@ public class GameTest {
         List<Item> items = new ArrayList<>();
         List<Item> items2 = new ArrayList<>();
         items.add(ITEM_WITHOUT_KEY);
+        items.add(new Item("Oelfass","irgendwas",false));
         items.add(ITEM_WITH_KEY);
         items2.add(new Item("Room2", "xyza", true));
         rooms.add(new Room("Room1", items));
@@ -73,6 +74,7 @@ public class GameTest {
 
     @Test
     public void testNextTurn() {
+        assertTrue(game.nextTurn("ölfass").contains("Oelfass"));
         assertTrue(game.nextTurn("falscherInput").contains("Wie bitte"));
         assertTrue(game.nextTurn("Test").contains("Test"));
         assertTrue(game.getCurrentRoomDescription().contains("Test"));

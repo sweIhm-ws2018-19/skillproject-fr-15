@@ -21,7 +21,11 @@ public class Item {
     }
 
     public Item matches(String input){
-        if(name.toLowerCase().contains(input.toLowerCase()))
+        String text = input.toLowerCase();
+        text = text.replaceAll("\u00E4","ae");
+        text = text.replaceAll("\u00f6","oe");
+        text = text.replaceAll("\u00fc","ue");
+        if(name.toLowerCase().contains(text))
             return this;
         else
             return null;
