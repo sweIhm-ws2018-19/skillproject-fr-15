@@ -35,7 +35,7 @@ public final class Items {
             "ein Buch",
             "ein Handy",
             "eine Tasse",
-            "eine Eco Dot"};
+            "ein Eco Dot"};
 
 
     private static final String[] CONTAINER_1 = {"ein Schrank",
@@ -72,7 +72,7 @@ public final class Items {
             "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt <audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/> ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
             "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"3s\"/> Ja, hat geklappt. ",
-            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. Ja passt. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/> "};
+            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. <break time=\"2s\"/> Ja passt. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/> "};
 
     public static List<Item> getItemList() {
         Set<Item> set = new HashSet<>();

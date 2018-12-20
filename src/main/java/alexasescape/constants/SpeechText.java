@@ -18,16 +18,12 @@ public final class SpeechText {
     public static final String ERROR = "Error";
     public static final String NO_GAME = "There is no game";
     public static final String NO_ITEM = "This item doesnt exist";
-    public static final String HELP = "Du musst Alexa helfen aus dem Haus zu entkommen. Alexa beschreibt dir in jedem Raum was sie sieht und du musst dann entscheiden was sie tun soll, um in den nächsten Raum zu kommen.";
+    public static final String HELP = "Du musst Alexa helfen aus dem Haus zu entkommen. Alexa beschreibt dir in jedem Raum was sie sieht, und du musst dann entscheiden was sie tun soll, um in den naechsten Raum zu kommen.";
     public static final String WRONG_HANDLER = "Was soll das bringen?";
 
     // Arguments: minutes, seconds
-    public static final String GAME_FINISHED_AND_LOST = "Oh Gott! Ich hoere Schritte! Aaaaahhhhhh! Du hast dieses Spiel leider mit einer Spielzeit von %d Minuten und %d Sekunden verloren! ";
-
-    // Arguments: minutes, seconds
+    public static final String GAME_FINISHED_AND_LOST = "Oh Gott! Ich hoere Schritte! Aaaaahhhhhh! <break time=\"3s\"/> Du hast dieses Spiel leider mit einer Spielzeit von %d Minuten und %d Sekunden verloren! ";
     public static final String GAME_FINISHED_AND_WON = "Danke! Ich bin frei! Du hast das Spiel erfolgreich nach %d Minuten und %d Sekunden abgeschlossen! ";
-
-    // Arguments: minutes, seconds
     public static final String BEST_ROUND = "liegt die beste Runde bei %d Minuten und %d Sekunden. ";
 
     // Arguments: totalGames
