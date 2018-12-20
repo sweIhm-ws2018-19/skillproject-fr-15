@@ -41,7 +41,6 @@ public class LaunchRequestHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSimpleCard(CardsText.LAUNCH_GAME, speechText)
                 .withSpeech(speechText)
-                .withReprompt(speechText)
                 .withShouldEndSession(false)
                 .build();
     }

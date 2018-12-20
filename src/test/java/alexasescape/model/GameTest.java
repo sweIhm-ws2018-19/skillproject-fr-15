@@ -74,7 +74,6 @@ public class GameTest {
 
     @Test
     public void testNextTurn() {
-        assertTrue(game.nextTurn("ölfass").contains("Oelfass"));
         assertTrue(game.nextTurn("falscherInput").contains("Wie bitte"));
         assertTrue(game.nextTurn("Test").contains("Test"));
         assertTrue(game.getCurrentRoomDescription().contains("Test"));
