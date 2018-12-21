@@ -79,7 +79,7 @@ public class GameTest {
         assertTrue(game.getCurrentRoomDescription().contains("Test"));
         assertTrue(game.nextTurn("Test1").contains("Room2"));
         assertTrue(game.nextTurn("Room2").contains("Test"));
-        assertTrue(game.nextTurn("Test1").contains("Danke! Ich bin frei!"));
+        assertTrue(game.nextTurn("Test1").isEmpty());
         assertTrue(game.getCurrentRoomDescription().contains(SpeechText.GAME_WON));
     }
 

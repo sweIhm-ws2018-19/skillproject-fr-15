@@ -41,7 +41,8 @@ public class FinishGameIntentHandler implements RequestHandler {
             // Game won
             if (game.isWon()) {
                 lastPlayerScore.winGame((int) minutes, (int) seconds);
-                speechText = String.format(SpeechText.GAME_FINISHED_AND_WON, minutes, seconds) + lastPlayerScore.toString();
+                final String lastItemSolveDescription = StorageKey.REPEAT.get(input, Storage.SESSION, String.class).orElse("");
+                speechText = lastItemSolveDescription.concat(String.format(SpeechText.GAME_FINISHED_AND_WON, minutes, seconds) + lastPlayerScore.toString());
             }
             // Game lost
             else {

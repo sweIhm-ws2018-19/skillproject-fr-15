@@ -103,7 +103,10 @@ public class Game {
         final String response = itemIsKey && !isLost()
                 ? item.getDescription().concat(item.getSolveDescription()).concat(getCurrentRoomDescription())
                 : item.getDescription().concat(rooms.peek().getDescription());
-
-        return isLost() ? SpeechText.GAME_OVER : response;
+        if(isLost())
+            return SpeechText.GAME_OVER;
+        if(isWon())
+            return item.getSolveDescription();
+        return response;
     }
 }
