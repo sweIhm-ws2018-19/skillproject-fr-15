@@ -13,12 +13,14 @@ public final class Items {
 
     private static final String DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING = "Die Tuer ist verschlossen. ";
 
+    // Namen der irrelevanten Items für Räume
     private static final String[] IRRELEVANT_1 = {"eine Metalltuer",
             "ein Fenster",
             "eine schwarze Tuer",
             "ein Tisch",
             "ein Tisch",
             "ein Fernseher"};
+    // Beschreibungen der irrelevanten Items - Beschreibug an der Stelle i im Array gehört zum Namen an der Stelle i
     private static final String[] IRRELEVANT_2 = {
             DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             "Das Fenster ist vergittert. ",
@@ -28,6 +30,7 @@ public final class Items {
             "Es laufen gerade Nachrichtetn. "};
 
 
+    // Gegenstände die in die Items kommen
     private static final String[] GEGENSTAENDE = {"ein Zettel",
             "ein Laptop",
             "ein Apfel",
@@ -38,12 +41,14 @@ public final class Items {
             "ein Eco Dot"};
 
 
+    // Namen der Items für Räume
     private static final String[] CONTAINER_1 = {"ein Schrank",
             "eine Truhe",
             "eine Kiste",
             "ein Regal",
             "ein Muelleimer",
             "Ein Oelfass"};
+    // Beschreibungen der Items - Beschreibug an der Stelle i im Array gehört zum Namen an der Stelle i
     private static final String[] CONTAINER_2 = {SpeechText.WALKING.concat("Im Schrank liegt "),
             "In der Truhe befindet sich ",
             "In der Kiste ist ",
@@ -52,22 +57,27 @@ public final class Items {
             SpeechText.WALKING.concat("In dem Oelfass liegt ")};
 
 
+    // Namen der Ausgangspunkte
     private static final String[] EXIT_POINTS = {"eine Stahltuer",
             "ein Lueftungsschacht",
             "ein Spiegel",
             "eine Holztuer",
             "eine Tuer",};
+    // Beschreibungen der Ausgangspunkte
     private static final String[] EXIT_POINTS_DES = {
             DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             "vielleicht kann ich das Gitter mit irgendetwas abschrauben. ",
             "Der Spiegel sieht irgendwie komisch aus. Vielleicht ist dahinter ein anderer Raum. ",
             "Das Holz sieht poroes aus. ",
             "Die Tuer ist mit einem Zahlenschloss verschlossen. ",};
+    // Namen der Gegenstände die in Items kommen und Schlüssel sind. 2 Dimensionales Array! Array an der Stelle i im
+    // Array enthält mögliche Shlüssel für den zugehörigen Ausgangspunkt (Es wird einer zufällig gewählt)
     private static final String[][] KEYS = {{"ein Schluessel"},
             {"ein Taschenmesser", "ein Schraubenzieher"},
             {"ein Hammer", "ein grosser Stein"},
             {"eine Axt", "ein Brecheisen"},
             {"ein Zettel", "ein Blatt"}};
+    // Beschreibung, wie Alexa den Raum verlassen konnte.
     private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/> ",
             "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt <audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/> ",
             "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
