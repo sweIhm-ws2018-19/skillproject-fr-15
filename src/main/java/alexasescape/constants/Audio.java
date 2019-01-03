@@ -9,11 +9,11 @@ public final class Audio {
 
     // S3
     public static final String RINGTONE = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/ringtone.mp3'/>";
-    public static final String TRUHE = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/ringtone.mp3'/>";
-    public static final String AUFLEGEN = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/ringtone.mp3'/>";
-    public static final String HOLZTUER = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/ringtone.mp3'/>";
-    public static final String SPIEGEL = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/ringtone.mp3'/>";
-    public static final String SCHACHT = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/ringtone.mp3'/>";
+    public static final String TRUHE = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/kiste.mp3'/>";
+    public static final String AUFLEGEN = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/auflegen.mp3'/>";
+    public static final String HOLZTUER = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/holztuer.mp3'/>";
+    public static final String SPIEGEL = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/spiegel.mp3'/>";
+    public static final String SCHACHT = "<audio src='https://s3.amazonaws.com/alexasescapeaudios/schacht.mp3'/>";
 
     // Speech Markup
     public static final String BREAK_2_S = "<break time=\"2s\"/>";
