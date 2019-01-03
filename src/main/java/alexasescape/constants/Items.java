@@ -27,7 +27,7 @@ public final class Items {
             DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             "Auf dem Tisch steht ein Laptop. ",
             "Auf dem Tisch liegt ein Buch. 1984 von George Orwell. ",
-            "Es laufen gerade Nachrichtetn. "};
+            "Es laufen gerade Nachrichten. "};
 
 
     // Gegenstände die in die Items kommen
@@ -49,12 +49,12 @@ public final class Items {
             "ein Muelleimer",
             "Ein Oelfass"};
     // Beschreibungen der Items - Beschreibug an der Stelle i im Array gehört zum Namen an der Stelle i
-    private static final String[] CONTAINER_2 = {SpeechText.WALKING.concat("Im Schrank liegt "),
-            "In der Truhe befindet sich ",
+    private static final String[] CONTAINER_2 = {Audio.WALKING.concat("Im Schrank liegt "),
+            Audio.TRUHE.concat(" In der Truhe befindet sich "),
             "In der Kiste ist ",
-            SpeechText.WALKING.concat("Im Regal ist "),
+            Audio.WALKING.concat("Im Regal ist "),
             "Im Muelleimer liegt ",
-            SpeechText.WALKING.concat("In dem Oelfass liegt ")};
+            Audio.WALKING.concat("In dem Oelfass liegt ")};
 
 
     // Namen der Ausgangspunkte
@@ -78,11 +78,11 @@ public final class Items {
             {"eine Axt", "ein Brecheisen"},
             {"ein Zettel", "ein Blatt"}};
     // Beschreibung, wie Alexa den Raum verlassen konnte.
-    private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_01'/> ",
-            "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. <break time=\"2s\"/> Ja, funktioniert. <break time=\"2s\"/> Mal schauen wo mich der Schacht hinfuehrt <audio src='soundbank://soundlibrary/home/amzn_sfx_footsteps_muffled_02'/> ",
-            "Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
-            "Damit kann ich vielleicht die Holztuer aufbrechen. <break time=\"3s\"/> Ja, hat geklappt. ",
-            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. <break time=\"2s\"/> Ja passt. <audio src='soundbank://soundlibrary/home/amzn_sfx_door_open_03'/> "};
+    private static final String[] SOLVE_DES = {"Der Schluessel passt ins Schloss. " + Audio.DOOR_1,
+            "Mal schauen ob ich damit die Schrauben des Gitters vor dem Lueftungsschacht loesen kann. " + Audio.BREAK_2_S + " Ja, funktioniert. " + Audio.BREAK_2_S + " Mal schauen wo mich der Schacht hinfuehrt " + Audio.SCHACHT,
+            Audio.SPIEGEL + " Ich hab den Spiegel eingeschlagen. Dahinter ist ein anderer Raum. ",
+            "Damit kann ich vielleicht die Holztuer aufbrechen. " + Audio.HOLZTUER + " Ja, hat geklappt. ",
+            "Ah, da stehen 5 Zahlen drauf. Das koennte die Kombination fuer das Zahlenschloss sein. " + Audio.BREAK_2_S + " Ja passt. " + Audio.DOOR_2};
 
     public static List<Item> getItemList() {
         Set<Item> set = new HashSet<>();

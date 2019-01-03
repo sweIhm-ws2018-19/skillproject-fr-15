@@ -10,10 +10,7 @@
 
 package alexasescape.handlers;
 
-import alexasescape.constants.GameStatus;
-import alexasescape.constants.SpeechText;
-import alexasescape.constants.Storage;
-import alexasescape.constants.StorageKey;
+import alexasescape.constants.*;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
@@ -35,7 +32,7 @@ public class StartIntentHandler implements RequestHandler {
         Optional<String> stateString = StorageKey.STATE.get(input, Storage.SESSION, String.class);
         if (stateString.map(GameStatus::valueOf).orElse(null) == GameStatus.MENU) {
 
-            speechText = SpeechText.RINGTONE.concat(SpeechText.START);
+            speechText = Audio.RINGTONE.concat(SpeechText.START);
             StorageKey.REPEAT.put(input, Storage.SESSION, speechText);
             StorageKey.STATE.put(input, Storage.SESSION, GameStatus.PLAY);
         } else

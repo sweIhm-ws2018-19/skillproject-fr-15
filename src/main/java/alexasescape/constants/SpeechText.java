@@ -2,9 +2,9 @@ package alexasescape.constants;
 
 public final class SpeechText {
 
-    public static final String LAUNCH_GAME = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
+    public static final String LAUNCH_GAME = "Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
     public static final String CANCEL_OR_STOP = "Ciao";
-    public static final String HANG_UP = "Hallo. Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
+    public static final String HANG_UP = Audio.AUFLEGEN + Audio.BREAK_2_S + " Moechtest Du das Spiel starten oder Deinen Highscore abfragen";
     public static final String START = "Hallo!? Wer ist da?!";
     private static final String[] ROOM_DES = new String[]{"Hier ist ", "In diesem Raum ist ", "Hier sehe ich ", "In diesem Raum sehe ich "};
     public static final String STORY_2 = "Was soll ich tuen?";
@@ -23,7 +23,7 @@ public final class SpeechText {
     public static final String CANT_UNDERSTAND = "ich kann dich nicht verstehen!";
 
     // Arguments: minutes, seconds
-    public static final String GAME_FINISHED_AND_LOST = "Oh Gott! Ich hoere Schritte! Aaaaahhhhhh! <break time=\"3s\"/> Du hast dieses Spiel leider mit einer Spielzeit von %d Minuten und %d Sekunden verloren! ";
+    public static final String GAME_FINISHED_AND_LOST = "Oh Gott! Ich hoere Schritte! " + Audio.AUFLEGEN + Audio.BREAK_3_S + " Du hast dieses Spiel leider mit einer Spielzeit von %d Minuten und %d Sekunden verloren! ";
     public static final String GAME_FINISHED_AND_WON = "Danke! Ich bin frei! Du hast das Spiel erfolgreich nach %d Minuten und %d Sekunden abgeschlossen! ";
     public static final String BEST_ROUND = "liegt die beste Runde bei %d Minuten und %d Sekunden. ";
 
@@ -32,10 +32,6 @@ public final class SpeechText {
 
     // Arguments: PlayerName
     public static final String STORY = "Gott sei Dank %s! Du musst mir helfen! Ich wurde entfuehrt und in irgendein Haus gesperrt! Ich bin in einem dunklen Raum. ";
-
-    // Audios
-    public static final String RINGTONE = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_bridge_02'/>";
-    public static final String WALKING = "<audio src='soundbank://soundlibrary/human/amzn_sfx_human_walking_03'/>";
 
     private SpeechText() {
         super();

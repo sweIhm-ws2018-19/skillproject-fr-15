@@ -104,9 +104,9 @@ public class Game {
                 ? item.getDescription().concat(item.getSolveDescription()).concat(getCurrentRoomDescription())
                 : item.getDescription().concat(rooms.peek().getDescription());
         if(isLost())
-            return SpeechText.GAME_OVER;
+            return item.getDescription();
         if(isWon())
-            return item.getSolveDescription();
+            return item.getDescription().concat(item.getSolveDescription());
         return response;
     }
 }

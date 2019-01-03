@@ -69,7 +69,7 @@ public class GameTest {
         game.nextTurn("Test");
         game.nextTurn("Test");
         assertTrue(game.getFailedAttempts() == 2);
-        assertTrue(game.nextTurn("Test").contains("Spiel zu Ende"));
+        assertTrue(game.nextTurn("Test").contains("xyz"));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class GameTest {
         assertTrue(game.getCurrentRoomDescription().contains("Test"));
         assertTrue(game.nextTurn("Test1").contains("Room2"));
         assertTrue(game.nextTurn("Room2").contains("Test"));
-        assertTrue(game.nextTurn("Test1").isEmpty());
+        assertTrue(game.nextTurn("Test1").contains("xyz"));
         assertTrue(game.getCurrentRoomDescription().contains(SpeechText.GAME_WON));
     }
 
