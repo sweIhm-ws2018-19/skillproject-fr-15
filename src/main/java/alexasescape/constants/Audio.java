@@ -18,4 +18,6 @@ public final class Audio {
     // Speech Markup
     public static final String BREAK_2_S = "<break time=\"2s\"/>";
     public static final String BREAK_3_S = "<break time=\"3s\"/>";
+
+    private Audio(){}
 }
