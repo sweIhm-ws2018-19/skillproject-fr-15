@@ -18,12 +18,16 @@ Alexa's Escape ist ein interaktives Adventure-Spiel, in dem es darum geht, dem f
 ## Zustandsautomat
 <img src="images/Zustandsautomat-Spiel.png" alt="Klassenmodell" class="inline"/>
 
-[Beispiel User Story](https://github.com/sweIhm-ws2018-19/skillproject-fr-15/issues/46)
+
+## [Beispiel User Story - "Zufälligkeit der Räume"](https://github.com/sweIhm-ws2018-19/skillproject-fr-15/issues/46)
+
+
 
 ## Erkenntnisse aus dem Praktikum Software Engineering 1
 
 - Teamarbeit(Kommunikation, Aufgabenverteilung, usw.)
 - Toolchain
+
 
 
 ## Ausblick auf mögliche Erweiterungen
