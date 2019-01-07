@@ -9,9 +9,9 @@
 
 
 ## Klassendiagramm
-<img src="Klassendiagramm_Alexas_Escape.png" alt="Anwendungsfalldiagramm" class="inline"/>
+<img src="images/Klassendiagramm_Alexas_Escape.png" alt="Anwendungsfalldiagramm" class="inline"/>
 
 
 ## Zustandsautomat
-<img src="Zustandsautomat-Spiel.png" alt="Klassenmodell" class="inline"/>
+<img src="images/Zustandsautomat-Spiel.png" alt="Klassenmodell" class="inline"/>
 
