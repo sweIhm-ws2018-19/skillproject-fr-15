@@ -1,3 +1,4 @@
-### Alexa's Escape
-
-Alexa's Escape ist ein interaktives Adventure-Spiel, in dem es darum geht, dem fiktiven Charakter Alexa über das Telefon zu helfen aus einem Haus zu entkommen. Alexa befindet sich in einem fremdem Haus, aus dem sie durch verschiedene Räume hindurch zum Ausgang gelangen muss. In jedem Zimmer gibt es Gegenstände, die Alexa dabei helfen den jeweiligen Raum und schlussendlich auch das Haus zu verlassen. Über die Auswahl der Gegenstände wird nun der Spieler am Telefon entscheiden und leitet Alexa somit aus dem Haus. Sobald Alexa das Haus verlassen kann, ohne das der Spieler zu viele falsche Entscheidungen getroffen hat, ist die Flucht geglückt und die benötigte Zeit wird gespeichert.
+## Zustandsautomat für das Spiel
+![Zustandsautomat](https://github.com/sweIhm-ws2018-19/skillproject-fr-15/blob/master/UML/Sprint_2/Zustandsautomat-Spiel.png)
+## Klassenmodell
+![Klassenmodell](https://github.com/sweIhm-ws2018-19/skillproject-fr-15/blob/master/UML/Sprint_2/Klassendiagramm_Alexas_Escape.png)
