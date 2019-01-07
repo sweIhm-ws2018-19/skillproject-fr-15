@@ -19,9 +19,9 @@ Refer to [Hosting a Custom Skill as an AWS Lambda Function](https://developer.am
 Once you've created your AWS Lambda function and configured “Alexa Skills Kit” as a trigger, upload the JAR file produced by building the project and set the handler to the fully qualified class name of your handler function. Finally, copy the ARN for your AWS Lambda function because you’ll need it when configuring your skill in the Amazon Developer console.
 
 ### Alexa Skill Setup
-Now that the skill code has been uploaded to AWS Lambda we're ready to configure the skill with Alexa. First, navigate to the [Alexa Skills Kit Developer Console](https://developer.amazon.com/alexa/console/ask). Click the “Create Skill” button in the upper right. Enter “ColorPicker” as your skill name. On the next page,  select “Custom” and click “Create skill”.
+Now that the skill code has been uploaded to AWS Lambda we're ready to configure the skill with Alexa. First, navigate to the [Alexa Skills Kit Developer Console](https://developer.amazon.com/alexa/console/ask). Click the “Create Skill” button in the upper right. Enter “AlexasEscape” as your skill name. On the next page,  select “Custom” and click “Create skill”.
  
-Now we're ready to define the interaction model for the skill. Under “Invocation” tab on the left side, define your Skill Invocation Name to be `color picker`. 
+Now we're ready to define the interaction model for the skill. Under “Invocation” tab on the left side, define your Skill Invocation Name to be `alexas escape`. 
  
 Now it’s time to add an intent to the skill. Click the “Add” button under the Intents section of the Interaction Model. Leave “Create custom intent” selected, enter “ElexasEscape” for the intent name, and create the intent. Now it’s time to add some sample utterances that will be used to invoke the intent. For this example, we’ve provided the following sample utterances, but feel free to add others.
 
@@ -30,7 +30,7 @@ To build the sample, open a terminal and go to the directory containing pom.xml,
 ```
 mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package
 ```
-This will generate a zip file named "colorpicker-1.0-jar-with-dependencies.jar" in the target directory.
+This will generate a zip file named "alexasescape-1.0-jar-with-dependencies.jar" in the target directory.
 
 
 ## Running the tests
