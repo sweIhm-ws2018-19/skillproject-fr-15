@@ -19,7 +19,8 @@ public final class Items {
             "eine schwarze Tuer",
             "ein Tisch",
             "ein Tisch",
-            "ein Fernseher"};
+            "ein Fernseher",
+			"ein Stuhl"};
     // Beschreibungen der irrelevanten Items - Beschreibug an der Stelle i im Array gehört zum Namen an der Stelle i
     private static final String[] IRRELEVANT_2 = {
             DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
