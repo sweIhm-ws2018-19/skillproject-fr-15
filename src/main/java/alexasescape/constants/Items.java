@@ -40,7 +40,8 @@ public final class Items {
             "ein Buch",
             "ein Handy",
             "eine Tasse",
-            "ein Eco Dot"};
+            "ein Eco Dot",
+			"ein Stift"};
 
 
     // Namen der Items für Räume
