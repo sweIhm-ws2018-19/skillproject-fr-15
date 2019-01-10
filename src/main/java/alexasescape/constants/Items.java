@@ -53,14 +53,16 @@ public final class Items {
             "eine Kiste",
             "ein Regal",
             "ein Muelleimer",
-            "Ein Oelfass"};
+            "Ein Oelfass",
+			"Ein Karton"};
     // Beschreibungen der Items - Beschreibug an der Stelle i im Array gehört zum Namen an der Stelle i
     private static final String[] CONTAINER_2 = {Audio.WALKING.concat("Im Schrank liegt "),
             Audio.TRUHE.concat(" In der Truhe befindet sich "),
             "In der Kiste ist ",
             Audio.WALKING.concat("Im Regal ist "),
             "Im Muelleimer liegt ",
-            Audio.WALKING.concat("In dem Oelfass liegt ")};
+            Audio.WALKING.concat("In dem Oelfass liegt "),
+			"Im Karton ist "};
 
 
     // Namen der Ausgangspunkte

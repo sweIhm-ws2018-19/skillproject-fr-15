@@ -160,7 +160,12 @@
               "name": {
                 "value": "truhe"
               }
-            }
+            },
+			{
+				"name": {
+				"value": "karton"
+				}
+			}
           ]
         }
       ]
