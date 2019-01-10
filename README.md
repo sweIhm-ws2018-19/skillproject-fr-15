@@ -1,7 +1,7 @@
 # Alexa's Escape
 
 Ein interaktives 'Room-Escape-Game' für die ganze Familie.
-Weitere Informationen zur Umsetzung des Projekt gibt es ![hier](https://sweihm-ws2018-19.github.io/skillproject-fr-15/).
+Weitere Informationen zur Umsetzung des Projekt gibt es [hier](https://sweihm-ws2018-19.github.io/skillproject-fr-15).
 
 
 
