@@ -28,7 +28,8 @@ public final class Items {
             DIE_TUER_IST_VERSCHLOSSEN_SONAR_STRING,
             "Auf dem Tisch steht ein Laptop. ",
             "Auf dem Tisch liegt ein Buch. 1984 von George Orwell. ",
-            "Es laufen gerade Nachrichten. "};
+            "Es laufen gerade Nachrichten. ",
+			"Der Stuhl ist leer"};
 
 
     // Gegenstände die in die Items kommen
