@@ -2,11 +2,9 @@ package alexasescape.constants;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,13 +22,19 @@ public enum StorageKey {
         validateKeyAndInputAndStorage(key, input, storage);
         Objects.requireNonNull(value, "Value to put in target map must not be null!");
 
-        final Map<String, Object> attributes = storage.get(input);
-        attributes.put(key, value);
-
-        if (storage == Storage.PERSISTENCE) {
+        if (storage != Storage.PERSISTENCE) {
+            final Map<String, Object> attributes = storage.get(input);
+            attributes.put(key, value);
+        }
+        // Put to persistent attributes
+        else {
             try {
+                final Map<String, Object> attributes = storage.get(input);
+                attributes.put(key, new ObjectMapper().writeValueAsString(value));
+
                 final AttributesManager manager = input.getAttributesManager();
-                persistAttributesToString(attributes, manager);
+                manager.setPersistentAttributes(attributes);
+                manager.savePersistentAttributes();
             } catch (Exception e) {
                 // Unable to save PersistentAttributes
                 return false;
@@ -39,15 +43,6 @@ public enum StorageKey {
 
         // Put worked
         return true;
-    }
-
-    private static void persistAttributesToString(Map<String, Object> attributes, AttributesManager manager) throws JsonProcessingException {
-        final Map<String, Object> toStringAttributes = new HashMap<>(attributes.size());
-        for (Map.Entry<String, Object> entry : attributes.entrySet()) {
-            toStringAttributes.put(entry.getKey(), new ObjectMapper().writeValueAsString(entry.getValue()));
-        }
-        manager.setPersistentAttributes(toStringAttributes);
-        manager.savePersistentAttributes();
     }
 
     public static <T> Optional<T> get(HandlerInput input, Storage storage, String key, Class<T> clazz) {
