@@ -37,6 +37,7 @@
             }
           ],
           "samples": [
+            "Wie ist der Highscore von {PlayerName}",
             "Welchen Highscore hat {PlayerName}",
             "Sag mir den Highscore von {PlayerName}",
             "Wie ist der Highscore für {PlayerName}",
@@ -96,6 +97,9 @@
             }
           ],
           "samples": [
+            "{ItemName}",
+            "schaue dir den {ItemName} an",
+            "schaue dir die {ItemName} an",
             "gehe zur {ItemName}",
             "öffne die {ItemName}",
             "öffne den {ItemName}",
@@ -118,22 +122,57 @@
           "values": [
             {
               "name": {
+                "value": "stuhl"
+              }
+            },
+            {
+              "name": {
+                "value": "holztür"
+              }
+            },
+            {
+              "name": {
+                "value": "spiegel"
+              }
+            },
+            {
+              "name": {
+                "value": "lüftungsschacht"
+              }
+            },
+            {
+              "name": {
+                "value": "stahltür"
+              }
+            },
+            {
+              "name": {
+                "value": "fernseher"
+              }
+            },
+            {
+              "name": {
+                "value": "tisch"
+              }
+            },
+            {
+              "name": {
+                "value": "tür"
+              }
+            },
+            {
+              "name": {
+                "value": "fenster"
+              }
+            },
+            {
+              "name": {
                 "value": "metalltuer"
               }
             },
             {
               "name": {
-                "value": "muelleimer"
-              }
-            },
-            {
-              "name": {
                 "value": "mülleimer"
-              }
-            },
-            {
-              "name": {
-                "value": "oelfass"
               }
             },
             {
@@ -161,16 +200,16 @@
                 "value": "truhe"
               }
             },
-			{
-				"name": {
-				"value": "karton"
-				}
-			},
-			{
-				"name": {
-				"value": "vase"
-				}
-			}
+            {
+              "name": {
+                "value": "karton"
+              }
+            },
+            {
+              "name": {
+                "value": "vase"
+              }
+            }
           ]
         }
       ]
