@@ -1,6 +1,9 @@
 # Alexa's Escape
 
 Ein interaktives 'Room-Escape-Game' für die ganze Familie.
+Weitere Informationen zur Umsetzung des Projekt gibt es ![hier](https://sweihm-ws2018-19.github.io/skillproject-fr-15/).
+
+
 
 ## Status
 [![Travis-CI Status](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-15.svg?branch=master)](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-15) [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=alexa-skills-kit-samples:alexasescape&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexa-skills-kit-samples:alexasescape)
