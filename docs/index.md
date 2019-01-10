@@ -26,7 +26,9 @@ Alexa's Escape ist ein interaktives Adventure-Spiel, in dem es darum geht, dem f
 ## Erkenntnisse aus dem Praktikum Software Engineering 1
 
 - Teamarbeit(Kommunikation, Aufgabenverteilung, usw.)
-- Toolchain
+- typische Toolchain kennenlernen
+- Arbeit mit Github
+- agile Entwicklung
 
 
 
